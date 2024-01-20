@@ -49,6 +49,14 @@ namespace Gamelogic.Grid
         public Node2D GetObject(Vector2I pos);
 
         /// <summary>
+        /// Get the position of a given object
+        /// Throws invalid index error if object not present in grid 
+        /// </summary>
+        /// <param name="obj">Object on grid</param>
+        /// <returns>Cell index of the object</returns>
+        public Vector2I GetObjectPosition(Node2D obj);
+
+        /// <summary>
         /// Remove the object in the given cell
         /// Returns false if there is no object in the given cell
         /// </summary>
