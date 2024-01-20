@@ -56,6 +56,11 @@ namespace Gamelogic.Grid
             throw new GridException("Object not present in grid", obj);
         }
 
+        public Vector2 GetObjectPositionInGameCoordinates(Node2D obj)
+        {
+            return GridCoordinateToGameCoordinate(GetObjectPosition(obj));
+        }
+
         public void PlaceObject(Node2D obj, Vector2I pos)
         {
             if (objectToIndex.ContainsKey(obj))
@@ -65,6 +70,11 @@ namespace Gamelogic.Grid
 
             objectToIndex[obj] = pos;
             indexToObject[pos] = obj;
+        }
+
+        public void PlaceObject(Node2D obj)
+        {
+            PlaceObject(obj, GameCoordinateToGridCoordinate(obj.GlobalPosition));
         }
         public void MoveObject(Node2D obj, Vector2I pos)
         {

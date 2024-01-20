@@ -43,6 +43,12 @@ namespace Gamelogic.Grid
         public void PlaceObject(Node2D obj, Vector2I pos);
 
         /// <summary>
+        /// Place object contextually
+        /// </summary>
+        /// <param name="obj"></param>
+        public void PlaceObject(Node2D obj);
+
+        /// <summary>
         /// Get the object in the given cell position
         /// </summary>
         /// <param name="pos"></param>
@@ -55,6 +61,13 @@ namespace Gamelogic.Grid
         /// <param name="obj">Object on grid</param>
         /// <returns>Cell index of the object</returns>
         public Vector2I GetObjectPosition(Node2D obj);
+
+        /// <summary>
+        /// Get position of a given object in game coordinates
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public Vector2 GetObjectPositionInGameCoordinates(Node2D obj);
 
         /// <summary>
         /// Remove the object in the given cell
