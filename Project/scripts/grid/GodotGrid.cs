@@ -78,6 +78,10 @@ namespace Gamelogic.Grid
         }
         public void MoveObject(Node2D obj, Vector2I pos)
         {
+            if (indexToObject.ContainsKey(pos))
+            {
+                throw new GridException("Position is already occupied", pos, obj);
+            }
             RemoveObject(obj);
             PlaceObject(obj, pos);
         }

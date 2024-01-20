@@ -25,7 +25,15 @@ namespace Gamelogic.Objects
 			if (grid.GetObjectPosition(this) == grid.GameCoordinateToGridCoordinate(Position))
 			{
 				Vector2 inputVector = Input.GetVector("left", "right", "up", "down");
-				grid.MoveObjectInDirection(this, inputVector);
+				try
+				{
+					if (!inputVector.IsZeroApprox())
+					grid.MoveObjectInDirection(this, inputVector);
+				}
+				catch (GridException)
+				{
+					// Tis fine
+				}
 			}
 
 			Velocity = Velocity.Lerp(

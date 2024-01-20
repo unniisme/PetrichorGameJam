@@ -110,6 +110,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xuv0g"]
+size = Vector2(30, 30)
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -121,10 +122,11 @@ floor_max_angle = 0.0
 script = ExtResource("1_110a8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.375, 1.375)
 sprite_frames = SubResource("SpriteFrames_yg6aa")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.189713
+frame_progress = 0.640557
 offset = Vector2(35.52, 0)
 script = ExtResource("4_82ddo")
 
