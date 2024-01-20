@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Project"
+run/main_scene="res://scenes/levels/test_level.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameGrid="*res://scripts/preloads/GameGrid.cs"
+GameManager="*res://scripts/autoloads/GameManager.cs"
 
 [dotnet]
 

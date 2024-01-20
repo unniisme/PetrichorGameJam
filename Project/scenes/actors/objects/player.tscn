@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://dy2r7gahd11k2"]
+
+[ext_resource type="Script" path="res://scenes/actors/objects/Player.cs" id="1_110a8"]
+[ext_resource type="Texture2D" uid="uid://cf8ll6d6lq0by" path="res://assets/Ball and Chain Bot/run.png" id="2_voktp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg6rj"]
+atlas = ExtResource("2_voktp")
+region = Rect2(0, 0, 126, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2plk"]
+atlas = ExtResource("2_voktp")
+region = Rect2(0, 39, 126, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4r48"]
+atlas = ExtResource("2_voktp")
+region = Rect2(0, 78, 126, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cet5u"]
+atlas = ExtResource("2_voktp")
+region = Rect2(0, 117, 126, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aej66"]
+atlas = ExtResource("2_voktp")
+region = Rect2(0, 156, 126, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsdy6"]
+atlas = ExtResource("2_voktp")
+region = Rect2(0, 195, 126, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjbnt"]
+atlas = ExtResource("2_voktp")
+region = Rect2(0, 234, 126, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_640d6"]
+atlas = ExtResource("2_voktp")
+region = Rect2(0, 273, 126, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yg6aa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg6rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2plk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4r48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cet5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aej66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsdy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjbnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_640d6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_110a8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yg6aa")
+autoplay = "default"

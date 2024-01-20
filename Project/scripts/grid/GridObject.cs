@@ -10,11 +10,11 @@ namespace Gamelogic.Grid
 	{
 
 		// Lerping
-		private bool isMoving = false;
-		private float moveTime = 0.2f; // Time to animate movement in seconds
-		float movementFraction = 0f; 
-		Vector2 initialVector;
-		Vector2 finalVector;
+		internal bool isMoving = false;
+		internal float moveTime = 0.1f; // Time to animate movement in seconds
+		internal float movementFraction = 0f; 
+		internal Vector2 initialVector;
+		internal Vector2 finalVector;
 
 		public IGrid grid;
 
@@ -29,14 +29,14 @@ namespace Gamelogic.Grid
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			grid = GetNode<GameGrid>("/root/GameGrid");
+			grid = GameManager.Grid;
 
 			// Register on the grid
 			grid.PlaceObject(this, grid.GameCoordinateToGridCoordinate(Position));
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
+		public override void _PhysicsProcess(double delta)
 		{
 			// Snap to grid
 			if (snap && !isMoving)
@@ -45,10 +45,7 @@ namespace Gamelogic.Grid
 			}
 			else if (isMoving)
 			{
-				Position = initialVector.Lerp(finalVector, movementFraction);
-				movementFraction += ((float)delta)/moveTime;
-				if (movementFraction >= 1)
-					UnsetMoving();
+				ProcessMove((float)delta);
 			}
 		}
 
@@ -58,16 +55,23 @@ namespace Gamelogic.Grid
 			SetMoving();
 		}
 
-		private void SetMoving()
+		internal void SetMoving()
 		{
 			isMoving = true;
 			initialVector = Position;
 			finalVector = grid.GridCoordinateToGameCoordinate(GridPosition);
 			movementFraction = 0;
 		}
-		private void UnsetMoving()
+		internal void UnsetMoving()
 		{
 			isMoving = false;
+		}
+		internal virtual void ProcessMove(float delta)
+		{
+			Position = initialVector.Lerp(finalVector, movementFraction);
+			movementFraction += delta/moveTime;
+			if (movementFraction >= 1)
+				UnsetMoving();
 		}
 	}
 }
