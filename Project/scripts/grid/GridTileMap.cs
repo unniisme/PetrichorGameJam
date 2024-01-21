@@ -6,9 +6,17 @@ namespace Gamelogic.Grid
 	/// Tilemap that registers one of its layers to the grid
 	/// </summary>
 	[GlobalClass]
-	public partial class GridTileMap : TileMap
+	public partial class GridTileMap : TileMap, IMorphable
 	{
 		private IGrid grid;
+
+
+		public bool IsMorphed
+		{
+			get => !Visible;
+			set => Visible = !value;
+		}
+		public void ToggleMorph() => IsMorphed = !IsMorphed;
 
 		/// <summary>
 		/// Index of layer to register to grid
@@ -20,6 +28,7 @@ namespace Gamelogic.Grid
 		public override void _Ready()
 		{
 			grid = GameManager.Grid;
+			GameManager.RegisterMorphable(this);
 
 			TileSet.TileSize = (Vector2I)grid.Scale;
 

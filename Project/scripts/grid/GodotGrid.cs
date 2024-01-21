@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -8,6 +9,7 @@ namespace Gamelogic.Grid
         private readonly Dictionary<Node2D, Vector2I> objectToIndex = new();
         private readonly Dictionary<Vector2I, Node2D> indexToObject = new();
 
+        public event Action<Vector2I> GridChangeEvent;
         public Vector2 Scale { get; set; }
         public Vector2 Offset { get; set; }
 
@@ -44,7 +46,7 @@ namespace Gamelogic.Grid
             {
                 return indexToObject[pos];
             }
-            throw new GridException("No object at position", pos);
+            return null;
         }
 
         public Vector2I GetObjectPosition(Node2D obj)
@@ -70,38 +72,52 @@ namespace Gamelogic.Grid
 
             objectToIndex[obj] = pos;
             indexToObject[pos] = obj;
+            GridChangeEvent?.Invoke(pos);
         }
 
         public void PlaceObject(Node2D obj)
         {
             PlaceObject(obj, GameCoordinateToGridCoordinate(obj.GlobalPosition));
         }
-        public void MoveObject(Node2D obj, Vector2I pos)
+        public bool MoveObject(Node2D obj, Vector2I pos)
         {
             if (indexToObject.ContainsKey(pos))
             {
-                throw new GridException("Position is already occupied", pos, obj);
+                return false;
             }
-            RemoveObject(obj);
-            PlaceObject(obj, pos);
+            try
+            {
+                RemoveObject(obj);
+                PlaceObject(obj, pos);
+                return true;
+            }
+            catch (GridException)
+            {
+                return false;
+            }
         }
 
-        public void MoveObject(Vector2I from, Vector2I to)
+        public bool MoveObject(Vector2I from, Vector2I to)
         {
             Node2D obj = GetObject(from);
-            MoveObject(obj, to);
+            return MoveObject(obj, to);
         }
 
-        public void MoveObjectInDirection(Node2D obj, Vector2 dir)
+        public Vector2I GetPositionInDirection(Vector2I pos, Vector2 dir)
         {
             Vector2I targetPos = (Vector2I)dir.Normalized().Round();
-            MoveObject(obj, GetObjectPosition(obj)+targetPos);
+            return pos + targetPos;
         }
 
-        public void MoveObjectInDirection(Vector2I pos, Vector2 dir)
+
+        public bool MoveObjectInDirection(Node2D obj, Vector2 dir)
         {
-            Vector2I targetPos = (Vector2I)dir.Normalized().Round();
-            MoveObject(pos, pos+targetPos);
+            return MoveObject(obj, GetPositionInDirection(GetObjectPosition(obj), dir));
+        }
+
+        public bool MoveObjectInDirection(Vector2I pos, Vector2 dir)
+        {
+            return MoveObject(pos, GetPositionInDirection(pos, dir));
         }
 
 
@@ -112,8 +128,7 @@ namespace Gamelogic.Grid
                 throw new GridException("Position not occupied", pos);
             }
             Node2D obj = indexToObject[pos];
-            indexToObject.Remove(pos);
-            objectToIndex.Remove(obj);
+            RemoveObjectInternal(obj, pos);
         }
 
         public void RemoveObject(Node2D obj)
@@ -123,8 +138,15 @@ namespace Gamelogic.Grid
                 throw new GridException("Object not present in grid", obj);
             }
             Vector2I pos = objectToIndex[obj];
+            RemoveObjectInternal(obj, pos);
+        }
+
+        private void RemoveObjectInternal(Node2D obj, Vector2I pos)
+        {
+            // Do not use carelessly
             objectToIndex.Remove(obj);
             indexToObject.Remove(pos);
+            GridChangeEvent?.Invoke(pos);
         }
     }
 }

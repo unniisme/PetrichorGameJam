@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Gamelogic.Grid
@@ -7,6 +8,11 @@ namespace Gamelogic.Grid
     /// </summary>
     public interface IGrid
     {
+        /// <summary>
+        /// Event that is triggered when any change occurs in the grid
+        /// </summary>
+        public event Action<Vector2I> GridChangeEvent; 
+
         /// <summary>
         /// Scale in x and y direction
         /// Scale.x is how much distance in the x direction of game coordinates in 1 cell of the grid
@@ -50,6 +56,7 @@ namespace Gamelogic.Grid
 
         /// <summary>
         /// Get the object in the given cell position
+        /// returns null if cell doesn't have an object
         /// </summary>
         /// <param name="pos"></param>
         /// <returns></returns>
@@ -97,10 +104,8 @@ namespace Gamelogic.Grid
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="pos"></param>
-        /// <exception cref="GridException">
-        /// When the object is unable to be placed
-        /// </exception>
-        public void MoveObject(Node2D obj, Vector2I pos);
+        /// <returns>Whether the movement was successfull</returns>
+        public bool MoveObject(Node2D obj, Vector2I pos);
 
         /// <summary>
         /// Move the object in "from" cell to "to" cell
@@ -110,29 +115,32 @@ namespace Gamelogic.Grid
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <exception cref="GridException">
-        /// When the object is unable to be placed
-        /// </exception>
-        public void MoveObject(Vector2I from, Vector2I to);
+        /// <returns>Whether the movement was successfull</returns>
+
+        public bool MoveObject(Vector2I from, Vector2I to);
 
         /// <summary>
         /// Move the given object in the given direction
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="dir"></param>
-        /// <exception cref="GridException">
-        /// When the object is unable to be placed
-        /// </exception>
-        public void MoveObjectInDirection(Node2D obj, Vector2 dir);
+        /// <returns>Whether the movement was successfull</returns>
+        public bool MoveObjectInDirection(Node2D obj, Vector2 dir);
 
         /// <summary>
         /// Move object in cell "pos" on the grid in the given direction
         /// </summary>
         /// <param name="pos"></param>
         /// <param name="dir"></param>
-        /// <exception cref="GridException">
-        /// When the object is unable to be placed
-        /// </exception>
-        public void MoveObjectInDirection(Vector2I pos, Vector2 dir);
+        /// <returns>Whether the movement was successfull</returns>
+        public bool MoveObjectInDirection(Vector2I pos, Vector2 dir);
+
+        /// <summary>
+        /// Get the adjacent cell in the given direction
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <param name="dir"></param>
+        /// <returns></returns>
+        public Vector2I GetPositionInDirection(Vector2I pos, Vector2 dir);
     }
 }

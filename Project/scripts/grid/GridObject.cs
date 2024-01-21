@@ -11,7 +11,7 @@ namespace Gamelogic.Grid
 
 		// Lerping
 		internal bool isMoving = false;
-		internal float moveTime = 0.1f; // Time to animate movement in seconds
+		internal float moveTime = 0.2f; // Time to animate movement in seconds
 		internal float movementFraction = 0f; 
 		internal Vector2 initialVector;
 		internal Vector2 finalVector;
@@ -19,7 +19,7 @@ namespace Gamelogic.Grid
 		public IGrid grid;
 
 		[Export]
-		public bool snap;
+		public bool snap = true;
 		public Vector2I GridPosition
 		{
 			get => grid.GetObjectPosition(this);
@@ -49,10 +49,14 @@ namespace Gamelogic.Grid
 			}
 		}
 
-		public void Move(Vector2 dir)
+		public bool Move(Vector2 dir)
 		{
-			grid.MoveObjectInDirection(this, dir);
-			SetMoving();
+			if (grid.MoveObjectInDirection(this, dir))
+			{
+				SetMoving();
+				return true;
+			}
+			return false;
 		}
 
 		internal void SetMoving()

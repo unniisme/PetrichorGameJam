@@ -109,10 +109,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuv0g"]
-size = Vector2(30, 30)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1l3ho"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("morphedObjects", "unmorphedObjects")]
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 0.0
@@ -120,8 +119,35 @@ floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 0.0
 script = ExtResource("1_110a8")
+morphedObjects = [NodePath("Morph")]
+unmorphedObjects = [NodePath("NonMorph"), NodePath("Shadow")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Shadow" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.160784, 0, 0, 0.207843)
+position = Vector2(7, -0.875)
+scale = Vector2(1.375, 1.375)
+skew = 0.68766
+sprite_frames = SubResource("SpriteFrames_yg6aa")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.640557
+offset = Vector2(35.52, 0)
+script = ExtResource("4_82ddo")
+
+[node name="NonMorph" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2.875)
+scale = Vector2(1.375, 1.375)
+sprite_frames = SubResource("SpriteFrames_yg6aa")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.640557
+offset = Vector2(35.52, 0)
+script = ExtResource("4_82ddo")
+
+[node name="Morph" type="AnimatedSprite2D" parent="."]
+visible = false
+self_modulate = Color(0.423529, 0.34902, 0.196078, 1)
+position = Vector2(0, -2.875)
 scale = Vector2(1.375, 1.375)
 sprite_frames = SubResource("SpriteFrames_yg6aa")
 animation = &"idle"
@@ -131,4 +157,5 @@ offset = Vector2(35.52, 0)
 script = ExtResource("4_82ddo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xuv0g")
+position = Vector2(0, -2.875)
+shape = SubResource("CircleShape2D_1l3ho")

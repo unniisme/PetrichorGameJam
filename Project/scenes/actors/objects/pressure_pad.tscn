@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpgm22esps6nl"]
+
+[ext_resource type="Texture2D" uid="uid://b77on8rr6fyug" path="res://assets/Pixel Art Top Down - Basic/Texture/TX Tileset Stone Ground.png" id="1_442uy"]
+[ext_resource type="Script" path="res://scenes/actors/objects/PressurePad.cs" id="1_b8kae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8j4i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxitv"]
+atlas = ExtResource("1_442uy")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebmlh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxitv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PressurePad" type="Area2D"]
+script = ExtResource("1_b8kae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j8j4i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.8125, 0.8125)
+sprite_frames = SubResource("SpriteFrames_ebmlh")
