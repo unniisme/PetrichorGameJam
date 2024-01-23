@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Gamelogic.Objects;
 
 namespace Gamelogic.Grid
 {
@@ -140,9 +140,16 @@ namespace Gamelogic.Grid
 		private bool IsWalkable(Vector2I from, Vector2I target)
 		{
 			Node2D obj = grid.GetObject(from);
-			if(obj != null || HeuristicScore(from, target)>maxDepth)
+			if(HeuristicScore(from, target)>maxDepth)
 			{
 				return false;
+			}
+			if (obj != null)
+			{
+				if (obj is not Player) // Maybe shift to a mask for scalability
+				{
+					return false;
+				}
 			}
 			return true;
 		}

@@ -15,16 +15,24 @@ namespace Gamelogic.Grid
 		internal float movementFraction = 0f; 
 		internal Vector2 initialVector;
 		internal Vector2 finalVector;
+		private bool movable = false;
 
 		public IGrid grid;
 
+		/// <summary>
+		/// Whether this object snaps to position in the grid
+		/// </summary>
 		[Export]
 		public bool snap = true;
+
+		public virtual bool Movable => movable;
 		public Vector2I GridPosition
 		{
 			get => grid.GetObjectPosition(this);
 			set => grid.MoveObject(this, value);
 		}
+
+		
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()

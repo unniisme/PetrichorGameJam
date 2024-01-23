@@ -28,6 +28,7 @@ namespace Gamelogic.Objects
 			grid.PlaceObject(this);
 
 			GameManager.RegisterMorphable(this);
+			GameManager.RegisterPlayer(this);
         }
 
         public override void _PhysicsProcess(double delta)
@@ -52,7 +53,7 @@ namespace Gamelogic.Objects
 			bool canMove = true;
 			if (obj != null)
 			{
-				if (obj is GridObject gridObj)
+				if (obj is GridObject gridObj && gridObj.Movable)
 				{
 					canMove = gridObj.Move(dir);
 				}

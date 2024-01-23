@@ -11,6 +11,9 @@ namespace Gamelogic.Grid
         [Export(PropertyHint.Enum, "AStar")]
         public string Agent {get; set;}
 
+        [Export]
+        public int Depth {get; set;} = 20;
+
         public Vector2I GetNextPosition(Vector2I target)
         {
             if (agent == null)
@@ -34,7 +37,7 @@ namespace Gamelogic.Grid
 
             agent = Agent switch
             {
-                "AStar" => new AStarNavigationAgent(GameManager.Grid, obj, 20),
+                "AStar" => new AStarNavigationAgent(GameManager.Grid, obj, Depth),
                 _ => null
             };
             base._Ready();
