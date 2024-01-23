@@ -1,4 +1,6 @@
 using Godot;
+using System;
+using System.Collections.Generic;
 
 namespace Gamelogic.Grid
 {
@@ -40,25 +42,31 @@ namespace Gamelogic.Grid
 		{
 			Vector2I start = grid.GetObjectPosition(obj);
 			// Priority queue for open set (nodes to be evaluated)
-			PriorityQueue<Vector2I> openSet = new PriorityQueue<Vector2I>();
+			PriorityQueue<Vector2I, float> openSet = new();
+			// Set of frontier nodes
+			HashSet<Vector2I> openSetNodes = new();
 			// Set of evaluated nodes
-			HashSet<Vector2I> closedSet = new HashSet<Vector2I>();
+			HashSet<Vector2I> closedSet = new();
 			// Dictionary to store the cost from start to each node
-			Dictionary<Vector2I, float> gScore = new Dictionary<Vector2I, float>();
+			Dictionary<Vector2I, float> gScore = new();
 			// Dictionary to store the total cost from start to goal through each node
-			Dictionary<Vector2I, float> fScore = new Dictionary<Vector2I, float>();
+			Dictionary<Vector2I, float> fScore = new();
+			// Tree representing the search paths taken so far
+			Dictionary<Vector2I, Vector2I> pathTree = new();
 
 			openSet.Enqueue(start, 0);
+			openSetNodes.Add(start);
 			gScore[start] = 0;
 			fScore[start] = HeuristicScore(start, target);
 			while (openSet.Count > 0)
 			{
 				Vector2I current = openSet.Dequeue();
+				openSetNodes.Remove(current);
 				// If we reached the target
 				if (current == target)
 				{
 					// Reconstruct the path
-					return ReconstructPath(current);
+					return ReconstructPath(current, pathTree);
 				}
 				// to not be further evaluated
 				closedSet.Add(current);
@@ -69,47 +77,49 @@ namespace Gamelogic.Grid
 						continue; // Ignore the neighbor which is already evaluated
 					}
 					float tentativeGScore = gScore[current] + 1; // Assuming each step has a cost of 1
-					if (!openSet.Contains(neighbor) || tentativeGScore < gScore[neighbor])
+					if (!openSetNodes.Contains(neighbor) || tentativeGScore < gScore[neighbor])
 					{
 						// This path to the neighbor is better than the previous one
 						gScore[neighbor] = tentativeGScore;
 						fScore[neighbor] = tentativeGScore + HeuristicScore(neighbor, target);
-						if (!openSet.Contains(neighbor))
+						if (!openSetNodes.Contains(neighbor))
 						{
 							openSet.Enqueue(neighbor, fScore[neighbor]);
+							openSetNodes.Add(neighbor);
+							pathTree[neighbor] = current;
 						}
 					}
 				}
 			}
 			// If no path is found
-			return new Vector2I[0];
+			return Array.Empty<Vector2I>();
 		}
 
-		private Vector2I[] ReconstructPath(Vector2I current)
+		private static Vector2I[] ReconstructPath(Vector2I current, Dictionary<Vector2I, Vector2I> pathTree)
 		{
-			List<Vector2I> path = new List<Vector2I>();
-			while (cameFrom.ContainsKey(current))
+			List<Vector2I> path = new ();
+			while (pathTree.ContainsKey(current))
 			{
 				path.Add(current);
-				current = cameFrom[current];
+				current = pathTree[current];
 			}
 			path.Reverse();
 			return path.ToArray();
 		}
 
 		
-		private FindValidNeighbors(Vector2I curr, Vector2I target)
+		private Vector2I[] FindValidNeighbors(Vector2I curr, Vector2I target)
 		{
-			List<Vector2I> validNeighbors = new List<Vector2I>();
+			List<Vector2I> validNeighbors = new ();
 			// Define the eight possible directions (8-way movement)
 			int[] dx = { -1, 0, 1, 0, -1, 1, 1, -1 };
 			int[] dy = { 0, 1, 0, -1, 1, 1, -1, -1 };
 
 			for (int i = 0; i < 8; i++)
 			{
-				int newX = curr.x + dx[i];
-				int newY = curr.y + dy[i];
-				Vector2I newPos = new Vector2I(newX, newY);
+				int newX = curr.X + dx[i];
+				int newY = curr.X + dy[i];
+				Vector2I newPos = new (newX, newY);
 				// Check if the new position is within the grid boundaries and is walkable
 				if (IsWalkable(newPos, target))
 				{
@@ -121,7 +131,7 @@ namespace Gamelogic.Grid
 
 		private bool IsWalkable(Vector2I from, Vector2I target)
 		{
-			node2D obj = grid.GetObject(from);
+			Node2D obj = grid.GetObject(from);
 			if(obj != null || HeuristicScore(from, target)>maxDepth)
 			{
 				return false;
@@ -131,13 +141,13 @@ namespace Gamelogic.Grid
 		
 		
 		
-		private int HeuristicScore(Vector2I current, Vector2I target)
+		private static int HeuristicScore(Vector2I current, Vector2I target)
 		{
-			int dx = Math.Abs(current.x - target.x);
-			int dy = Math.Abs(current.y - target.y);
+			int dx = Math.Abs(current.X - target.X);
+			int dy = Math.Abs(current.Y - target.Y);
 
 			// Assuming D is a constant, you can adjust its value as needed
-			int D = 1.0f;
+			int D = 1;
 
 			return D * (dx + dy);
 		}
