@@ -104,6 +104,10 @@ namespace Gamelogic.Grid
 				current = pathTree[current];
 			}
 			path.Reverse();
+			if(path.Count > 20)
+			{
+				return Array.Empty<Vector2I>();
+			}
 			return path.ToArray();
 		}
 
