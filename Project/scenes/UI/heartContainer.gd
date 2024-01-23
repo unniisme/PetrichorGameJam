@@ -1,7 +1,7 @@
 extends HBoxContainer
 var player_health : int = 3
 var curr_health : int = 1
-var crystal_number : int = 3
+
 @onready var HeartGuiClass = preload("res://scenes/UI/heartGui.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():

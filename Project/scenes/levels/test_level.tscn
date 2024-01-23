@@ -169,20 +169,17 @@ position = Vector2(368, 207)
 [node name="Door" parent="." instance=ExtResource("12_sopel")]
 position = Vector2(592, 300)
 
-[node name="Player" parent="." node_paths=PackedStringArray("morphedObjects", "unmorphedObjects") instance=ExtResource("1_a1wp8")]
+[node name="Player" parent="." instance=ExtResource("1_a1wp8")]
 position = Vector2(199, 318)
 wall_min_slide_angle = 0.0349066
-morphedObjects = []
-unmorphedObjects = []
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(551, 304)
 zoom = Vector2(1.545, 1.545)
 
-[node name="Box" parent="." instance=ExtResource("11_qjsj2")]
+[node name="Box" parent="." node_paths=PackedStringArray("agent") instance=ExtResource("11_qjsj2")]
 position = Vector2(368, 339)
-agent = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":Resource("res://scripts/grid/navigation/GodotGridNavigationAgent.cs"),"Agent":"AStar","Depth":40)
-
+agent = NodePath("")
 
 [connection signal="Activated" from="PressurePad" to="Door" method="open"]
 [connection signal="Deactivated" from="PressurePad" to="Door" method="close"]
