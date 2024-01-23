@@ -8,10 +8,12 @@ namespace Gamelogic.Grid
     {
         private readonly Dictionary<Node2D, Vector2I> objectToIndex = new();
         private readonly Dictionary<Vector2I, Node2D> indexToObject = new();
+        private readonly List<Node2D> objects;
 
         public event Action<Vector2I> GridChangeEvent;
         public Vector2 Scale { get; set; }
         public Vector2 Offset { get; set; }
+        public List<Node2D> PlacedObjects => objects;
 
         public GodotGrid(Vector2 scale, Vector2 offset)
         {
@@ -72,6 +74,7 @@ namespace Gamelogic.Grid
 
             objectToIndex[obj] = pos;
             indexToObject[pos] = obj;
+            objects.Add(obj);
             GridChangeEvent?.Invoke(pos);
         }
 
@@ -146,6 +149,7 @@ namespace Gamelogic.Grid
             // Do not use carelessly
             objectToIndex.Remove(obj);
             indexToObject.Remove(pos);
+            objects.Remove(obj);
             GridChangeEvent?.Invoke(pos);
         }
     }

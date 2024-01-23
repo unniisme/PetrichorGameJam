@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 namespace Gamelogic.Grid
@@ -37,6 +38,11 @@ namespace Gamelogic.Grid
         /// <param name="pos"></param>
         /// <returns></returns>
         public Vector2 GridCoordinateToGameCoordinate(Vector2I pos);
+
+        /// <summary>
+        /// List of objects placed on the grid
+        /// </summary>
+        public List<Node2D> PlacedObjects {get;}
 
         /// <summary>
         /// Place a node in the given cell in the grid
