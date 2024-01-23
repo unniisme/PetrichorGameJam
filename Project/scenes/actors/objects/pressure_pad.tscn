@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpgm22esps6nl"]
+[gd_scene load_steps=8 format=3 uid="uid://bpgm22esps6nl"]
 
 [ext_resource type="Script" path="res://scenes/actors/objects/PressurePad.cs" id="1_b8kae"]
 [ext_resource type="Texture2D" uid="uid://cy0qyma5enavp" path="res://assets/Dungeon Prison/Assets/Props.png" id="2_u50qp"]
+[ext_resource type="Script" path="res://scripts/animation/animations/ActivatableAnimation.cs" id="3_vgnjn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8j4i"]
 
@@ -33,6 +34,7 @@ animations = [{
 }]
 
 [node name="PressurePad" type="Area2D"]
+visibility_layer = 3
 script = ExtResource("1_b8kae")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -41,4 +43,15 @@ shape = SubResource("RectangleShape2D_j8j4i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_ebmlh")
-animation = &"active"
+animation = &"inactive"
+autoplay = "inactive"
+script = ExtResource("3_vgnjn")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.492326, 0.327862, 0.328175, 1)
+visibility_layer = 2
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_ebmlh")
+animation = &"inactive"
+autoplay = "inactive"
+script = ExtResource("3_vgnjn")

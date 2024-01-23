@@ -8,6 +8,7 @@ namespace Gamelogic.Objects
 	{
 		private IGrid grid;
 		private bool morphed = false;
+		public bool inputEnabled = true;
 
 		public bool IsMorphed
 		{
@@ -33,7 +34,8 @@ namespace Gamelogic.Objects
 
         public override void _PhysicsProcess(double delta)
         {
-			if (grid.GetObjectPosition(this) == grid.GameCoordinateToGridCoordinate(Position))
+			if (grid.GetObjectPosition(this) == grid.GameCoordinateToGridCoordinate(Position)
+				&& inputEnabled)
 			{
 				Vector2 inputVector = Input.GetVector("left", "right", "up", "down");
 				if (!inputVector.IsZeroApprox())
@@ -65,6 +67,7 @@ namespace Gamelogic.Objects
 				return false;
 			
 		}
+		
 
     }
 }

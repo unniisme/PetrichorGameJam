@@ -1,10 +1,10 @@
+using System;
 using Gamelogic.Grid;
 using Godot;
-using System;
 
 namespace Gamelogic.Objects
 {
-	public partial class PressurePad : Area2D
+	public partial class PressurePad : Area2D, IActivatable
 	{
 		private bool isActive;
 		private Vector2I gridPosition;
@@ -23,13 +23,12 @@ namespace Gamelogic.Objects
 				if (value != isActive)
 				{
 					isActive = value;
-					if (isActive)
-						EmitSignal(SignalName.Activated);
-					else
-						EmitSignal(SignalName.Deactivated);
+					OnActivityChangedEvent?.Invoke(value);
 				}
 			}
 		}
+
+		public event Action<bool> OnActivityChangedEvent;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -37,6 +36,12 @@ namespace Gamelogic.Objects
 			grid = GameManager.Grid;
 			grid.GridChangeEvent += GridChangeEventHandler;
 			gridPosition = grid.GameCoordinateToGridCoordinate(GlobalPosition);
+
+			OnActivityChangedEvent += (bool val) =>
+			{
+				if (val) EmitSignal(SignalName.Activated);
+				else EmitSignal(SignalName.Deactivated);
+			};
 		}
 
 		private void GridChangeEventHandler(Vector2I pos)

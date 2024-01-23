@@ -1,32 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://qhhr5jn18fbb"]
+[gd_scene load_steps=10 format=3 uid="uid://qhhr5jn18fbb"]
 
-[ext_resource type="Texture2D" uid="uid://bppci0rqwnyyu" path="res://assets/Pixel Art Top Down - Basic/Texture/TX Props.png" id="1_1vu2l"]
-[ext_resource type="Script" path="res://scenes/actors/objects/door.gd" id="1_v2fqk"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dntf0"]
-atlas = ExtResource("1_1vu2l")
-region = Rect2(224, 0, 32, 64)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_chyu1"]
-load_path = "res://.godot/imported/TX Props.png-a8926fd95ef0d74930bb480d78203889.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1n804"]
-atlas = SubResource("CompressedTexture2D_chyu1")
-region = Rect2(224, 0, 32, 32)
+[ext_resource type="Script" path="res://scenes/actors/objects/Door.cs" id="1_4gjhp"]
+[ext_resource type="Texture2D" uid="uid://b7rot7bym5uns" path="res://assets/Pixel Art Top Down - Basic/StoneDoor.png" id="2_6eaho"]
+[ext_resource type="Script" path="res://scripts/animation/animations/ActivatableAnimation.cs" id="3_3nbjn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfu7f"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoex6"]
+atlas = ExtResource("2_6eaho")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jpd7"]
+atlas = ExtResource("2_6eaho")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka866"]
+atlas = ExtResource("2_6eaho")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fce4t"]
+atlas = ExtResource("2_6eaho")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qbrlb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xoex6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jpd7")
+}],
+"loop": false,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka866")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fce4t")
+}],
+"loop": false,
+"name": &"inactive",
+"speed": 5.0
+}]
+
 [node name="Door" type="StaticBody2D"]
-script = ExtResource("1_v2fqk")
-
-[node name="inactive" type="Sprite2D" parent="."]
-position = Vector2(0, -15)
-texture = SubResource("AtlasTexture_dntf0")
-
-[node name="active" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -2)
-texture = SubResource("AtlasTexture_1n804")
+script = ExtResource("1_4gjhp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lfu7f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_qbrlb")
+animation = &"active"
+autoplay = "active"
+script = ExtResource("3_3nbjn")

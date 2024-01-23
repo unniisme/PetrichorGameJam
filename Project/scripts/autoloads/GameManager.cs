@@ -84,13 +84,12 @@ namespace Gamelogic
 		/// </summary>
 		public void Restart()
 		{
-			GetTree().Paused = true;
+			player.inputEnabled = false;
 			Thread.Sleep(1000);
 			GetTree().ReloadCurrentScene();
 			ResetGrid();
 			ResetMorphables();
-			GetTree().Paused = false;
-
+			player.inputEnabled = true;
 		}
 
         public override void _Process(double delta)
