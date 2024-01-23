@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Gamelogic.Grid
 {
@@ -95,7 +96,7 @@ namespace Gamelogic.Grid
 			return Array.Empty<Vector2I>();
 		}
 
-		private static Vector2I[] ReconstructPath(Vector2I current, Dictionary<Vector2I, Vector2I> pathTree)
+		private Vector2I[] ReconstructPath(Vector2I current, Dictionary<Vector2I, Vector2I> pathTree)
 		{
 			List<Vector2I> path = new ();
 			while (pathTree.ContainsKey(current))
@@ -104,7 +105,7 @@ namespace Gamelogic.Grid
 				current = pathTree[current];
 			}
 			path.Reverse();
-			if(path.Count > 20)
+			if(path.Count > maxDepth)
 			{
 				return Array.Empty<Vector2I>();
 			}
@@ -115,19 +116,22 @@ namespace Gamelogic.Grid
 		private Vector2I[] FindValidNeighbors(Vector2I curr, Vector2I target)
 		{
 			List<Vector2I> validNeighbors = new ();
-			// Define the eight possible directions (8-way movement)
-			int[] dx = { -1, 0, 1, 0, -1, 1, 1, -1 };
-			int[] dy = { 0, 1, 0, -1, 1, 1, -1, -1 };
+			// Define the 4 possible directions (4-way movement)
+			int[] dx = { -1, 0, 1, 0};
+			int[] dy = { 0, 1, 0, -1};
 
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 4; i++)
 			{
 				int newX = curr.X + dx[i];
-				int newY = curr.X + dy[i];
+				int newY = curr.Y + dy[i];
 				Vector2I newPos = new (newX, newY);
 				// Check if the new position is within the grid boundaries and is walkable
 				if (IsWalkable(newPos, target))
 				{
 					validNeighbors.Add(newPos);
+				}
+				else{
+					
 				}
 			}
 			return validNeighbors.ToArray();

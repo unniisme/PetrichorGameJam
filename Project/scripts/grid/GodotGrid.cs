@@ -4,14 +4,13 @@ using Godot;
 
 namespace Gamelogic.Grid
 {
-    public class GodotGrid : IGrid
+    public partial class GodotGrid : Node2D, IGrid
     {
         private readonly Dictionary<Node2D, Vector2I> objectToIndex = new();
         private readonly Dictionary<Vector2I, Node2D> indexToObject = new();
-        private readonly List<Node2D> objects;
+        private readonly List<Node2D> objects = new();
 
         public event Action<Vector2I> GridChangeEvent;
-        public Vector2 Scale { get; set; }
         public Vector2 Offset { get; set; }
         public List<Node2D> PlacedObjects => objects;
 

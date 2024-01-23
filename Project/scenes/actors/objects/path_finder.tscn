@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfvyxk35rl22t"]
+
+[ext_resource type="Script" path="res://scenes/actors/objects/PathFinder.cs" id="1_2pdev"]
+[ext_resource type="Texture2D" uid="uid://bppci0rqwnyyu" path="res://assets/Pixel Art Top Down - Basic/Texture/TX Props.png" id="2_mv7x8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx24v"]
+atlas = ExtResource("2_mv7x8")
+region = Rect2(160, 80, 32, 48)
+
+[node name="PathFinder" type="Node2D"]
+script = ExtResource("1_2pdev")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_cx24v")

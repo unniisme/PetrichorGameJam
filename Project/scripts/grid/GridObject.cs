@@ -51,6 +51,7 @@ namespace Gamelogic.Grid
 
 		public bool Move(Vector2 dir)
 		{
+			if (isMoving) return false;
 			if (grid.MoveObjectInDirection(this, dir))
 			{
 				SetMoving();
