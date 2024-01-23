@@ -9,26 +9,10 @@ namespace Gamelogic.Objects
 		private IGrid grid;
 		private bool morphed = false;
 
-		[Export]
-		public Node2D[] morphedObjects;
-		[Export]
-		public Node2D[] unmorphedObjects;
-
 		public bool IsMorphed
 		{
 			get => morphed;
-			set
-			{
-				foreach (Node2D node in morphedObjects)
-				{
-					node.Visible = value;
-				}
-				foreach (Node2D node in unmorphedObjects)
-				{
-					node.Visible = !value;
-				}
-				morphed = value;
-			}
+			set => morphed = value;
 		}
 		public void ToggleMorph() => IsMorphed = !morphed;
 

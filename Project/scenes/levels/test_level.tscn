@@ -1950,9 +1950,11 @@ sources/8 = SubResource("TileSetAtlasSource_glkhb")
 sources/0 = SubResource("TileSetAtlasSource_f0xd8")
 
 [node name="TestLevel" type="Node2D"]
+visibility_layer = 3
 texture_filter = 1
 
 [node name="GridTileMapDark" type="TileMap" parent="."]
+visibility_layer = 2
 tile_set = SubResource("TileSet_gch6l")
 format = 2
 layer_0/name = "Base"
@@ -1983,10 +1985,9 @@ position = Vector2(368, 207)
 [node name="Door" parent="." instance=ExtResource("12_sopel")]
 position = Vector2(592, 300)
 
-[node name="Player" parent="." node_paths=PackedStringArray("unmorphedObjects") instance=ExtResource("1_a1wp8")]
+[node name="Player" parent="." instance=ExtResource("1_a1wp8")]
 position = Vector2(199, 318)
 wall_min_slide_angle = 0.0349066
-unmorphedObjects = []
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(551, 304)

@@ -21,6 +21,9 @@ namespace Gamelogic
 		
 		public static void RemoveObjectFromGrid(Node2D obj) => grid.RemoveObject(obj);
 
+		public const uint UnMorphedBitmask = 1;
+		public const uint MorphedBitmask = 2;
+
 		/// <summary>
 		/// Register an object as a morphable
 		/// </summary>
@@ -41,7 +44,17 @@ namespace Gamelogic
         public override void _Process(double delta)
         {
             if (Input.IsActionJustPressed("action"))
+			{
+				uint canvasMask = GetViewport().CanvasCullMask;
+				GetViewport().CanvasCullMask = canvasMask==UnMorphedBitmask?
+												MorphedBitmask:UnMorphedBitmask;
 				ToggleMorph();
+			}
+        }
+
+        public override void _Ready()
+        {
+            GetViewport().CanvasCullMask = UnMorphedBitmask;
         }
     }
 }
