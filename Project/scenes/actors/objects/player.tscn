@@ -1,11 +1,33 @@
-[gd_scene load_steps=36 format=3 uid="uid://dy2r7gahd11k2"]
+[gd_scene load_steps=48 format=3 uid="uid://dy2r7gahd11k2"]
 
 [ext_resource type="Script" path="res://scenes/actors/objects/Player.cs" id="1_110a8"]
+[ext_resource type="Texture2D" uid="uid://ccjmel43n1eer" path="res://assets/Characters/Toaster Bot/death.png" id="2_ikfv5"]
 [ext_resource type="Texture2D" uid="uid://beqeqk8b2rfwa" path="res://assets/Characters/Toaster Bot/idle.png" id="2_vsl3l"]
 [ext_resource type="Texture2D" uid="uid://chunutpg85ln" path="res://assets/Characters/Toaster Bot/run.png" id="3_hrqfd"]
 [ext_resource type="Script" path="res://scripts/animation/animations/PlayerAnimation.cs" id="4_82ddo"]
 [ext_resource type="Texture2D" uid="uid://c5pxkmlivk2h8" path="res://assets/Characters/Toaster Bot/idle_dark.png" id="5_dj475"]
 [ext_resource type="Texture2D" uid="uid://bvp510n1n82fo" path="res://assets/Characters/Toaster Bot/run_dark.png" id="6_hoonu"]
+[ext_resource type="Texture2D" uid="uid://d2p84ikwdebfm" path="res://assets/Characters/Toaster Bot/death_dark.png" id="6_phmxe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eja7b"]
+atlas = ExtResource("2_ikfv5")
+region = Rect2(0, 0, 106, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cilvd"]
+atlas = ExtResource("2_ikfv5")
+region = Rect2(106, 0, 106, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6riq"]
+atlas = ExtResource("2_ikfv5")
+region = Rect2(212, 0, 106, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_332gi"]
+atlas = ExtResource("2_ikfv5")
+region = Rect2(318, 0, 106, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arf0p"]
+atlas = ExtResource("2_ikfv5")
+region = Rect2(424, 0, 106, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cumuk"]
 atlas = ExtResource("2_vsl3l")
@@ -63,6 +85,26 @@ region = Rect2(742, 0, 106, 22)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_eja7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cilvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6riq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_332gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arf0p")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cumuk")
 }, {
 "duration": 1.0,
@@ -110,6 +152,26 @@ animations = [{
 "name": &"moving",
 "speed": 10.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny83q"]
+atlas = ExtResource("6_phmxe")
+region = Rect2(0, 0, 106, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krkot"]
+atlas = ExtResource("6_phmxe")
+region = Rect2(106, 0, 106, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oomju"]
+atlas = ExtResource("6_phmxe")
+region = Rect2(212, 0, 106, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2idca"]
+atlas = ExtResource("6_phmxe")
+region = Rect2(318, 0, 106, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoj7u"]
+atlas = ExtResource("6_phmxe")
+region = Rect2(424, 0, 106, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nwg4t"]
 atlas = ExtResource("5_dj475")
@@ -165,6 +227,26 @@ region = Rect2(742, 0, 106, 22)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xbg2m"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny83q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krkot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oomju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2idca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoj7u")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nwg4t")
@@ -234,9 +316,8 @@ position = Vector2(7, -0.875)
 scale = Vector2(1.375, 1.375)
 skew = 0.68766
 sprite_frames = SubResource("SpriteFrames_yg6aa")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.640557
 offset = Vector2(35.52, 0)
 script = ExtResource("4_82ddo")
 
@@ -256,9 +337,8 @@ modulate = Color(0.445001, 0.251978, 0.296245, 1)
 position = Vector2(0, -2.875)
 scale = Vector2(1.375, 1.375)
 sprite_frames = SubResource("SpriteFrames_yg6aa")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.640557
 offset = Vector2(35.52, 0)
 script = ExtResource("4_82ddo")
 
@@ -266,7 +346,7 @@ script = ExtResource("4_82ddo")
 position = Vector2(0, -2.875)
 scale = Vector2(1.375, 1.375)
 sprite_frames = SubResource("SpriteFrames_xbg2m")
-animation = &"moving"
+animation = &"death"
 autoplay = "idle"
 offset = Vector2(35.52, 0)
 script = ExtResource("4_82ddo")
