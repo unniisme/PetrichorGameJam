@@ -1,8 +1,8 @@
 extends HBoxContainer
 
-var max_crystal : int = 3
-var curr_crystal : int = 1
-var used_crystal : bool = false
+var max_crystal : int = 5
+var curr_crystal : int = 2
+var used_crystal : bool = true
 
 @onready var CrystalGuiClass = preload("res://scenes/UI/crystalGui.tscn")
 # Called when the node enters the scene tree for the first time.

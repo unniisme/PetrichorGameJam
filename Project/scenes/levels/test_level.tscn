@@ -213,7 +213,6 @@ agent = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"pr
 
 [node name="Box" parent="." node_paths=PackedStringArray("agent") instance=ExtResource("11_qjsj2")]
 position = Vector2(368, 339)
-agent = NodePath("")
 
 [node name="HUD" parent="." instance=ExtResource("11_iu8uy")]
 layer = 2
