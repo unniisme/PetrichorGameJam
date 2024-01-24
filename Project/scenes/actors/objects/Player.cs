@@ -49,7 +49,6 @@ namespace Gamelogic.Objects
 			grid.PlaceObject(this);
 
 			GameManager.RegisterMorphable(this);
-			GameManager.RegisterPlayer(this);
         }
 
         public override void _PhysicsProcess(double delta)

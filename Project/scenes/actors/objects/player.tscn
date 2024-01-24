@@ -334,6 +334,7 @@ script = ExtResource("4_82ddo")
 
 [node name="Morph" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.445001, 0.251978, 0.296245, 1)
+visibility_layer = 4
 position = Vector2(0, -2.875)
 scale = Vector2(1.375, 1.375)
 sprite_frames = SubResource("SpriteFrames_yg6aa")
@@ -343,6 +344,7 @@ offset = Vector2(35.52, 0)
 script = ExtResource("4_82ddo")
 
 [node name="Morph2" type="AnimatedSprite2D" parent="."]
+visibility_layer = 4
 position = Vector2(0, -2.875)
 scale = Vector2(1.375, 1.375)
 sprite_frames = SubResource("SpriteFrames_xbg2m")

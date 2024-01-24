@@ -11,8 +11,8 @@ namespace Gamelogic
 	{
 		private static IGrid grid = new GodotGrid(new (32, 32), new (16,16));
 		private static List<IMorphable> morphables = new();
-		private static Player player;
 		private static GameManager runningManager;
+		private static LevelManager level;
 
 		public GameManager()
 		{
@@ -34,10 +34,17 @@ namespace Gamelogic
 		/// <summary>
 		/// The running player
 		/// </summary>
-		public static Player Player => player;
+		public static Player Player => level.Player;
+		public static Player GetPlayer() => Player;
 
-		public const uint UnMorphedBitmask = 2;
-		public const uint MorphedBitmask = 1;
+		/// <summary>
+		/// The current running level
+		/// </summary>
+		/// <returns></returns>
+		public static LevelManager GetLevel() => level;
+
+		public const uint UnMorphedBitmask = 2; // Layer 2
+		public const uint MorphedBitmask = 4; // Layer 3
 
 		/// <summary>
 		/// Register an object as a morphable
@@ -46,10 +53,11 @@ namespace Gamelogic
 		public static void RegisterMorphable(IMorphable obj) => morphables.Add(obj);
 
 		/// <summary>
-		/// Register this object as the player for the game/scene
+		/// Register this level
+		/// Should be replaced later in favour of controlling level loading
 		/// </summary>
 		/// <param name="pl"></param>
-		public static void RegisterPlayer(Player pl) => player = pl; 
+		public static void RegisterLevel(LevelManager levelManager) => level = levelManager;
 		
 		private static bool isMorphed = false;
 		public static bool IsMorphed
@@ -62,7 +70,7 @@ namespace Gamelogic
 					morp.IsMorphed = value;
 				}
 				runningManager.GetViewport().CanvasCullMask = value?
-												MorphedBitmask:UnMorphedBitmask;
+												MorphedBitmask+1:UnMorphedBitmask+1; // +1 for layer 1
 				isMorphed = value;
 			}
 		}
@@ -76,25 +84,17 @@ namespace Gamelogic
 		/// </summary>
 		public static async void EndGame()
 		{
-			player.inputEnabled = false;
+			Player.inputEnabled = false;
 			await Task.Delay(1000);
 			runningManager.GetTree().ReloadCurrentScene();
 			ResetGrid();
 			ResetMorphables();
-			player.inputEnabled = true;
+			Player.inputEnabled = true;
 		}
-
-        public override void _Process(double delta)
-        {
-            if (Input.IsActionJustPressed("action"))
-			{
-				ToggleMorph();
-			}
-        }
 
         public override void _Ready()
         {
-            GetViewport().CanvasCullMask = UnMorphedBitmask;
+            GetViewport().CanvasCullMask = UnMorphedBitmask+1;
         }
     }
 }
