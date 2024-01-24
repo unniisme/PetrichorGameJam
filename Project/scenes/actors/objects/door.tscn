@@ -363,6 +363,7 @@ snap = false
 shape = SubResource("RectangleShape2D_lfu7f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_qbrlb")
 animation = &"inactive"
@@ -370,12 +371,10 @@ autoplay = "active"
 script = ExtResource("3_3nbjn")
 
 [node name="Guardian" type="Node2D" parent="."]
-visibility_layer = 2
 script = ExtResource("4_7ga1w")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Guardian"]
 modulate = Color(0.231373, 0.333333, 0.364706, 1)
-visibility_layer = 2
 position = Vector2(1, -10)
 scale = Vector2(1.1961, 1.1961)
 sprite_frames = SubResource("SpriteFrames_es6ue")
@@ -384,7 +383,6 @@ autoplay = "inactive"
 script = ExtResource("3_3nbjn")
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Guardian"]
-visibility_layer = 2
 position = Vector2(1, -10)
 scale = Vector2(1.1961, 1.1961)
 sprite_frames = SubResource("SpriteFrames_042fy")
