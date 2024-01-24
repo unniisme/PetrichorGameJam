@@ -263,6 +263,7 @@ sprite_frames = SubResource("SpriteFrames_nkl01")
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.27451, 0.27451, 0.27451, 1)
+visibility_layer = 4
 position = Vector2(-1, -12)
 sprite_frames = SubResource("SpriteFrames_cxf0r")
 animation = &"idle"
@@ -271,6 +272,7 @@ frame_progress = 0.130739
 script = ExtResource("6_hvae6")
 
 [node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+visibility_layer = 4
 position = Vector2(-1, -12)
 sprite_frames = SubResource("SpriteFrames_phdmy")
 animation = &"idle"

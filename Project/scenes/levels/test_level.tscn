@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://f3h72g4fwdlf"]
+[gd_scene load_steps=18 format=3 uid="uid://f3h72g4fwdlf"]
 
 [ext_resource type="PackedScene" uid="uid://dy2r7gahd11k2" path="res://scenes/actors/objects/player.tscn" id="1_a1wp8"]
+[ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_efv0s"]
 [ext_resource type="TileSet" uid="uid://42x0c6htvo8e" path="res://resources/Tilemaps/UnMorphed.tres" id="3_88uoe"]
 [ext_resource type="Texture2D" uid="uid://dqv3v0lq2y2tq" path="res://assets/Pixel Art Top Down - Basic/Glyphs.png" id="3_lmssp"]
 [ext_resource type="Script" path="res://scripts/grid/GridTileMap.cs" id="3_pi1gg"]
@@ -155,6 +156,7 @@ sources/3 = SubResource("TileSetAtlasSource_ty2g8")
 [node name="TestLevel" type="Node2D"]
 visibility_layer = 3
 texture_filter = 1
+script = ExtResource("1_efv0s")
 
 [node name="GridTileMap" type="TileMap" parent="."]
 visibility_layer = 2
@@ -181,6 +183,7 @@ layer_0/tile_data = PackedInt32Array(3473476, 1, 1, 3473475, 1, 0, 3473474, 1, 2
 script = ExtResource("4_13yb0")
 
 [node name="GridTileMapDark" type="TileMap" parent="."]
+visibility_layer = 4
 tile_set = SubResource("TileSet_gch6l")
 format = 2
 layer_0/name = "Base"
@@ -214,4 +217,3 @@ layer = 2
 [connection signal="Activated" from="PressurePad" to="Door" method="Open"]
 [connection signal="Deactivated" from="PressurePad" to="Glyph" method="light_down"]
 [connection signal="Deactivated" from="PressurePad" to="Door" method="Close"]
-[connection signal="HealthChanged" from="Player" to="HUD" method="_on_player_health_changed"]
