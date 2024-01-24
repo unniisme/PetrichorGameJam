@@ -6,9 +6,10 @@ extends ColorRect
 @onready var restart_button: Button = find_child("RestartButton")
 
 func _ready():
-	pause()	
+	pause()
 	play_button.pressed.connect(unpause)
 	quit_button.pressed.connect(get_tree().quit)
+	restart_button.pressed.connect(get_tree().reload_current_scene)
 
 func unpause():
 	animator.play("Unpause")
