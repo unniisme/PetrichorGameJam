@@ -177,9 +177,8 @@ wall_min_slide_angle = 0.0349066
 position = Vector2(551, 304)
 zoom = Vector2(1.545, 1.545)
 
-[node name="Box" parent="." node_paths=PackedStringArray("agent") instance=ExtResource("11_qjsj2")]
+[node name="Box" parent="." instance=ExtResource("11_qjsj2")]
 position = Vector2(368, 339)
-agent = NodePath("")
 
 [connection signal="Activated" from="PressurePad" to="Door" method="open"]
 [connection signal="Deactivated" from="PressurePad" to="Door" method="close"]
