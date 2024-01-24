@@ -1,6 +1,71 @@
-[gd_scene load_steps=2 format=3 uid="uid://8tflnhph83h0"]
+[gd_scene load_steps=10 format=3 uid="uid://8tflnhph83h0"]
 
 [ext_resource type="Script" path="res://scenes/actors/objects/Shooter.cs" id="1_omk4w"]
+[ext_resource type="Texture2D" uid="uid://c6dnfltros3s4" path="res://assets/Pixel Art Top Down - Basic/Shooter.png" id="2_mcbg7"]
+[ext_resource type="Script" path="res://scripts/animation/animations/ShooterAnimation.cs" id="3_wj2w1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3ryc"]
+atlas = ExtResource("2_mcbg7")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umdxn"]
+atlas = ExtResource("2_mcbg7")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fung"]
+atlas = ExtResource("2_mcbg7")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu3hx"]
+atlas = ExtResource("2_mcbg7")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fsgri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3ryc")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umdxn")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fung")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu3hx")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mde5"]
 
 [node name="Shooter" type="StaticBody2D"]
 script = ExtResource("1_omk4w")
+
+[node name="ShooterAnimation" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_fsgri")
+animation = &"down"
+script = ExtResource("3_wj2w1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3mde5")
