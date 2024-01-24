@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c10371cy2tkl2"]
+
+[ext_resource type="Script" path="res://scenes/UI/crystalContainer.gd" id="1_t8dcs"]
+
+[node name="crystalContainer" type="HBoxContainer"]
+theme_override_constants/separation = 2
+script = ExtResource("1_t8dcs")
