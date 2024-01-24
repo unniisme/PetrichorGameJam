@@ -66,7 +66,12 @@ namespace Gamelogic.Objects
 
 		private bool Move(Vector2 dir)
 		{
-			Node2D obj = grid.GetObject(grid.GetPositionInDirection(grid.GetObjectPosition(this), dir));
+			Vector2I gridPosition = grid.GetObjectPosition(this);
+			Vector2I targetPosition = grid.GetPositionInDirection(gridPosition, dir);
+			
+			if ((gridPosition - targetPosition).LengthSquared() > 1) return false; // Diagonal
+
+			Node2D obj = grid.GetObject(targetPosition);
 			bool canMove = true;
 			if (obj != null)
 			{
