@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Gamelogic.Grid;
 using Godot;
 
@@ -12,12 +11,18 @@ namespace Gamelogic.Objects
 		private int health = 3;
 		public bool inputEnabled = true;
 
+		[Signal]
+		public delegate void HealthChangedEventHandler(int health);
+
 		public int Health
 		{
 			get => health;
 			set
 			{
+				if (health <= 0) return;
+
 				health = value;
+				EmitSignal(SignalName.HealthChanged, health);
 				if (health == 0)
 				{
 					GameManager.EndGame();

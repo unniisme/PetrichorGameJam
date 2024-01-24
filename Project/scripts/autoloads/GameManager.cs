@@ -36,15 +36,8 @@ namespace Gamelogic
 		/// </summary>
 		public static Player Player => player;
 
-		/// <summary>
-		/// Wrapper for placing an object on grid
-		/// </summary>
-		public static void PlaceObjectOnGrid(Node2D obj) => grid.PlaceObject(obj);
-		
-		public static void RemoveObjectFromGrid(Node2D obj) => grid.RemoveObject(obj);
-
-		public const uint UnMorphedBitmask = 1;
-		public const uint MorphedBitmask = 2;
+		public const uint UnMorphedBitmask = 2;
+		public const uint MorphedBitmask = 1;
 
 		/// <summary>
 		/// Register an object as a morphable
