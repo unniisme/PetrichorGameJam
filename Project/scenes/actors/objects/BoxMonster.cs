@@ -38,8 +38,8 @@ namespace Gamelogic.Objects
             {
                 Vector2I nextPos = agent.GetNextPosition(GameManager.Grid.GetObjectPosition(GameManager.Player));
                 Node2D nextObj = GameManager.Grid.GetObject(nextPos);
-                if (nextObj is Player)
-                    GameManager.EndGame();
+                if (nextObj is Player player)
+                    player.Hurt(this);
                 Move(nextPos - GridPosition);
             }
         }

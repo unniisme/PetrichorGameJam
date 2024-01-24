@@ -1,9 +1,10 @@
 using System;
+using Gamelogic.Grid;
 using Godot;
 
 namespace Gamelogic.Objects
 {
-    public partial class Door : StaticBody2D, IActivatable
+    public partial class Door : GridObject, IActivatable
     {
         private bool isActive = true;
         private CollisionShape2D collisionShape;
@@ -14,6 +15,10 @@ namespace Gamelogic.Objects
             set
             {
                 isActive = value;
+
+                if (value) grid.PlaceObject(this);
+                else grid.RemoveObject(this);
+
                 collisionShape.Disabled = !value;
                 OnActivityChangedEvent?.Invoke(value);
             }
@@ -22,8 +27,9 @@ namespace Gamelogic.Objects
 
         public override void _Ready()
         {
+            base._Ready();
+            OnActivityChangedEvent?.Invoke(true);
             collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
-            IsActive = true;
         }
 
         public void Open() => IsActive = false;

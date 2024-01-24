@@ -46,12 +46,3 @@ sprite_frames = SubResource("SpriteFrames_ebmlh")
 animation = &"inactive"
 autoplay = "inactive"
 script = ExtResource("3_vgnjn")
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.492326, 0.327862, 0.328175, 1)
-visibility_layer = 2
-scale = Vector2(1.25, 1.25)
-sprite_frames = SubResource("SpriteFrames_ebmlh")
-animation = &"inactive"
-autoplay = "inactive"
-script = ExtResource("3_vgnjn")

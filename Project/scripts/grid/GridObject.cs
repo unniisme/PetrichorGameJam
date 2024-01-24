@@ -11,7 +11,7 @@ namespace Gamelogic.Grid
 
 		// Lerping
 		internal bool isMoving = false;
-		internal float moveTime = 0.2f; // Time to animate movement in seconds
+		internal float moveTime = 0.3f; // Time to animate movement in seconds
 		internal float movementFraction = 0f; 
 		internal Vector2 initialVector;
 		internal Vector2 finalVector;

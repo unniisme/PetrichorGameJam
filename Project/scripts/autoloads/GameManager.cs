@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Gamelogic.Grid;
 using Gamelogic.Objects;
 using Godot;
@@ -77,16 +78,14 @@ namespace Gamelogic
 		/// </summary>
 		public static void ToggleMorph() => IsMorphed = !IsMorphed;
 
-		public static void EndGame() => runningManager.Restart();
-
 		/// <summary>
 		/// Call on player death
 		/// </summary>
-		public void Restart()
+		public static async void EndGame()
 		{
 			player.inputEnabled = false;
-			Thread.Sleep(1000);
-			GetTree().ReloadCurrentScene();
+			await Task.Delay(1000);
+			runningManager.GetTree().ReloadCurrentScene();
 			ResetGrid();
 			ResetMorphables();
 			player.inputEnabled = true;

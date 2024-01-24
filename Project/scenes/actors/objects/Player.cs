@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Gamelogic.Grid;
 using Godot;
 
@@ -8,7 +9,21 @@ namespace Gamelogic.Objects
 	{
 		private IGrid grid;
 		private bool morphed = false;
+		private int health = 3;
 		public bool inputEnabled = true;
+
+		public int Health
+		{
+			get => health;
+			set
+			{
+				health = value;
+				if (health == 0)
+				{
+					GameManager.EndGame();
+				}
+			}
+		}
 
 		public bool IsMorphed
 		{
@@ -66,6 +81,12 @@ namespace Gamelogic.Objects
 			else
 				return false;
 			
+		}
+
+		public void Hurt(Node2D attacker)
+		{
+			Health -= 1;
+			Move(GlobalPosition - attacker.GlobalPosition);
 		}
 		
 
