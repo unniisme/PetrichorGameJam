@@ -25,7 +25,8 @@ namespace Gamelogic.Objects
 				EmitSignal(SignalName.HealthChanged, health);
 				if (health == 0)
 				{
-					GameManager.EndGame();
+					GameManager.DelayedRestart();
+					inputEnabled = false;
 				}
 			}
 		}
@@ -47,6 +48,7 @@ namespace Gamelogic.Objects
         {
             grid = GameManager.Grid;
 			grid.PlaceObject(this);
+			inputEnabled = true;
 
 			GameManager.RegisterMorphable(this);
         }

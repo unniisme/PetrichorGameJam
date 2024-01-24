@@ -12,6 +12,9 @@ namespace Gamelogic
         [Signal]
         public delegate void MorphChargesChangedEventHandler(int val);
 
+        [Signal]
+        public delegate void MenuEventHandler();
+
         public int MorphCharges
         {
             get => morphCharges;

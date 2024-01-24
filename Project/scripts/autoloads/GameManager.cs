@@ -82,19 +82,32 @@ namespace Gamelogic
 		/// <summary>
 		/// Call on player death
 		/// </summary>
-		public static async void EndGame()
+		public static async void DelayedRestart()
 		{
-			Player.inputEnabled = false;
 			await Task.Delay(1000);
+			Restart();
+		}
+		
+		public static void Restart()
+		{
 			runningManager.GetTree().ReloadCurrentScene();
 			ResetGrid();
 			ResetMorphables();
-			Player.inputEnabled = true;
+			runningManager.GetTree().Paused = false;
 		}
 
         public override void _Ready()
         {
             GetViewport().CanvasCullMask = UnMorphedBitmask+1;
+			ProcessMode = ProcessModeEnum.Always;
+        }
+
+        public override void _Process(double delta)
+        {
+			if (Input.IsActionJustPressed("menu"))
+            {
+                GetLevel().EmitSignal(LevelManager.SignalName.Menu);
+            }
         }
     }
 }
