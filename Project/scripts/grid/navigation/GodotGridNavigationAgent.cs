@@ -3,7 +3,7 @@ using Godot;
 namespace Gamelogic.Grid
 {
     [GlobalClass]
-    public partial class GodotGridNavigationAgent : Node, IGridNavigationAgent
+    public partial class GodotGridNavigationAgent : Node2D, IGridNavigationAgent
     {
         private IGridNavigationAgent agent = null;
         private Node2D obj;
@@ -13,6 +13,9 @@ namespace Gamelogic.Grid
 
         [Export]
         public int Depth {get; set;} = 20;
+
+        [Export]
+        public bool Debug = false;
 
         public Vector2I GetNextPosition(Vector2I target)
         {
@@ -41,6 +44,25 @@ namespace Gamelogic.Grid
                 _ => null
             };
             base._Ready();
+        }
+
+        public override void _Process(double delta)
+        {
+            QueueRedraw();
+        }
+
+        public override void _Draw()
+        {
+            if (agent is AStarNavigationAgent aAgent && Debug)
+            {
+                Vector2I[] memPath = aAgent.memoryPath;
+                for (int i = 0; i<memPath.Length-1;  i++)
+                {
+                    DrawLine(ToLocal(aAgent.grid.GridCoordinateToGameCoordinate(memPath[i])), 
+                        ToLocal(aAgent.grid.GridCoordinateToGameCoordinate(memPath[i+1])), 
+                        Colors.White, 1);
+                }
+            }
         }
     }
 }

@@ -10,9 +10,11 @@ namespace Gamelogic.Grid
 	/// </summary>
 	public class AStarNavigationAgent : IGridNavigationAgent
 	{
-		private readonly IGrid grid;
+		internal readonly IGrid grid;
 		private readonly Node2D obj;
 		private readonly int maxDepth;
+
+		internal Vector2I[] memoryPath = Array.Empty<Vector2I>();
 		public AStarNavigationAgent(IGrid grid, Node2D obj, int maxDepth)
 		{
 			this.grid = grid;
@@ -67,7 +69,7 @@ namespace Gamelogic.Grid
 				if (current == target)
 				{
 					// Reconstruct the path
-					return ReconstructPath(current, pathTree);
+					return memoryPath = ReconstructPath(current, pathTree);
 				}
 				// to not be further evaluated
 				closedSet.Add(current);
@@ -93,7 +95,7 @@ namespace Gamelogic.Grid
 				}
 			}
 			// If no path is found
-			return Array.Empty<Vector2I>();
+			return memoryPath = Array.Empty<Vector2I>();
 		}
 
 		private Vector2I[] ReconstructPath(Vector2I current, Dictionary<Vector2I, Vector2I> pathTree)
