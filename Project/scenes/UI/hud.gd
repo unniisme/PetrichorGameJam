@@ -1,7 +1,7 @@
 class_name HUD extends CanvasLayer
 
-var heart_container : HBoxContainer
-var crystal_container : HBoxContainer
+var heart_container : HeartContainer
+var crystal_container : CrystalContainer
 var pause_menu
 
 @export var max_hearts = 3
@@ -16,6 +16,12 @@ func connect_signals():
 	GameManager.GetPlayer().connect("HealthChanged", _on_player_health_changed)
 	GameManager.GetLevel().connect("MorphChargesChanged", _on_morph)
 	GameManager.GetLevel().connect("Menu", _open_menu)
+	
+	crystal_container.setMaxCrystals(GameManager.GetLevel().morphCharges/2)
+	_on_morph(GameManager.GetLevel().morphCharges)
+	
+	heart_container.setMaxHearts(GameManager.GetPlayer().Health)
+	heart_container.updateHearts(GameManager.GetPlayer().Health)
 
 func _on_player_health_changed(health):
 	heart_container.updateHearts(health)

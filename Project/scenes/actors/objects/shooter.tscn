@@ -112,6 +112,7 @@ animations = [{
 [node name="Shooter" type="StaticBody2D" node_paths=PackedStringArray("firePoint") groups=["shooter"]]
 visibility_layer = 7
 script = ExtResource("1_omk4w")
+timeOutTime = 1.0
 firePoint = NodePath("Node2D")
 
 [node name="ShooterAnimation" type="AnimatedSprite2D" parent="."]

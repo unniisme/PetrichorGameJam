@@ -4,6 +4,7 @@ using Godot;
 
 namespace Gamelogic.Objects
 {
+	[GlobalClass]
 	public partial class PressurePad : Area2D, IActivatable, IMorphable
 	{
 		private bool isActive;

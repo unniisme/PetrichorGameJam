@@ -22,6 +22,11 @@ namespace Gamelogic.Objects
             }
         }
         public void ToggleMorph() => IsMorphed = !IsMorphed;
+        private bool CanSeePlayer()
+        {
+            Node2D result = grid.GridCast(GridPosition, grid.GetObjectPosition(GameManager.Player), agent.Depth);
+            return result is Player;
+        }
 
         public override void _Ready()
         {
@@ -34,7 +39,7 @@ namespace Gamelogic.Objects
         {
             base._Process(delta);
 
-            if (!isMoving && IsMorphed)
+            if (!isMoving && IsMorphed && CanSeePlayer())
             {
                 Vector2I nextPos = agent.GetNextPosition(GameManager.Grid.GetObjectPosition(GameManager.Player));
                 Node2D nextObj = GameManager.Grid.GetObject(nextPos);

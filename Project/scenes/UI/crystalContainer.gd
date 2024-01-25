@@ -5,10 +5,6 @@ var curr_crystal : int = 3
 var used_crystal : bool = false
 
 @onready var CrystalGuiClass = preload("res://scenes/UI/crystalGui.tscn")
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	setMaxCrystals(max_crystal)
-	updateCrystals(curr_crystal, used_crystal)
 
 func setMaxCrystals(max: int):
 	for i in range(max):

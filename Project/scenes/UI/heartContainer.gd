@@ -3,10 +3,6 @@ var player_health : int = 3
 var curr_health : int = 3
 
 @onready var HeartGuiClass = preload("res://scenes/UI/heartGui.tscn")
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	setMaxHearts(player_health)
-	updateHearts(curr_health)
 
 func setMaxHearts(max: int):
 	for i in range(max):

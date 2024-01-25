@@ -19,11 +19,16 @@ namespace Gamelogic
 			runningManager = this;
 		}
 
-		public static void ResetGrid() => grid = new GodotGrid(new (32, 32), new (16,16));
-		public static void ResetMorphables()
+		private static void ResetGrid() => grid = new GodotGrid(new (32, 32), new (16,16));
+		private static void ResetMorphables()
 		{
 			IsMorphed = false;
 			morphables = new();
+		}
+		private static void Reset()
+		{
+			ResetGrid();
+			ResetMorphables();
 		}
 
 		/// <summary>
@@ -88,13 +93,22 @@ namespace Gamelogic
 			Restart();
 		}
 		
+		/// <summary>
+		/// Restart the current level
+		/// </summary>
 		public static void Restart()
 		{
 			runningManager.GetTree().ReloadCurrentScene();
-			ResetGrid();
-			ResetMorphables();
+			Reset();
 			runningManager.GetTree().Paused = false;
 		}
+
+		public static void LoadNextLevel()
+		{
+			
+		}
+
+
 
         public override void _Ready()
         {

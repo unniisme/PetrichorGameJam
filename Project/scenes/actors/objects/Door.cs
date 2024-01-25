@@ -9,6 +9,9 @@ namespace Gamelogic.Objects
         private bool isActive = true;
         private CollisionShape2D collisionShape;
 
+        [Export]
+        public PressurePad pressurePad = null;
+
         public bool IsActive 
         {
             get => isActive;
@@ -34,6 +37,12 @@ namespace Gamelogic.Objects
             OnActivityChangedEvent?.Invoke(true);
             collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
             if (snap) Position = grid.GridCoordinateToGameCoordinate(GridPosition);
+
+            if (pressurePad != null)
+            {
+                pressurePad.Activated += Open;
+                pressurePad.Deactivated += Close;
+            }
         }
 
         public override void _PhysicsProcess(double delta)
