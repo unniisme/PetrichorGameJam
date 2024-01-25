@@ -3,6 +3,7 @@ using Godot;
 
 namespace Gamelogic
 {
+    [GlobalClass]
     public partial class LevelManager : Node2D
     {
         private Player player;

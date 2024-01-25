@@ -14,13 +14,16 @@ namespace Gamelogic.Objects
             get => isActive;
             set
             {
-                isActive = value;
+                if (isActive != value)
+                {
+                    isActive = value;
 
-                if (value) grid.PlaceObject(this);
-                else grid.RemoveObject(this);
+                    if (value) grid.PlaceObject(this);
+                    else grid.RemoveObject(this);
 
-                collisionShape.Disabled = !value;
-                OnActivityChangedEvent?.Invoke(value);
+                    collisionShape.Disabled = !value;
+                    OnActivityChangedEvent?.Invoke(value);
+                }
             }
         }
         public event Action<bool> OnActivityChangedEvent;
@@ -30,6 +33,12 @@ namespace Gamelogic.Objects
             base._Ready();
             OnActivityChangedEvent?.Invoke(true);
             collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
+            if (snap) Position = grid.GridCoordinateToGameCoordinate(GridPosition);
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            // override
         }
 
         public void Open() => IsActive = false;

@@ -300,7 +300,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l3ho"]
 
 [node name="Player" type="CharacterBody2D"]
-visibility_layer = 3
+visibility_layer = 7
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 0.0
