@@ -150,7 +150,7 @@ namespace Gamelogic.Objects
         public async void Fire()
         {
             isCooledDown = true;
-            Node2D bullet = (Node2D)Resources.BulletScene.Instantiate();
+            Node2D bullet = (Node2D)GameResources.BulletScene.Instantiate();
             GameManager.GetLevel().AddChild(bullet);
             bullet.Set("dir", DirVector);
             bullet.Position = (firePoint??this).GlobalPosition;

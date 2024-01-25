@@ -13,6 +13,7 @@ namespace Gamelogic
 		private static List<IMorphable> morphables = new();
 		private static GameManager runningManager;
 		private static LevelManager level;
+		private static int currLevelIndex = 0;
 
 		public GameManager()
 		{
@@ -105,7 +106,7 @@ namespace Gamelogic
 
 		public static void LoadNextLevel()
 		{
-			
+			runningManager.GetTree().ChangeSceneToFile(GameResources.Levels[currLevelIndex++]);
 		}
 
 

@@ -1,7 +1,5 @@
 extends MarginContainer
 
-const first_scene = preload("res://scenes/levels/test_level.tscn")
-
 @onready var selector_one = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/HBoxContainer/Selector
 @onready var selector_two = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer2/HBoxContainer/Selector
 @onready var selector_three = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer3/HBoxContainer/Selector
@@ -23,7 +21,7 @@ func _process(delta):
 		
 func handle_selection(_current_selection):
 	if _current_selection == 0:
-		get_tree().change_scene_to_file("res://scenes/levels/test_level.tscn")
+		GameManager.LoadNextLevel()
 	elif _current_selection == 1:
 		print("Add Options!")
 	elif _current_selection == 2:
