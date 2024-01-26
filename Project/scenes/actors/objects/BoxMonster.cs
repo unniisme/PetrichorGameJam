@@ -11,6 +11,7 @@ namespace Gamelogic.Objects
         private bool attackInCooldown = false;
         [Export]
         public float cooldownTime = 1f;
+        private int minSeeDistance = 4; // Minimum manhatten distance at which isSee is trivially true
 
         [Export]
         private GodotGridNavigationAgent agent;
@@ -28,8 +29,13 @@ namespace Gamelogic.Objects
         public void ToggleMorph() => IsMorphed = !IsMorphed;
         private bool CanSeePlayer()
         {
-            Node2D result = grid.GridCast(GridPosition, grid.GetObjectPosition(GameManager.Player), agent.Depth);
-            return result is Player;
+            Vector2I playerPosition = grid.GetObjectPosition(GameManager.Player);
+            Node2D result = grid.GridCast(GridPosition, playerPosition, agent.Depth);
+
+
+            return 
+                result is Player || // Player is gridcastable, or player is within minSeeDistance
+                Mathf.Abs(playerPosition.X - GridPosition.X) + Mathf.Abs(playerPosition.Y - GridPosition.Y) < minSeeDistance;
         }
 
         public override void _Ready()

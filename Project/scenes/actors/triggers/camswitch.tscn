@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyb4lffva0t3k"]
 
-[ext_resource type="Script" path="res://scenes/actors/camswitch.gd" id="1_5hvlc"]
+[ext_resource type="Script" path="res://scenes/actors/triggers/camswitch.gd" id="1_5hvlc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4drb"]
 size = Vector2(20, 56)
