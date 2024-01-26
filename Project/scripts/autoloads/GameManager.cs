@@ -104,9 +104,22 @@ namespace Gamelogic
 			runningManager.GetTree().Paused = false;
 		}
 
+		/// <summary>
+		/// Replace current scene with the next level in list of levels found in GameResources
+		/// </summary>
 		public static void LoadNextLevel()
 		{
 			runningManager.GetTree().ChangeSceneToFile(GameResources.Levels[currLevelIndex++]);
+			runningManager.GetTree().Paused = false;
+		}
+
+		/// <summary>
+		/// Replace current scene with the main menu of the game
+		/// </summary>
+		public static void LoadMainMenu()
+		{
+			runningManager.GetTree().ChangeSceneToFile(GameResources.mainMenuScene);
+			runningManager.GetTree().Paused = false;
 		}
 
 

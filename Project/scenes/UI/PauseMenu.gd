@@ -7,7 +7,7 @@ extends ColorRect
 
 func _ready():
 	play_button.pressed.connect(unpause)
-	quit_button.pressed.connect(get_tree().quit)
+	quit_button.pressed.connect(quit)
 	restart_button.pressed.connect(restart)
 
 func unpause():
@@ -22,3 +22,7 @@ func pause():
 func restart():
 	animator.stop()
 	GameManager.Restart()
+	
+func quit():
+	animator.stop()
+	GameManager.LoadMainMenu()

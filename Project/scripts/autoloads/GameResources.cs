@@ -17,5 +17,7 @@ namespace Gamelogic
             "res://scenes/levels/Tutorial.tscn"
         };
         public static string[] Levels => levels;
+
+        public const string mainMenuScene = "res://scenes/UI/MainMenu.tscn";
     }
 }
