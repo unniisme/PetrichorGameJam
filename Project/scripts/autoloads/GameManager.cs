@@ -64,7 +64,6 @@ namespace Gamelogic
 		/// <param name="pl"></param>
 		public static void RegisterLevel(LevelManager levelManager){
 			level = levelManager;
-			Reset();
 		} 
 		
 		private static bool isMorphed = false;
@@ -101,6 +100,8 @@ namespace Gamelogic
 		/// </summary>
 		public static void Restart()
 		{
+			Reset();
+
 			runningManager.GetTree().ReloadCurrentScene();
 			runningManager.GetTree().Paused = false;
 		}
@@ -110,6 +111,8 @@ namespace Gamelogic
 		/// </summary>
 		public static void LoadNextLevel()
 		{
+			Reset();
+
 			int index = (level==null)?0:level.levelId+1;
 			runningManager.GetTree().ChangeSceneToFile(GameResources.Levels[index]);
 			runningManager.GetTree().Paused = false;
@@ -120,6 +123,8 @@ namespace Gamelogic
 		/// </summary>
 		public static void LoadMainMenu()
 		{
+			Reset();
+
 			runningManager.GetTree().ChangeSceneToFile(GameResources.mainMenuScene);
 			runningManager.GetTree().Paused = false;
 			level = null;

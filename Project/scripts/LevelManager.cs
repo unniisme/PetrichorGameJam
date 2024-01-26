@@ -16,7 +16,9 @@ namespace Gamelogic
         [Export]
         private Camera2D cam;
         [Export]
-        public int morphCharges = 6;
+        private int morphCharges = 6;
+        [Export]
+        private int maxMorphCharges = 6;
 
         [Signal]
         public delegate void MorphChargesChangedEventHandler(int val);
@@ -24,16 +26,20 @@ namespace Gamelogic
         [Signal]
         public delegate void MenuEventHandler();
 
+
         public int MorphCharges
         {
             get => morphCharges;
             set
             {
-                if (morphCharges <= 0) return;
+                if (value < 0 || value > maxMorphCharges) return;
+                
                 morphCharges = value;
                 EmitSignal(SignalName.MorphChargesChanged, value);
             }
         }
+
+        public int MaxMorphCharges => maxMorphCharges; // Define setter if required
 
         public Player Player => player;
         public Player GetPlayer() => player;
@@ -42,6 +48,16 @@ namespace Gamelogic
         public Camera2D Camera => cam;
         public Camera2D GetCamera() => cam;
 
+        /// <summary>
+        /// Try to increase the value of morph charges by 1 crystal.
+        /// </summary>
+        /// <returns>Whether the operation was successfull</returns>
+        public bool IncrementMorphCharges()
+        {
+            int initialMorphCharges = MorphCharges;
+            MorphCharges += 2;
+            return initialMorphCharges < MorphCharges;
+        }
 
         public override void _Ready()
         {
@@ -51,7 +67,7 @@ namespace Gamelogic
             hud ??= GetNode<CanvasLayer>("HUD");
             cam ??= GetNode<Camera2D>("Camera");
 
-            hud.Call("connect_signals");
+            hud.Call("initialize");
         }
 
         public override void _Process(double delta)
