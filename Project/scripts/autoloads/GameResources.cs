@@ -14,7 +14,8 @@ namespace Gamelogic
 
         private readonly static string[] levels = 
         {
-            "res://scenes/levels/Tutorial.tscn"
+            "res://scenes/levels/Tutorial.tscn",
+            "res://scenes/levels/morph_tutorial.tscn"
         };
         public static string[] Levels => levels;
 

@@ -7,6 +7,9 @@ namespace Gamelogic
     public partial class LevelManager : Node2D
     {
         [Export]
+        public int levelId;
+
+        [Export]
         private Player player;
         [Export]
         private CanvasLayer hud;
