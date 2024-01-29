@@ -201,12 +201,5 @@ namespace Gamelogic.Grid
                 }
             }
         }
-
-        public override void _Ready()
-        {
-            base._Ready();
-
-            GameManager.RegisterGrid(this);
-        }
     }
 }
