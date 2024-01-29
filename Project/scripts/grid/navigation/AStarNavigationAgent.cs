@@ -11,14 +11,14 @@ namespace Gamelogic.Grid
 	public class AStarNavigationAgent : IGridNavigationAgent
 	{
 		internal readonly IGrid grid;
-		private readonly Node2D obj;
+		private readonly IGridObject obj;
 		private readonly int maxDepth;
 
 		internal Vector2I[] memoryPath = Array.Empty<Vector2I>();
 		public AStarNavigationAgent(IGrid grid, Node2D obj, int maxDepth)
 		{
 			this.grid = grid;
-			this.obj = obj;
+			this.obj = (IGridObject)obj;
 			this.maxDepth = maxDepth;
 		}
 		
@@ -141,7 +141,7 @@ namespace Gamelogic.Grid
 
 		private bool IsWalkable(Vector2I from, Vector2I target)
 		{
-			Node2D obj = grid.GetObject(from);
+			IGridObject obj = grid.GetObject(from);
 			if(HeuristicScore(from, target)>maxDepth)
 			{
 				return false;

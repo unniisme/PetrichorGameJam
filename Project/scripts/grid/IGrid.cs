@@ -42,22 +42,22 @@ namespace Gamelogic.Grid
         /// <summary>
         /// List of objects placed on the grid
         /// </summary>
-        public List<Node2D> PlacedObjects {get;}
+        public List<IGridObject> PlacedObjects {get;}
 
         /// <summary>
         /// Place a node in the given cell in the grid
         /// </summary>
-        /// <param name="obj">The objec being placed in the grid</param>
+        /// <param name="obj">The object being placed in the grid./param>
         /// <param name="pos">The index of the cell to place this object</param>
         /// <exception cref="GridException">
         /// When the object is unable to be placed
         /// </exception>
-        public void PlaceObject(Node2D obj, Vector2I pos);
+        public void PlaceObject(IGridObject obj, Vector2I pos);
 
         /// <summary>
         /// Place object contextually
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">Must be a <see cref="IGridObject"/><</param>
         public void PlaceObject(Node2D obj);
 
         /// <summary>
@@ -66,21 +66,21 @@ namespace Gamelogic.Grid
         /// </summary>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public Node2D GetObject(Vector2I pos);
+        public IGridObject GetObject(Vector2I pos);
 
         /// <summary>
         /// Get the position of a given object
         /// </summary>
         /// <param name="obj">Object on grid</param>
         /// <returns>Cell index of the object</returns>
-        public Vector2I GetObjectPosition(Node2D obj);
+        public Vector2I GetObjectPosition(IGridObject obj);
 
         /// <summary>
         /// Get position of a given object in game coordinates
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public Vector2 GetObjectPositionInGameCoordinates(Node2D obj);
+        public Vector2 GetObjectPositionInGameCoordinates(IGridObject obj);
 
         /// <summary>
         /// Remove the object in the given cell
@@ -100,7 +100,7 @@ namespace Gamelogic.Grid
         /// <exception cref="GridException">
         /// When the object is unable to be placed
         /// </exception>
-        public void RemoveObject(Node2D obj);
+        public void RemoveObject(IGridObject obj);
 
         /// <summary>
         /// Move the given object to the given position
@@ -111,7 +111,7 @@ namespace Gamelogic.Grid
         /// <param name="obj"></param>
         /// <param name="pos"></param>
         /// <returns>Whether the movement was successfull</returns>
-        public bool MoveObject(Node2D obj, Vector2I pos);
+        public bool MoveObject(IGridObject obj, Vector2I pos);
 
         /// <summary>
         /// Move the object in "from" cell to "to" cell
@@ -131,7 +131,7 @@ namespace Gamelogic.Grid
         /// <param name="obj"></param>
         /// <param name="dir"></param>
         /// <returns>Whether the movement was successfull</returns>
-        public bool MoveObjectInDirection(Node2D obj, Vector2 dir);
+        public bool MoveObjectInDirection(IGridObject obj, Vector2 dir);
 
         /// <summary>
         /// Move object in cell "pos" on the grid in the given direction
@@ -155,6 +155,6 @@ namespace Gamelogic.Grid
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <returns>The hit object. Null if none</returns>
-        public Node2D GridCast(Vector2I from, Vector2I to, int distance);
+        public IGridObject GridCast(Vector2I from, Vector2I to, int distance);
     }
 }

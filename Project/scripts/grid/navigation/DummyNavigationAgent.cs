@@ -8,9 +8,9 @@ namespace Gamelogic.Grid
     public class DummyNavigationAgent : IGridNavigationAgent
     {
         private readonly IGrid grid;
-        private readonly Node2D obj;
+        private readonly IGridObject obj;
 
-        public DummyNavigationAgent(IGrid grid, Node2D obj)
+        public DummyNavigationAgent(IGrid grid, IGridObject obj)
         {
             this.grid = grid;
             this.obj = obj;

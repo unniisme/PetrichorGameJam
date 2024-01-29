@@ -4,7 +4,7 @@ using Godot;
 namespace Gamelogic.Objects
 {
 	[GlobalClass]
-	public partial class Player : CharacterBody2D, IMorphable
+	public partial class Player : CharacterBody2D, IMorphable, IGridObject
 	{
 		private IGrid grid;
 		private bool morphed = false;
@@ -74,14 +74,16 @@ namespace Gamelogic.Objects
 			ZIndex = GameResources.baseLayerOffset + GridPosition.Y;
         }
 
-		private bool Move(Vector2 dir)
+		public bool Move(Vector2 dir)
 		{
+			if (dir.IsZeroApprox()) return false;
+
 			Vector2I gridPosition = GridPosition;
 			Vector2I targetPosition = grid.GetPositionInDirection(gridPosition, dir);
 			
 			if ((gridPosition - targetPosition).LengthSquared() > 1) return false; // Diagonal
 
-			Node2D obj = grid.GetObject(targetPosition);
+			IGridObject obj = grid.GetObject(targetPosition);
 			bool canMove = true;
 			if (obj != null)
 			{
@@ -98,10 +100,10 @@ namespace Gamelogic.Objects
 			
 		}
 
-		public void Hurt(Node2D attacker)
+		public bool Hurt(Node2D attacker)
 		{
 			Health -= 1;
-			Move(GlobalPosition - attacker.GlobalPosition);
+			return Move(GlobalPosition - attacker.GlobalPosition);
 		}
 		
 

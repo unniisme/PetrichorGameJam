@@ -34,7 +34,7 @@ namespace Gamelogic.Objects
         private bool CanSeePlayer()
         {
             Vector2I playerPosition = grid.GetObjectPosition(GameManager.Player);
-            Node2D result = grid.GridCast(GridPosition, playerPosition, agent.Depth);
+            IGridObject result = grid.GridCast(GridPosition, playerPosition, agent.Depth);
 
 
             return result is Player || // Player is gridcastable, or player is within minSeeDistance
@@ -58,7 +58,7 @@ namespace Gamelogic.Objects
                 {
                     Vector2I playerPos = grid.GetObjectPosition(GameManager.Player);
                     Vector2I nextPos = agent.GetNextPosition(playerPos);
-                    Node2D nextObj = GameManager.Grid.GetObject(nextPos);
+                    IGridObject nextObj = GameManager.Grid.GetObject(nextPos);
                     if (nextObj is Player player && !attackInCooldown)
                         Attack(player);
                     if(Move(nextPos - GridPosition))
@@ -70,7 +70,7 @@ namespace Gamelogic.Objects
                 else if (useMemory)
                 {
                     Vector2I nextPos = agent.GetNextPosition(memoryPosition);
-                    Node2D nextObj = GameManager.Grid.GetObject(nextPos);
+                    IGridObject nextObj = GameManager.Grid.GetObject(nextPos);
                     if (nextObj is Player player && !attackInCooldown)
                         Attack(player);
                     Move(nextPos - GridPosition);

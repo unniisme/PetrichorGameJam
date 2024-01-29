@@ -6,7 +6,7 @@ namespace Gamelogic.Grid
 	/// <summary>
 	/// A godot object that is suppose to reside in a grid
 	/// </summary>
-	public partial class GridObject : Node2D
+	public partial class GridObject : Node2D, IGridObject
 	{
 
 		// Lerping
@@ -38,6 +38,7 @@ namespace Gamelogic.Grid
 			set => grid.MoveObject(this, value);
 		}
 
+		public GridObject() {}
 		
 
 		// Called when the node enters the scene tree for the first time.
@@ -96,6 +97,11 @@ namespace Gamelogic.Grid
 			movementFraction += delta/moveTime;
 			if (movementFraction >= 1)
 				UnsetMoving();
+		}
+
+		public virtual bool Hurt(Node2D attacker)
+		{
+			return false; // Override
 		}
 	}
 }

@@ -287,4 +287,3 @@ shape = SubResource("RectangleShape2D_2r511")
 script = ExtResource("7_hliv4")
 Agent = "AStar"
 Depth = 40
-Debug = true

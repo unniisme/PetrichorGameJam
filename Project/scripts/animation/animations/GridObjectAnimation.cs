@@ -37,7 +37,7 @@ namespace AnimationHandling
             else
                 Transition(idle);
 
-            HorizontalFlip = (node.Position - gridObject.grid.GetObjectPositionInGameCoordinates(node)).X > 0;
+            HorizontalFlip = (node.Position - gridObject.grid.GetObjectPositionInGameCoordinates((IGridObject)node)).X > 0;
         }
     }
 }

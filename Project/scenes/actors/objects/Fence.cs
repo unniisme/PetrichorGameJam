@@ -5,7 +5,7 @@ using System;
 
 namespace Gamelogic.Objects
 {
-    public partial class Fence : AnimatableBody2D, IMorphable
+    public partial class Fence : AnimatableBody2D, IMorphable, IGridObject
     {
         private bool isMorphed;
         private CollisionShape2D collisionShape;
@@ -35,6 +35,8 @@ namespace Gamelogic.Objects
 
         public void ToggleMorph() => IsMorphed = !IsMorphed;
 
+        public Vector2I GridPosition => grid.GetObjectPosition(this);
+
         public override void _Ready()
         {
             GameManager.RegisterMorphable(this);
@@ -45,5 +47,9 @@ namespace Gamelogic.Objects
             grid.PlaceObject(this);
             collisionShape.Disabled = false;
         }
+
+        public bool Move(Vector2 _) => false; // Can't move this
+        public bool Hurt(Node2D _) => false; // Can't hurt this either
+
     }
 }
