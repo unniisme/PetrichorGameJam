@@ -25,6 +25,12 @@ namespace Gamelogic.Grid
 		[Export]
 		public bool snap = true;
 
+		/// <summary>
+		/// Whether to update sprite y coordinates using z coordinates on the grid
+		/// </summary>
+		[Export]
+		public bool setLayerZ = true;
+
 		public virtual bool Movable => movable;
 		public Vector2I GridPosition
 		{
@@ -54,6 +60,11 @@ namespace Gamelogic.Grid
 			else if (isMoving)
 			{
 				ProcessMove((float)delta);
+			}
+
+			if (setLayerZ)
+			{
+				ZIndex = GridPosition.Y;
 			}
 		}
 
