@@ -56,7 +56,7 @@ namespace Gamelogic.Objects
             {
                 if (CanSeePlayer())
                 {
-                    Vector2I playerPos = GameManager.Grid.GetObjectPosition(GameManager.Player);
+                    Vector2I playerPos = grid.GetObjectPosition(GameManager.Player);
                     Vector2I nextPos = agent.GetNextPosition(playerPos);
                     Node2D nextObj = GameManager.Grid.GetObject(nextPos);
                     if (nextObj is Player player && !attackInCooldown)

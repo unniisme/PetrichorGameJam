@@ -4,10 +4,15 @@ using Godot;
 
 namespace Gamelogic.Objects
 {
+
+	/// <summary>
+	/// Only emmits when unmorphed
+	/// </summary>
 	[GlobalClass]
 	public partial class PressurePad : Area2D, IActivatable, IMorphable
 	{
 		private bool isActive;
+		private bool isMorphed = false;
 		private Vector2I gridPosition;
 		private IGrid grid;
 
@@ -24,12 +29,21 @@ namespace Gamelogic.Objects
 				if (value != isActive)
 				{
 					isActive = value;
-					OnActivityChangedEvent?.Invoke(value);
+					if (!isMorphed) OnActivityChangedEvent?.Invoke(value);
 				}
 			}
 		}
 
-		public bool IsMorphed {get;set;}
+		public bool IsMorphed
+		{
+			get => isMorphed;
+			set
+			{
+				isMorphed = value;
+				if (!value) 
+					OnActivityChangedEvent?.Invoke(isActive);
+			}
+		}
 		public void ToggleMorph() => IsMorphed = !IsMorphed;
 
 		public event Action<bool> OnActivityChangedEvent;
@@ -51,7 +65,7 @@ namespace Gamelogic.Objects
 
 		private void GridChangeEventHandler(Vector2I pos)
 		{
-			if (pos == gridPosition && !IsMorphed)
+			if (pos == gridPosition)
 			{
 				IsActive = grid.GetObject(pos) != null;
 			}

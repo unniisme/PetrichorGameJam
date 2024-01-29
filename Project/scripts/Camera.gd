@@ -1,6 +1,6 @@
 extends Camera2D
 
-var follow_player
+var follow_player : bool
 
 func _process(delta):
 	
