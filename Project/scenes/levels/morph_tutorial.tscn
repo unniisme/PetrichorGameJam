@@ -157,14 +157,15 @@ zoom = Vector2(1.835, 1.835)
 position_smoothing_enabled = true
 
 [node name="Overlay" type="TileMap" parent="."]
+z_index = 100
 tile_set = ExtResource("6_oskgp")
 format = 2
 layer_0/tile_data = PackedInt32Array(393205, 8, 2, 458741, 8, 3, 262134, 65544, 0, 327670, 65544, 1, 393206, 65544, 2, 458742, 65544, 3, 262135, 131080, 0, 327671, 131080, 1, 393207, 131080, 2, 458743, 131080, 3, 524279, 131080, 4, 262136, 196616, 0, 327672, 196616, 1, 393208, 196616, 2, 458744, 196616, 3, 393209, 262152, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Overlay"]
-position = Vector2(400.37, 14.622)
+position = Vector2(400.743, 15)
 rotation = 1.5708
-scale = Vector2(0.376, 31.5801)
+scale = Vector2(0.376, 33.854)
 texture = SubResource("GradientTexture1D_mhbhi")
 
 [node name="Triggers" type="Node2D" parent="."]
