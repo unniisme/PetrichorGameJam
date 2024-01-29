@@ -17,6 +17,9 @@ namespace Gamelogic.Objects
         private GodotGridNavigationAgent agent;
         public override bool Movable => movable;
 
+        private Vector2I memoryPosition;
+        private bool useMemory = false;
+
         public bool IsMorphed 
         {
             get => morphed;
@@ -24,6 +27,7 @@ namespace Gamelogic.Objects
             {
                 morphed = value;
                 movable = !value;
+                useMemory = false;
             }
         }
         public void ToggleMorph() => IsMorphed = !IsMorphed;
@@ -52,11 +56,26 @@ namespace Gamelogic.Objects
             {
                 if (CanSeePlayer())
                 {
-                    Vector2I nextPos = agent.GetNextPosition(GameManager.Grid.GetObjectPosition(GameManager.Player));
+                    Vector2I playerPos = GameManager.Grid.GetObjectPosition(GameManager.Player);
+                    Vector2I nextPos = agent.GetNextPosition(playerPos);
+                    Node2D nextObj = GameManager.Grid.GetObject(nextPos);
+                    if (nextObj is Player player && !attackInCooldown)
+                        Attack(player);
+                    if(Move(nextPos - GridPosition))
+                    {
+                        memoryPosition = playerPos;
+                        useMemory = true;
+                    }
+                }
+                else if (useMemory)
+                {
+                    Vector2I nextPos = agent.GetNextPosition(memoryPosition);
                     Node2D nextObj = GameManager.Grid.GetObject(nextPos);
                     if (nextObj is Player player && !attackInCooldown)
                         Attack(player);
                     Move(nextPos - GridPosition);
+                    if (GridPosition == memoryPosition)
+                        useMemory = false;
                 }
             }
         }

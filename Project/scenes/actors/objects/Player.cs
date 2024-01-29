@@ -38,6 +38,8 @@ namespace Gamelogic.Objects
 		}
 		public void ToggleMorph() => IsMorphed = !morphed;
 
+		public Vector2I GridPosition => grid.GetObjectPosition(this);
+
 		/// <summary>
 		/// Movement speed, 1/gridcells per second
 		/// </summary>
@@ -68,11 +70,13 @@ namespace Gamelogic.Objects
 				smoothness
 			);
 			MoveAndSlide();
+
+			ZIndex = GridPosition.Y;
         }
 
 		private bool Move(Vector2 dir)
 		{
-			Vector2I gridPosition = grid.GetObjectPosition(this);
+			Vector2I gridPosition = GridPosition;
 			Vector2I targetPosition = grid.GetPositionInDirection(gridPosition, dir);
 			
 			if ((gridPosition - targetPosition).LengthSquared() > 1) return false; // Diagonal
