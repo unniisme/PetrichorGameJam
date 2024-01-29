@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cx4fq8ex4gwal"]
+
+[ext_resource type="Script" path="res://scenes/actors/objects/Fence.cs" id="1_fgiv2"]
+[ext_resource type="Texture2D" uid="uid://c3q5i231oy8o3" path="res://assets/Pixel Art Top Down - Basic/Texture/TX Shadow.png" id="2_xjgr7"]
+[ext_resource type="Texture2D" uid="uid://bppci0rqwnyyu" path="res://assets/Pixel Art Top Down - Basic/Texture/TX Props.png" id="3_y1ync"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcchs"]
+atlas = ExtResource("2_xjgr7")
+region = Rect2(272, 288, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8dxh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcchs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50ba1"]
+atlas = ExtResource("3_y1ync")
+region = Rect2(272, 288, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0j3sf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50ba1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkdcf"]
+
+[node name="Fence" type="AnimatableBody2D"]
+script = ExtResource("1_fgiv2")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.282353)
+visibility_layer = 2
+y_sort_enabled = true
+position = Vector2(0, -18)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_d8dxh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
+y_sort_enabled = true
+position = Vector2(0, -17)
+scale = Vector2(0.875, 0.875)
+sprite_frames = SubResource("SpriteFrames_0j3sf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nkdcf")

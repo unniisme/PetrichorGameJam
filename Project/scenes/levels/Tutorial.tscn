@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://cfd2rjbv73xea" path="res://scenes/actors/objects/box.tscn" id="6_hckxg"]
 [ext_resource type="PackedScene" uid="uid://dyb4lffva0t3k" path="res://scenes/actors/triggers/camswitch.tscn" id="8_ohty7"]
 [ext_resource type="PackedScene" uid="uid://b88lpdst2lvca" path="res://scenes/UI/hud.tscn" id="8_tsub0"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="10_g7o3a"]
 [ext_resource type="TileSet" uid="uid://42x0c6htvo8e" path="res://resources/Tilemaps/UnMorphed.tres" id="11_mfjva"]
 [ext_resource type="Script" path="res://scenes/actors/triggers/PushArea.gd" id="13_0sf7e"]
 [ext_resource type="Script" path="res://scenes/actors/triggers/LevelEndArea.gd" id="14_an14b"]
-[ext_resource type="Script" path="res://scripts/grid/GodotGrid.cs" id="15_unsif"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lo44b"]
 atlas = ExtResource("4_3olh8")
@@ -151,6 +151,7 @@ position = Vector2(1744, 306)
 position = Vector2(316, 221)
 zoom = Vector2(1.835, 1.835)
 position_smoothing_enabled = true
+script = ExtResource("10_g7o3a")
 
 [node name="CamSpots" type="Node2D" parent="."]
 
@@ -221,8 +222,3 @@ script = ExtResource("14_an14b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Levelend"]
 shape = SubResource("RectangleShape2D_7ks8b")
-
-[node name="GodotGrid" type="Node2D" parent="."]
-scale = Vector2(32, 32)
-script = ExtResource("15_unsif")
-Offset = Vector2(16, 16)
