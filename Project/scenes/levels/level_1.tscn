@@ -1,27 +1,158 @@
-[gd_scene load_steps=5 format=3 uid="uid://rus5qb2wnpqf"]
+[gd_scene load_steps=12 format=3 uid="uid://rus5qb2wnpqf"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_uowf0"]
 [ext_resource type="PackedScene" uid="uid://b84aah6krbjid" path="res://scenes/actors/Unmorphed_tilemap.tscn" id="2_2m6s3"]
 [ext_resource type="PackedScene" uid="uid://dy2r7gahd11k2" path="res://scenes/actors/objects/player.tscn" id="2_djvmu"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="3_ot4t3"]
+[ext_resource type="PackedScene" uid="uid://bpgm22esps6nl" path="res://scenes/actors/objects/pressure_pad.tscn" id="3_ppgty"]
+[ext_resource type="PackedScene" uid="uid://qhhr5jn18fbb" path="res://scenes/actors/objects/door.tscn" id="4_3s4yb"]
 [ext_resource type="PackedScene" uid="uid://b88lpdst2lvca" path="res://scenes/UI/hud.tscn" id="4_xa63m"]
+[ext_resource type="Script" path="res://scripts/grid/GodotGrid.cs" id="5_2cyu6"]
+[ext_resource type="PackedScene" uid="uid://cfd2rjbv73xea" path="res://scenes/actors/objects/box.tscn" id="7_o5p7l"]
+[ext_resource type="PackedScene" uid="uid://dyb4lffva0t3k" path="res://scenes/actors/triggers/camswitch.tscn" id="8_44rdp"]
+[ext_resource type="PackedScene" uid="uid://da0dpejjbn5v3" path="res://scenes/actors/triggers/crystal.tscn" id="10_s8v5i"]
 
 [node name="Level1" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_uowf0")
 levelId = 2
+morphCharges = 0
 
 [node name="GridTileMap" parent="." instance=ExtResource("2_2m6s3")]
-layer_0/tile_data = PackedInt32Array(-65536, 3, 4, -131072, 3, 4, -196608, 65539, 6, -327680, 65539, 5, -262144, 3, 6, -393216, 3, 4, -458752, 65539, 6, -393217, 65539, 6, -327681, 3, 5, -262145, 3, 5, -196609, 65539, 4, -131073, 65539, 5, -65537, 65539, 5, -131071, 3, 5, -196607, 3, 6, -262143, 65539, 4, -327679, 3, 5, -393215, 3, 6, -458751, 65539, 5, -458753, 3, 5, -524288, 65539, 4, -524287, 65539, 4, -524289, 3, 5, -589824, 3, 5, -589823, 65539, 5, -65538, 3, 5, -131074, 3, 4, -196610, 3, 4, -262146, 65539, 5, -327682, 65539, 6, -393218, 65539, 4, -458754, 65539, 6, -524290, 65539, 4, -589822, 65539, 6, -524286, 3, 4, -458750, 65539, 4, -393214, 3, 6, -327678, 65539, 5, -262142, 65539, 6, -196606, 65539, 6, -131070, 3, 4, -589826, 3, 6, -589825, 65539, 5, -655360, 3, 5, -655359, 65539, 5, -655358, 65539, 5)
+layer_0/tile_data = PackedInt32Array(-65536, 3, 4, -131072, 3, 4, -196608, 65539, 6, -327680, 65539, 5, -262144, 3, 6, -393216, 3, 4, -458752, 65539, 6, -393217, 65539, 6, -327681, 3, 5, -262145, 3, 5, -196609, 65539, 4, -131073, 65539, 5, -65537, 65539, 5, -131071, 3, 5, -196607, 3, 6, -262143, 65539, 4, -327679, 3, 5, -393215, 3, 6, -458751, 65539, 5, -458753, 3, 5, -524288, 65539, 4, -524287, 65539, 4, -589824, 3, 5, -65538, 3, 5, -131074, 3, 4, -196610, 3, 4, -262146, 65539, 5, -327682, 65539, 6, -393218, 65539, 4, -458754, 65539, 6, -524286, 3, 4, -458750, 65539, 4, -393214, 3, 6, -327678, 65539, 5, -262142, 65539, 6, -196606, 65539, 6, -131070, 3, 4, -458755, 3, 5, -393219, 3, 5, -327683, 3, 6, -262147, 65539, 6, -196611, 3, 5, -131075, 3, 7, -65539, 65539, 5, -524285, 65539, 5, -458749, 65539, 5, -393213, 3, 4, -327677, 65539, 6, -262141, 65539, 7, -196605, 3, 4, -131069, 3, 7, -655360, 65539, 5, -720896, 3, 5, -786432, 65539, 4, -655356, 3, 6, -655355, 3, 6, -655354, 65539, 4, -655353, 3, 6, -589828, 65539, 6, -589829, 3, 4, -589830, 3, 7, -589831, 65539, 6, -131076, 65539, 7, -131077, 3, 7, -131078, 3, 6, -131080, 65539, 6, -131079, 3, 5, -131081, 65539, 5, -196618, 65539, 5, -131082, 3, 4, -65546, 3, 4, -10, 65539, 4, -11, 3, 4, -12, 3, 5, -65548, 65539, 4, -131084, 3, 4, -196620, 3, 5, -196619, 3, 5, -131083, 65539, 5, -65547, 65539, 4, -262154, 65539, 6, -262155, 65539, 4, -262156, 3, 4, -131085, 65539, 6, -131086, 3, 4, -131087, 3, 6, -327692, 65539, 5, -393228, 3, 7, -393229, 65539, 4, -393230, 3, 6, 65524, 65539, 4, 131060, 3, 5, 131059, 65539, 6, 131058, 65539, 4, -131088, 65539, 5, -196624, 65539, 5, -65553, 3, 5, -65554, 3, 4, -131090, 3, 6, -196626, 3, 5, -196625, 3, 4, -131089, 3, 5, -131091, 65539, 4, -131092, 3, 4, -131093, 3, 4, -327689, 65538, 1, -327688, 65538, 1, -327687, 65538, 1, -327686, 65538, 1, -327685, 65538, 1, -327684, 65538, 1, -393220, 65538, 1, -458756, 65538, 1, -458757, 65538, 1, -393221, 65538, 1, -393222, 65538, 1, -393223, 65538, 1, -393224, 65538, 1, -393225, 65538, 1, -458761, 65538, 1, -458762, 65538, 1, -458763, 65538, 1, -524299, 65538, 1, -589835, 65538, 1, -589836, 65538, 1, -589837, 65538, 1, -589838, 65538, 1, -524298, 65538, 1, -524297, 65538, 1, -458760, 65538, 1, -458758, 65538, 1, -458759, 65538, 1, -589839, 65538, 1, -524303, 65538, 1, -458767, 65538, 1, -393231, 65538, 1, -327695, 65538, 1, -327694, 65538, 1, -327693, 65538, 1, -65552, 3, 5, -65551, 65538, 1, -65550, 65538, 1, -65549, 65538, 1, -15, 65538, 1, 65521, 65538, 1, 131057, 65538, 1, 196593, 65538, 1, 196594, 65538, 1, 196595, 65538, 1, 196596, 65538, 1, 196597, 65538, 1, 131061, 65538, 1, 65525, 65538, 1, 65526, 65538, 1, 131062, 65538, 1, 196598, 65538, 1, 196599, 65538, 1, 131063, 65538, 1, 65527, 65538, 1, -9, 65538, 1, -65545, 65538, 1, -65544, 65538, 1, -65543, 65538, 1, -65542, 65538, 1, -8, 65538, 1, 65528, 65538, 1, 131064, 65538, 1, 196600, 65538, 1, -7, 65538, 1, 65529, 65538, 1, 131065, 65538, 1, 196601, 65538, 1, -6, 65538, 1, 65530, 65538, 1, 131066, 65538, 1, 196602, 65538, 1, -65541, 65538, 1, -5, 65538, 1, 65531, 65538, 1, 131067, 65538, 1, 196603, 65538, 1, -65540, 65538, 1, -4, 65538, 1, 65532, 65538, 1, 131068, 65538, 1, 196604, 65538, 1, -3, 65538, 1, 65533, 65538, 1, 131069, 65538, 1, 196605, 65538, 1, -2, 65538, 1, 65534, 65538, 1, 131070, 65538, 1, 196606, 65538, 1, -1, 65538, 1, 65535, 65538, 1, 131071, 65538, 1, 196607, 65538, 1, -21, 65538, 1, 65515, 65538, 1, 131051, 65538, 1, 196587, 65538, 1, -20, 65538, 1, 65516, 65538, 1, 131052, 65538, 1, 196588, 65538, 1, -19, 65538, 1, 65517, 65538, 1, 131053, 65538, 1, 196589, 65538, 1, -18, 65538, 1, 65518, 65538, 1, 131054, 65538, 1, 196590, 65538, 1, -17, 65538, 1, 65519, 65538, 1, 131055, 65538, 1, 196591, 65538, 1, -16, 65538, 1, 65520, 65538, 1, 131056, 65538, 1, 196592, 65538, 1, -65557, 65538, 1, -65556, 65538, 1, -65555, 65538, 1, -327701, 65538, 1, -327700, 65538, 1, -327699, 65538, 1, -393235, 65538, 1, -393234, 65538, 1, -393233, 65538, 1, -393232, 65538, 1, -393236, 65538, 1, -393237, 65538, 1, -458773, 65538, 1, -458772, 65538, 1, -458771, 65538, 1, -458770, 65538, 1, -458769, 65538, 1, -458768, 65538, 1, -524304, 65538, 1, -589840, 65538, 1, -589841, 65538, 1, -589842, 65538, 1, -589843, 65538, 1, -589844, 65538, 1, -589845, 65538, 1, -524309, 65538, 1, -524308, 65538, 1, -524307, 65538, 1, -524306, 65538, 1, -524305, 65538, 1, -262159, 393217, 2, -262163, 393217, 2, -196623, 3, 4, -196627, 3, 4, 65523, 3, 4, -13, 3, 4, 65522, 3, 4, -196617, 3, 4, -262153, 3, 4, -327691, 3, 4, -393227, 3, 4, -262157, 3, 4, -196621, 3, 4)
+layer_2/tile_data = PackedInt32Array(-15, 524289, 4, -327695, 262145, 4)
+layer_3/tile_data = PackedInt32Array(-262149, 131073, 3, -196613, 131073, 4, -262148, 196609, 3, -196612, 196609, 4, -65541, 131073, 1, -65540, 196609, 1, -3, 131073, 1, -2, 131073, 1, -1, 196609, 1, -327684, 196609, 2, -393220, 196609, 2, -458756, 196609, 2, -262150, 393217, 1, -196614, 393217, 2, -262151, 393217, 1, -196615, 393217, 2, -262152, 393217, 1, -196616, 393217, 2, -262157, 196609, 3, -196621, 196609, 4, -262158, 393217, 1, -196622, 393217, 2, -262159, 65537, 3, -196623, 65537, 4, -262164, 393217, 1, -196628, 393217, 2, -262165, 393217, 1, -196629, 393217, 2, -262153, 65537, 3, -196617, 65537, 4, -65542, 131073, 1, -65543, 131073, 1, -65544, 131073, 1, -65545, 65537, 1, -9, 65537, 2, 65526, 131073, 1, 65525, 65537, 1, 196596, 131073, 1, 196595, 131073, 1, 196594, 131073, 1, 131057, 196609, 2, -14, 131073, 3, 65522, 131073, 4, -13, 196609, 3, 65523, 196609, 4, -65549, 196609, 1, -65550, 131073, 1, -65551, 65537, 1, -16, 131073, 1, -15, 262145, 1, 65521, 262145, 2, 196593, 262145, 4, -327693, 196609, 1, -327694, 131073, 1, -393231, 262145, 2, -458767, 262145, 2, -524302, 327681, 1, -458766, 327681, 2, -524303, 262145, 1, -524301, 393217, 1, -458765, 393217, 2, -524300, 393217, 1, -458764, 393217, 2, -524299, 524289, 1, -458763, 524289, 2, -393227, 65537, 3, -327691, 65537, 4, -393226, 131073, 3, -327690, 131073, 4, -393225, 524289, 1, -327689, 524289, 2, 65527, 524289, 4, 131061, 524289, 2, 196597, 524289, 4, -327696, 131073, 3, -262160, 131073, 4, -327697, 131073, 3, -262161, 131073, 4, -327698, 131073, 3, -262162, 131073, 4, -327695, 524289, 1, -17, 131073, 1, -18, 131073, 1, -19, 262145, 4, -327699, 262145, 1, -262163, 196609, 3, -196627, 196609, 4, -65555, 196609, 1, -65556, 131073, 1, -65557, 131073, 1, -4, 262145, 4, -589827, 65537, 3, -524291, 65537, 4, -589826, 131073, 3, -524290, 131073, 4, -524292, 196609, 1, -589825, 196609, 3, -524289, 196609, 4, -655359, 65537, 3, -589823, 65537, 4, -655358, 131073, 3, -589822, 131073, 4, -655357, 131073, 3, -589821, 131073, 4, -524284, 65537, 2, -458748, 65537, 2, -393212, 65537, 2, -327676, 65537, 2, -262140, 65537, 2, -196604, 65537, 2, -131068, 65537, 2, -65535, 65537, 1, -65534, 131073, 1, -65533, 131073, 1)
+
+[node name="1" type="Node2D" parent="GridTileMap"]
+position = Vector2(16, -177)
+
+[node name="2" type="Node2D" parent="GridTileMap"]
+position = Vector2(-377, -177)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(16, -177)
 zoom = Vector2(1.835, 1.835)
 position_smoothing_enabled = true
+script = ExtResource("3_ot4t3")
 
 [node name="Objects_below" type="Node2D" parent="."]
+
+[node name="Pads" type="Node2D" parent="Objects_below"]
+
+[node name="PressurePad" parent="Objects_below/Pads" instance=ExtResource("3_ppgty")]
+position = Vector2(-49, -84)
+
+[node name="PressurePad2" parent="Objects_below/Pads" instance=ExtResource("3_ppgty")]
+position = Vector2(80, -83)
+
+[node name="PressurePad3" parent="Objects_below/Pads" instance=ExtResource("3_ppgty")]
+position = Vector2(145, -306)
+
+[node name="PressurePad4" parent="Objects_below/Pads" instance=ExtResource("3_ppgty")]
+position = Vector2(-113, -306)
+
+[node name="PressurePad5" parent="Objects_below/Pads" instance=ExtResource("3_ppgty")]
+position = Vector2(-335, -82)
+
+[node name="PressurePad6" parent="Objects_below/Pads" instance=ExtResource("3_ppgty")]
+position = Vector2(-335, -115)
+
+[node name="PressurePad7" parent="Objects_below/Pads" instance=ExtResource("3_ppgty")]
+position = Vector2(-335, -49)
+
+[node name="PressurePad8" parent="Objects_below/Pads" instance=ExtResource("3_ppgty")]
+position = Vector2(-529, -83)
+
+[node name="Doors" type="Node2D" parent="Objects_below"]
+
+[node name="Door" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("4_3s4yb")]
+position = Vector2(-112, -84)
+pressurePad = NodePath("../../Pads/PressurePad")
+
+[node name="Door2" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("4_3s4yb")]
+position = Vector2(179, -157)
+pressurePad = NodePath("../../Pads/PressurePad2")
+
+[node name="Door3" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("4_3s4yb")]
+position = Vector2(16, -307)
+pressurePad = NodePath("../../Pads/PressurePad3")
+
+[node name="Door4" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("4_3s4yb")]
+position = Vector2(16, -277)
+pressurePad = NodePath("../../Pads/PressurePad4")
+
+[node name="Door5" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("4_3s4yb")]
+position = Vector2(-432, -83)
+pressurePad = NodePath("../../Pads/PressurePad5")
+
+[node name="Door6" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("4_3s4yb")]
+position = Vector2(-368, -181)
+pressurePad = NodePath("../../Pads/PressurePad6")
+
+[node name="Door7" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("4_3s4yb")]
+position = Vector2(-368, 12)
+pressurePad = NodePath("../../Pads/PressurePad7")
+
+[node name="Door8" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("4_3s4yb")]
+position = Vector2(-624, -83)
+pressurePad = NodePath("../../Pads/PressurePad8")
 
 [node name="Player" parent="." instance=ExtResource("2_djvmu")]
 position = Vector2(14, 18)
 
 [node name="Objects_above" type="Node2D" parent="."]
 
+[node name="Box2" parent="Objects_above" instance=ExtResource("7_o5p7l")]
+position = Vector2(-303, -79)
+
+[node name="Box" parent="Objects_above" instance=ExtResource("7_o5p7l")]
+position = Vector2(16, -79)
+
 [node name="HUD" parent="." instance=ExtResource("4_xa63m")]
+
+[node name="Grid" type="Node2D" parent="."]
+scale = Vector2(32, 32)
+script = ExtResource("5_2cyu6")
+Offset = Vector2(16, 16)
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="Camswitches" type="Node2D" parent="Triggers"]
+
+[node name="camswitch" parent="Triggers/Camswitches" node_paths=PackedStringArray("targetPos") instance=ExtResource("8_44rdp")]
+position = Vector2(-81, -145)
+scale = Vector2(1, 3.68)
+targetPos = NodePath("../../../GridTileMap/2")
+target_player = true
+
+[node name="camswitch4" parent="Triggers/Camswitches" node_paths=PackedStringArray("targetPos") instance=ExtResource("8_44rdp")]
+position = Vector2(112, -145)
+scale = Vector2(1, 3.68)
+targetPos = NodePath("../../../GridTileMap/2")
+target_player = true
+
+[node name="camswitch2" parent="Triggers/Camswitches" node_paths=PackedStringArray("targetPos") instance=ExtResource("8_44rdp")]
+position = Vector2(-49, -145)
+scale = Vector2(1, 3.68)
+targetPos = NodePath("../../../GridTileMap/1")
+
+[node name="camswitch3" parent="Triggers/Camswitches" node_paths=PackedStringArray("targetPos") instance=ExtResource("8_44rdp")]
+position = Vector2(80, -145)
+scale = Vector2(1, 3.68)
+targetPos = NodePath("../../../GridTileMap/1")
+
+[node name="Collectables" type="Node2D" parent="Triggers"]
+
+[node name="Crystal" parent="Triggers/Collectables" instance=ExtResource("10_s8v5i")]
+position = Vector2(14, -163)
+
+[node name="Crystal2" parent="Triggers/Collectables" instance=ExtResource("10_s8v5i")]
+position = Vector2(-433, -210)
+
+[node name="Crystal3" parent="Triggers/Collectables" instance=ExtResource("10_s8v5i")]
+position = Vector2(-434, 47)
+
+[node name="GodotGrid" type="Node2D" parent="."]
+scale = Vector2(32, 32)
+script = ExtResource("5_2cyu6")
+Offset = Vector2(16, 16)

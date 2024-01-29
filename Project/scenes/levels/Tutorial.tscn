@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://kguo0c8ly8de"]
+[gd_scene load_steps=18 format=3 uid="uid://kguo0c8ly8de"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_xrl7a"]
 [ext_resource type="PackedScene" uid="uid://b84aah6krbjid" path="res://scenes/actors/Unmorphed_tilemap.tscn" id="2_pjy5d"]
@@ -13,6 +13,7 @@
 [ext_resource type="TileSet" uid="uid://42x0c6htvo8e" path="res://resources/Tilemaps/UnMorphed.tres" id="11_mfjva"]
 [ext_resource type="Script" path="res://scenes/actors/triggers/PushArea.gd" id="13_0sf7e"]
 [ext_resource type="Script" path="res://scenes/actors/triggers/LevelEndArea.gd" id="14_an14b"]
+[ext_resource type="Script" path="res://scripts/grid/GodotGrid.cs" id="15_unsif"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lo44b"]
 atlas = ExtResource("4_3olh8")
@@ -189,6 +190,7 @@ position = Vector2(1580, 221)
 visibility_layer = 2
 tile_set = ExtResource("11_mfjva")
 format = 2
+layer_0/z_index = 100
 layer_0/tile_data = PackedInt32Array(393264, 8, 2, 458800, 8, 3, 262193, 65544, 0, 327729, 65544, 1, 393265, 65544, 2, 458801, 65544, 3, 262194, 131080, 0, 327730, 131080, 1, 393266, 131080, 2, 458802, 131080, 3, 524338, 131080, 4, 262195, 196616, 0, 327731, 196616, 1, 393267, 196616, 2, 458803, 196616, 3, 393268, 262152, 2)
 
 [node name="PushArea" type="Area2D" parent="."]
@@ -218,3 +220,8 @@ script = ExtResource("14_an14b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Levelend"]
 shape = SubResource("RectangleShape2D_7ks8b")
+
+[node name="GodotGrid" type="Node2D" parent="."]
+scale = Vector2(32, 32)
+script = ExtResource("15_unsif")
+Offset = Vector2(16, 16)

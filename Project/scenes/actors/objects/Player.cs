@@ -69,7 +69,7 @@ namespace Gamelogic.Objects
 			);
 			MoveAndSlide();
 
-			ZIndex = GridPosition.Y;
+			ZIndex = GameResources.baseLayerOffset + GridPosition.Y;
         }
 
 		private bool Move(Vector2 dir)

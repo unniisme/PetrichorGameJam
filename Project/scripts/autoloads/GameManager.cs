@@ -62,9 +62,9 @@ namespace Gamelogic
 		/// Should be replaced later in favour of controlling level loading
 		/// </summary>
 		/// <param name="pl"></param>
-		public static void RegisterLevel(LevelManager levelManager){
-			level = levelManager;
-		} 
+		public static void RegisterLevel(LevelManager levelManager) => level = levelManager;
+
+		public static void RegisterGrid(IGrid godotGrid) => grid = godotGrid;
 		
 		private static bool isMorphed = false;
 		public static bool IsMorphed

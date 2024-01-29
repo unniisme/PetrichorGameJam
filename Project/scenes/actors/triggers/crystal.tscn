@@ -23,6 +23,7 @@ animations = [{
 [node name="Crystal" type="Area2D"]
 script = ExtResource("1_vxy7u")
 only_player = true
+kill_on_use = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vyeit")
