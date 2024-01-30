@@ -244,6 +244,7 @@ size = Vector2(24, 16)
 visibility_layer = 3
 y_sort_enabled = true
 script = ExtResource("1_m56o1")
+minSeeDistance = 1
 agent = NodePath("GodotGridNavigationAgent")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]

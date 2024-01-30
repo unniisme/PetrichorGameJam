@@ -15,6 +15,7 @@ namespace Gamelogic.Grid
 		internal float movementFraction = 0f; 
 		internal Vector2 initialVector;
 		internal Vector2 finalVector;
+		internal bool alive = true;
 		private bool movable = false;
 
 		public IGrid grid;
@@ -32,7 +33,7 @@ namespace Gamelogic.Grid
 		public bool setLayerZ = true;
 
 		public virtual bool Movable => movable;
-		public Vector2I GridPosition
+		public virtual Vector2I GridPosition
 		{
 			get => grid.GetObjectPosition(this);
 			set => grid.MoveObject(this, value);
@@ -53,6 +54,8 @@ namespace Gamelogic.Grid
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _PhysicsProcess(double delta)
 		{
+			if (!alive) return;
+
 			// Snap to grid
 			if (snap && !isMoving)
 			{
@@ -99,7 +102,7 @@ namespace Gamelogic.Grid
 				UnsetMoving();
 		}
 
-		public virtual bool Hurt(Node2D attacker)
+		public virtual bool Kill(Node2D attacker)
 		{
 			return false; // Override
 		}

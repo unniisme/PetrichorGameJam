@@ -21,19 +21,34 @@ namespace Gamelogic.Objects
                 {
                     isActive = value;
 
-                    if (value) grid.PlaceObject(this);
-                    else grid.RemoveObject(this);
+                    if (value) 
+                    {
+                        IGridObject obj = grid.GetObject(GridPosition);
+                        obj?.Kill(this);
+
+                        grid.PlaceObject(this);
+                        ZIndex = GameResources.baseLayerOffset + 50;
+                    }
+                    else 
+                    {
+                        grid.RemoveObject(this);
+                        ZIndex = GameResources.baseLayerOffset - 50;
+                    }
 
                     collisionShape.Disabled = !value;
                     OnActivityChangedEvent?.Invoke(value);
+
                 }
             }
         }
         public event Action<bool> OnActivityChangedEvent;
+        public override Vector2I GridPosition { get; set; }
 
         public override void _Ready()
         {
             base._Ready();
+
+            GridPosition = grid.GetObjectPosition(this);
             OnActivityChangedEvent?.Invoke(true);
             collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
             if (snap) Position = grid.GridCoordinateToGameCoordinate(GridPosition);

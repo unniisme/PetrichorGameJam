@@ -11,6 +11,7 @@ namespace Gamelogic.Objects
         private bool attackInCooldown = false;
         [Export]
         public float cooldownTime = 1f;
+        [Export]
         private int minSeeDistance = 4; // Minimum manhatten distance at which isSee is trivially true
 
         [Export]
@@ -33,7 +34,15 @@ namespace Gamelogic.Objects
         public void ToggleMorph() => IsMorphed = !IsMorphed;
         private bool CanSeePlayer()
         {
-            Vector2I playerPosition = grid.GetObjectPosition(GameManager.Player);
+            Vector2I playerPosition;
+            try
+            {
+                playerPosition = grid.GetObjectPosition(GameManager.Player);
+            }
+            catch (GridException)
+            {
+                return false;
+            }
             IGridObject result = grid.GridCast(GridPosition, playerPosition, agent.Depth);
 
 
@@ -78,6 +87,14 @@ namespace Gamelogic.Objects
                         useMemory = false;
                 }
             }
+        }
+
+        public override bool Kill(Node2D attacker)
+        {
+            grid.RemoveObject(this);
+            QueueFree();
+            alive = false;
+            return true;
         }
 
         private async void Attack(Player player)

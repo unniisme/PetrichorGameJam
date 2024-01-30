@@ -25,6 +25,13 @@ namespace Gamelogic.Objects
                     } 
                     else
                     {
+                        // Player too close
+                        if ((GameManager.Player.GlobalPosition - GlobalPosition).LengthSquared() < 20*20)
+                        {
+                            GameManager.Player.Hurt(this);
+                        }
+
+                        grid.GetObject(GridPosition)?.Kill(this);
                         grid.PlaceObject(this);
                         collisionShape.Disabled = false;
                     }
@@ -35,7 +42,7 @@ namespace Gamelogic.Objects
 
         public void ToggleMorph() => IsMorphed = !IsMorphed;
 
-        public Vector2I GridPosition => grid.GetObjectPosition(this);
+        public Vector2I GridPosition {get; set;}
 
         public override void _Ready()
         {
@@ -46,10 +53,12 @@ namespace Gamelogic.Objects
 
             grid.PlaceObject(this);
             collisionShape.Disabled = false;
+
+            GridPosition = grid.GetObjectPosition(this);
         }
 
         public bool Move(Vector2 _) => false; // Can't move this
-        public bool Hurt(Node2D _) => false; // Can't hurt this either
+        public bool Kill(Node2D _) => false; // Can't hurt this either
 
     }
 }

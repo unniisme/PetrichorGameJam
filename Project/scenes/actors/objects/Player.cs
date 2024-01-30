@@ -25,6 +25,7 @@ namespace Gamelogic.Objects
 				EmitSignal(SignalName.HealthChanged, health);
 				if (health == 0)
 				{
+					grid.RemoveObject(this);
 					GameManager.DelayedRestart();
 					inputEnabled = false;
 				}
@@ -45,6 +46,8 @@ namespace Gamelogic.Objects
 		/// </summary>
 		public float speed = 4.8f;
 		public float smoothness = 1f;
+		public float knockbackspeed = 10f; 
+
 
         public override void _Ready()
         {
@@ -57,6 +60,8 @@ namespace Gamelogic.Objects
 
         public override void _PhysicsProcess(double delta)
         {
+			if (Health <= 0) return;
+
 			if (grid.GetObjectPosition(this) == grid.GameCoordinateToGridCoordinate(Position)
 				&& inputEnabled)
 			{
@@ -76,7 +81,7 @@ namespace Gamelogic.Objects
 
 		public bool Move(Vector2 dir)
 		{
-			if (dir.IsZeroApprox()) return false;
+			if (dir.IsZeroApprox() || Health == 0) return false;
 
 			Vector2I gridPosition = GridPosition;
 			Vector2I targetPosition = grid.GetPositionInDirection(gridPosition, dir);
@@ -103,9 +108,14 @@ namespace Gamelogic.Objects
 		public bool Hurt(Node2D attacker)
 		{
 			Health -= 1;
+			Position += (GlobalPosition - attacker.GlobalPosition).Normalized()*knockbackspeed;
 			return Move(GlobalPosition - attacker.GlobalPosition);
 		}
-		
 
+        public bool Kill(Node2D attacker)
+        {
+            Health = 0;
+			return true;
+        }
     }
 }

@@ -153,7 +153,7 @@ namespace Gamelogic.Objects
             Node2D bullet = (Node2D)GameResources.BulletScene.Instantiate();
             GameManager.GetLevel().AddChild(bullet);
             bullet.Set("dir", DirVector);
-            bullet.Position = (firePoint??this).GlobalPosition;
+            bullet.GlobalPosition = (firePoint??this).GlobalPosition;
             await Task.Delay((int)(timeOutTime*1000));
             isCooledDown = false;
         }

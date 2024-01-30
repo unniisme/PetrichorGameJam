@@ -133,4 +133,4 @@ script = ExtResource("3_wj2w1")
 shape = SubResource("RectangleShape2D_3mde5")
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(0, -22)
+position = Vector2(0, -7)

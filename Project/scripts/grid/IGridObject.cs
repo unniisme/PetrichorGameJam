@@ -24,7 +24,7 @@ namespace Gamelogic.Grid
         /// </summary>
         /// <param name="to">The entity causing the distruction</param>
         /// <returns>Whether the action was successfull</returns>
-        public bool Hurt(Node2D attacker);
+        public bool Kill(Node2D attacker);
 
         public StringName Name {get;}
     }
