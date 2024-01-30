@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://rus5qb2wnpqf"]
+[gd_scene load_steps=21 format=3 uid="uid://rus5qb2wnpqf"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_uowf0"]
 [ext_resource type="PackedScene" uid="uid://b84aah6krbjid" path="res://scenes/actors/Unmorphed_tilemap.tscn" id="2_2m6s3"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://cx4fq8ex4gwal" path="res://scenes/actors/objects/fence.tscn" id="12_4ina1"]
 [ext_resource type="PackedScene" uid="uid://8tflnhph83h0" path="res://scenes/actors/objects/shooter.tscn" id="14_tqvy3"]
 [ext_resource type="Script" path="res://scenes/actors/triggers/PushArea.gd" id="15_bsgh6"]
+[ext_resource type="Script" path="res://scenes/actors/triggers/LevelEndArea.gd" id="17_8mj10"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtkcf"]
 
 [sub_resource type="Gradient" id="Gradient_c1y3p"]
 offsets = PackedFloat32Array(0, 0.481928, 1)
@@ -23,8 +26,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_tj8ab"]
 gradient = SubResource("Gradient_c1y3p")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtkcf"]
 
 [node name="Level1" type="Node2D"]
 texture_filter = 3
@@ -60,12 +61,6 @@ position = Vector2(592, -189)
 [node name="4" type="Node2D" parent="GridTileMap"]
 position = Vector2(592, 97)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridTileMap"]
-position = Vector2(16, 127.668)
-rotation = -1.5708
-scale = Vector2(1.24493, 31.5575)
-texture = SubResource("GradientTexture1D_tj8ab")
-
 [node name="Glyphs" type="Node2D" parent="."]
 
 [node name="Glyph" parent="Glyphs" node_paths=PackedStringArray("pressure_pad") instance=ExtResource("4_ehqv7")]
@@ -78,7 +73,7 @@ pressure_pad = NodePath("../../Objects_below/Pads/PressurePad2")
 
 [node name="Glyph3" parent="Glyphs" node_paths=PackedStringArray("pressure_pad") instance=ExtResource("4_ehqv7")]
 layer_0/tile_data = PackedInt32Array(-2555884, 1, 2, -2686957, 1, 0, -2686958, 1, 1, -2752494, 1, 3, -2752495, 1, 2, -2752496, 1, 1, -2752497, 1, 1, -2752498, 1, 3, -2752499, 1, 3, -2752500, 1, 4, -2818036, 1, 1, -2818037, 1, 2, -2818038, 1, 4, -2818039, 1, 4, -2818040, 1, 1, -2752504, 1, 0, -2752505, 1, 4, -2752506, 1, 4, -2752507, 1, 1, -2752508, 1, 2)
-pressure_pad = NodePath("../../Objects_below/Pads/PressurePad2")
+pressure_pad = NodePath("../../Objects_below/Pads/PressurePad3")
 
 [node name="Glyph4" parent="Glyphs" node_paths=PackedStringArray("pressure_pad") instance=ExtResource("4_ehqv7")]
 layer_0/tile_data = PackedInt32Array(-2228258, 1, 2, -2293794, 1, 4, -2293793, 1, 1, -2359329, 1, 3, -2424865, 1, 2, -2424864, 1, 5, -2424863, 1, 1, -2424862, 1, 5, -2490398, 1, 4, -2490397, 1, 3, -2490396, 1, 2, -2490395, 1, 2, -2490394, 1, 2, -2490393, 1, 5, -2424857, 1, 4, -2424856, 1, 1, -2424855, 1, 2, -2424854, 1, 5, -2490390, 1, 1, -2490389, 1, 5, -2490388, 1, 4, -2490387, 1, 0, -2490386, 1, 3, -2555922, 1, 4, -2555921, 1, 0, -2555920, 1, 2, -2555919, 1, 0, -2555918, 1, 2, -2555917, 1, 4, -2490381, 1, 5, -2490380, 1, 3, -2490379, 1, 2, -2490378, 1, 4, -2424842, 1, 4, -2424841, 1, 3, -2359305, 1, 5, -2293769, 1, 1, -2228233, 1, 4, -2162697, 1, 3, -2162696, 1, 1, -2097160, 1, 1, -2097159, 1, 2, -2097158, 1, 0, -2097157, 1, 0, -2097156, 1, 5, -2097155, 1, 1, -2097154, 1, 2, -2097153, 1, 4, -2162689, 1, 5, -2228224, 1, 1)
@@ -396,7 +391,12 @@ targetPos = NodePath("../../../GridTileMap/1")
 [node name="camswitch9" parent="Triggers/Camswitches" node_paths=PackedStringArray("targetPos") instance=ExtResource("8_44rdp")]
 position = Vector2(15.0001, -331)
 scale = Vector2(1.11678, -0.30661)
-targetPos = NodePath("../../../GridTileMap/4")
+targetPos = NodePath("../../../GridTileMap/5")
+
+[node name="camswitch10" parent="Triggers/Camswitches" node_paths=PackedStringArray("targetPos") instance=ExtResource("8_44rdp")]
+position = Vector2(15.0001, -270)
+scale = Vector2(1.11678, -0.30661)
+targetPos = NodePath("../../../GridTileMap/1")
 
 [node name="Collectables" type="Node2D" parent="Triggers"]
 
@@ -426,3 +426,23 @@ only_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Push1"]
 shape = SubResource("RectangleShape2D_vtkcf")
+
+[node name="End" type="Area2D" parent="Triggers"]
+position = Vector2(15, -721)
+script = ExtResource("17_8mj10")
+only_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/End"]
+shape = SubResource("RectangleShape2D_vtkcf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 127.668)
+rotation = -1.5708
+scale = Vector2(1.24493, 31.5575)
+texture = SubResource("GradientTexture1D_tj8ab")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(16, -824)
+rotation = 1.5708
+scale = Vector2(1.24493, 31.5575)
+texture = SubResource("GradientTexture1D_tj8ab")

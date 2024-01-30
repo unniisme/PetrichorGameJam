@@ -12,7 +12,7 @@ namespace Gamelogic
 		private static IGrid grid = new GodotGrid(new (32, 32), new (16,16));
 		private static List<IMorphable> morphables = new();
 		private static GameManager runningManager;
-		private static LevelManager level;
+		private static LevelManager level = null;
 		public static int leftoverCrystals = 0;
 
 		public GameManager()
@@ -112,7 +112,8 @@ namespace Gamelogic
 		public static void LoadNextLevel()
 		{
 			Reset();
-			leftoverCrystals = level.MorphCharges;
+			if (level != null)
+				leftoverCrystals = level.MorphCharges;
 			int index = (level==null)?0:level.levelId+1;
 			runningManager.GetTree().ChangeSceneToFile(GameResources.Levels[index]);
 			runningManager.GetTree().Paused = false;
