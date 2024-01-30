@@ -16,7 +16,8 @@ namespace Gamelogic
         {
             "res://scenes/levels/Tutorial.tscn",
             "res://scenes/levels/morph_tutorial.tscn",
-            "res://scenes/levels/level_1.tscn"
+            "res://scenes/levels/level_1.tscn",
+            "res://scenes/UI/end_game_screen.tscn"
         };
         public static string[] Levels => levels;
 
