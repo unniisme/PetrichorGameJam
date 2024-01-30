@@ -13,6 +13,7 @@ namespace Gamelogic
 		private static List<IMorphable> morphables = new();
 		private static GameManager runningManager;
 		private static LevelManager level;
+		public static int leftoverCrystals = 0;
 
 		public GameManager()
 		{
@@ -102,7 +103,6 @@ namespace Gamelogic
 		public static void Restart()
 		{
 			Reset();
-
 			runningManager.GetTree().ReloadCurrentScene();
 			runningManager.GetTree().Paused = false;
 		}
@@ -113,7 +113,7 @@ namespace Gamelogic
 		public static void LoadNextLevel()
 		{
 			Reset();
-
+			leftoverCrystals = level.MorphCharges;
 			int index = (level==null)?0:level.levelId+1;
 			runningManager.GetTree().ChangeSceneToFile(GameResources.Levels[index]);
 			runningManager.GetTree().Paused = false;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://7t0tcmjept6r"]
+[gd_scene load_steps=25 format=3 uid="uid://7t0tcmjept6r"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_mihev"]
 [ext_resource type="PackedScene" uid="uid://b84aah6krbjid" path="res://scenes/actors/Unmorphed_tilemap.tscn" id="2_wlitm"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://da0dpejjbn5v3" path="res://scenes/actors/triggers/crystal.tscn" id="11_dwk5o"]
 [ext_resource type="PackedScene" uid="uid://qhhr5jn18fbb" path="res://scenes/actors/objects/door.tscn" id="12_w4w4w"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="13_xlxp6"]
+[ext_resource type="Script" path="res://scenes/actors/triggers/LevelEndArea.gd" id="17_b3ccx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7kcoe"]
 atlas = ExtResource("3_b8cv2")
@@ -275,6 +276,13 @@ targetPos = NodePath("../../GridTileMap/1")
 only_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cam6"]
+shape = SubResource("RectangleShape2D_1ci16")
+
+[node name="end" type="Area2D" parent="Triggers"]
+position = Vector2(399, -28)
+script = ExtResource("17_b3ccx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/end"]
 shape = SubResource("RectangleShape2D_1ci16")
 
 [node name="Crystal" parent="Triggers" instance=ExtResource("11_dwk5o")]

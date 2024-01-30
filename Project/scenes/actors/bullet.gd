@@ -9,7 +9,6 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body:Node2D):
-	print(body.name)
 	if body is Player:
 		body.Hurt(self)
 	if not (body.is_in_group("shooter")):
