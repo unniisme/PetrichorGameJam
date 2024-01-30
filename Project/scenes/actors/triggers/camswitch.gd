@@ -10,6 +10,6 @@ class_name CamSwitchArea extends Trigger
 	
 func _on_body_entered(body):
 	var camera = GameManager.GetLevel().GetCamera() 
-	camera.follow_player = target_player
+	camera.set_player_follow(target_player)
 	if not target_player: camera.position = targetPos.position
 	camera.set_zoom_mult(zoom)

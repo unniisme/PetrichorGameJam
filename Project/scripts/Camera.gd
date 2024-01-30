@@ -9,6 +9,7 @@ var zoom_progress = 1
 
 func _ready():
 	base_zoom = zoom
+	
 
 func _process(delta):
 	if (zoom_progress < 1):
@@ -21,3 +22,6 @@ func _process(delta):
 func set_zoom_mult(mult):
 	zoom_mult = mult
 	zoom_progress = 0
+	
+func set_player_follow(should_follow):
+	follow_player = should_follow
