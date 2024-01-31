@@ -1,4 +1,4 @@
-using Gamelogic.Grid;
+    using Gamelogic.Grid;
 using Godot;
 using System;
 using System.Threading.Tasks;
@@ -83,6 +83,9 @@ namespace Gamelogic.Objects
         [Signal]
         public delegate void Fire2EventHandler(bool chargeUp);
 
+        /// <summary>
+        /// For external reference
+        /// </summary>
         public event Action<FacingDirection> DirectionChanged;
         
         // Gun properties
@@ -171,8 +174,12 @@ namespace Gamelogic.Objects
         /// </summary>
         public void ChargeDown()
         {
-            charge -= 1;
-            if (charge == 0) FireCurr(false);
+            if (charge > 0)
+            {
+                charge -= 1;
+                if (charge == 0) 
+                    FireCurr(false);
+            }
         }
 
         public void HandleChargeChange(bool chargeUp)
@@ -183,7 +190,7 @@ namespace Gamelogic.Objects
 
         public void Rotate()
         {
-            FireCurr(false);
+            if (IsCharged) FireCurr(false);
             Curr += 1;
             if (IsCharged) FireCurr(true);
             DirectionChanged?.Invoke(Facing);

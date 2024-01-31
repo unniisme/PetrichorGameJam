@@ -33,6 +33,7 @@ namespace Gamelogic.Grid
 		public bool setLayerZ = true;
 
 		public virtual bool Movable => movable;
+		[Export]
 		public virtual Vector2I GridPosition
 		{
 			get => grid.GetObjectPosition(this);
