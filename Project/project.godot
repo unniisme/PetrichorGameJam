@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameResources="*res://scripts/autoloads/GameResources.cs"
 GameManager="*res://scripts/autoloads/GameManager.cs"
+AudioManager="*res://scenes/actors/audio_manager.tscn"
 
 [display]
 

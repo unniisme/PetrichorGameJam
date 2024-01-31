@@ -8,6 +8,7 @@ var current_selection = 0
 
 func _ready():
 	set_current_selection(0)
+	AudioManager.PlayStream("happyBackground")
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_down") and current_selection < 2:
