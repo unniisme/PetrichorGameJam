@@ -245,24 +245,27 @@ only_player = true
 position = Vector2(-16, 288)
 shape = SubResource("RectangleShape2D_1ci16")
 
-[node name="Cam" type="Area2D" parent="Triggers"]
+[node name="Cam" type="Area2D" parent="Triggers" node_paths=PackedStringArray("targetPos")]
 script = ExtResource("7_xgrua")
+targetPos = NodePath("../../GridTileMap/2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cam"]
 position = Vector2(-16, 288)
 shape = SubResource("RectangleShape2D_1ci16")
 
-[node name="Cam2" type="Area2D" parent="Triggers"]
+[node name="Cam2" type="Area2D" parent="Triggers" node_paths=PackedStringArray("targetPos")]
 position = Vector2(32, 0)
 script = ExtResource("7_xgrua")
+targetPos = NodePath("../../GridTileMap/1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cam2"]
 position = Vector2(-16, 288)
 shape = SubResource("RectangleShape2D_1ci16")
 
-[node name="Cam3" type="Area2D" parent="Triggers"]
+[node name="Cam3" type="Area2D" parent="Triggers" node_paths=PackedStringArray("targetPos")]
 position = Vector2(626, 288)
 script = ExtResource("7_xgrua")
+targetPos = NodePath("../../GridTileMap/3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cam3"]
 shape = SubResource("RectangleShape2D_1ci16")
