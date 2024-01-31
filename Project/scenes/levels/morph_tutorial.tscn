@@ -1,11 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://7t0tcmjept6r"]
+[gd_scene load_steps=29 format=3 uid="uid://7t0tcmjept6r"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_mihev"]
-[ext_resource type="AudioStream" uid="uid://bbi3uuro3do5c" path="res://assets/Sounds/impact-6291.mp3" id="2_w0gwq"]
 [ext_resource type="PackedScene" uid="uid://b84aah6krbjid" path="res://scenes/actors/Unmorphed_tilemap.tscn" id="2_wlitm"]
 [ext_resource type="Texture2D" uid="uid://cj3avhs0ot2q3" path="res://assets/Pixel Art Top Down - Basic/Texture/TX Plant.png" id="3_b8cv2"]
 [ext_resource type="PackedScene" uid="uid://dy2r7gahd11k2" path="res://scenes/actors/objects/player.tscn" id="3_q0e0b"]
-[ext_resource type="AudioStream" uid="uid://ckqkii8vulg5g" path="res://assets/Sounds/fast-whoosh-118248.mp3" id="3_rryal"]
 [ext_resource type="TileSet" uid="uid://cbsujwxoy2vt3" path="res://resources/Tilemaps/Morphed.tres" id="3_uw0ls"]
 [ext_resource type="PackedScene" uid="uid://b88lpdst2lvca" path="res://scenes/UI/hud.tscn" id="4_obrrt"]
 [ext_resource type="PackedScene" uid="uid://nkcgchcv2d01" path="res://scenes/actors/glyph.tscn" id="5_61i8e"]
@@ -71,14 +69,6 @@ texture_filter = 1
 script = ExtResource("1_mihev")
 levelId = 1
 morphCharges = 0
-
-[node name="UsedCrystal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_w0gwq")
-pitch_scale = 1.39
-
-[node name="ReusedCrystal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_rryal")
-pitch_scale = 1.14
 
 [node name="TileMap" type="TileMap" parent="."]
 visibility_layer = 4
@@ -270,24 +260,27 @@ targetPos = NodePath("../../GridTileMap/3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cam3"]
 shape = SubResource("RectangleShape2D_1ci16")
 
-[node name="Cam4" type="Area2D" parent="Triggers"]
+[node name="Cam4" type="Area2D" parent="Triggers" node_paths=PackedStringArray("targetPos")]
 position = Vector2(593, 288)
 script = ExtResource("7_xgrua")
+targetPos = NodePath("../../GridTileMap/1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cam4"]
 shape = SubResource("RectangleShape2D_1ci16")
 
-[node name="Cam5" type="Area2D" parent="Triggers"]
+[node name="Cam5" type="Area2D" parent="Triggers" node_paths=PackedStringArray("targetPos")]
 position = Vector2(623, 138)
 script = ExtResource("7_xgrua")
+targetPos = NodePath("../../GridTileMap/3")
 only_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cam5"]
 shape = SubResource("RectangleShape2D_1ci16")
 
-[node name="Cam6" type="Area2D" parent="Triggers"]
+[node name="Cam6" type="Area2D" parent="Triggers" node_paths=PackedStringArray("targetPos")]
 position = Vector2(590, 138)
 script = ExtResource("7_xgrua")
+targetPos = NodePath("../../GridTileMap/1")
 only_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cam6"]
@@ -312,15 +305,15 @@ position = Vector2(880, 271)
 [node name="Crystal3" parent="Triggers" instance=ExtResource("11_dwk5o")]
 position = Vector2(784, 142)
 
-[node name="MorphInstruct" type="Area2D" parent="."]
+[node name="MorphInstruct" type="Area2D" parent="Triggers"]
 script = ExtResource("19_qvuu3")
 _fade_time = 0.7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MorphInstruct"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/MorphInstruct"]
 position = Vector2(210.5, 288.5)
 shape = SubResource("RectangleShape2D_brg64")
 
-[node name="Label" type="Label" parent="MorphInstruct"]
+[node name="Label" type="Label" parent="Triggers/MorphInstruct"]
 modulate = Color(1, 1, 1, 0)
 offset_left = 216.0
 offset_top = 163.0
@@ -333,14 +326,14 @@ theme_override_fonts/font = ExtResource("19_wkjjl")
 theme_override_font_sizes/font_size = 30
 text = "Press E to Morph"
 
-[node name="MorphInstruct2" type="Area2D" parent="."]
+[node name="MorphInstruct2" type="Area2D" parent="Triggers"]
 script = ExtResource("19_qvuu3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MorphInstruct2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/MorphInstruct2"]
 position = Vector2(475.5, 287)
 shape = SubResource("RectangleShape2D_iqj3r")
 
-[node name="Label" type="Label" parent="MorphInstruct2"]
+[node name="Label" type="Label" parent="Triggers/MorphInstruct2"]
 modulate = Color(1, 1, 1, 0)
 offset_left = 132.0
 offset_top = 164.0
@@ -353,7 +346,7 @@ theme_override_fonts/font = ExtResource("19_wkjjl")
 theme_override_font_sizes/font_size = 30
 text = "Press E again to Morph back"
 
-[connection signal="body_entered" from="MorphInstruct" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="MorphInstruct2" to="." method="_on_de_morph_instruct_body_entered"]
+[connection signal="body_entered" from="Triggers/MorphInstruct" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Triggers/MorphInstruct2" to="." method="_on_de_morph_instruct_body_entered"]
 
 [editable path="Objects_over/Box11"]

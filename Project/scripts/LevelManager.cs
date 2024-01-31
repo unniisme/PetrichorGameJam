@@ -1,3 +1,4 @@
+using Gamelogic.Audio;
 using Gamelogic.Objects;
 using Godot;
 
@@ -73,13 +74,6 @@ namespace Gamelogic
 			cam ??= GetNode<Camera2D>("Camera");
 
 			MorphCharges += GameManager.leftoverCrystals;
-			var backMusic = GetNode<AudioStreamPlayer>("HappyBackground");
-			if(backMusic != null)
-			{
-				backMusic.Stream = GD.Load<AudioStream>("res://assets/Sounds/Dr. Mario 64 - Story Mode 3.mp3");
-				backMusic.Play();
-				
-			}
 			hud.Call("initialize");
 		}
 
@@ -91,21 +85,16 @@ namespace Gamelogic
 			if (MorphCharges > 0 && Input.IsActionJustPressed("action"))
 			{
 				MorphCharges -= 1;
-				var usedCrystal = GetNode<AudioStreamPlayer>("UsedCrystal");
-				var reusedCrystal = GetNode<AudioStreamPlayer>("ReusedCrystal");
-				if(usedCrystal != null && reusedCrystal != null)
+
+				if (MorphCharges%2 == 0)
 				{
-					usedCrystal.Stream = GD.Load<AudioStream>("res://assets/Sounds/impact-6291.mp3");
-					reusedCrystal.Stream = GD.Load<AudioStream>("res://assets/Sounds/fast-whoosh-118248.mp3");
-					if(MorphCharges % 2 == 0)
-					{
-						reusedCrystal.Play();
-					}
-					else
-					{
-						usedCrystal.Play();
-					}
+					AudioManager.PlayStream("reusedCrystal");
 				}
+				else
+				{
+					AudioManager.PlayStream("usedCrystal");
+				}
+
 				GameManager.ToggleMorph();
 			}
 		}
