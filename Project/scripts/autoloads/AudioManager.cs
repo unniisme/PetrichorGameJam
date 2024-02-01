@@ -17,6 +17,7 @@ namespace Gamelogic.Audio
                     audioStreams[stream.Name] = stream;
                 }
             }
+            PlayStream("happyBackground");
         }
 
         /// <summary>

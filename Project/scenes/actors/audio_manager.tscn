@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqh3ecgvo60sp"]
+[gd_scene load_steps=21 format=3 uid="uid://cqh3ecgvo60sp"]
 
 [ext_resource type="Script" path="res://scripts/autoloads/AudioManager.cs" id="1_ewtkp"]
 [ext_resource type="AudioStream" uid="uid://cn3hfac5vfhi3" path="res://assets/Sounds/whoosh-trimmed.mp3" id="2_iioe8"]
@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://dlm3ryaxdfpic" path="res://assets/Sounds/male_dying2.mp3" id="14_4ckrh"]
 [ext_resource type="AudioStream" uid="uid://rvf60f4rrje0" path="res://assets/Sounds/male_dying3.mp3" id="15_ws5lb"]
 [ext_resource type="AudioStream" uid="uid://ndicfvrxk7lp" path="res://assets/Sounds/box dragged.mp3" id="17_46h3k"]
-[ext_resource type="AudioStream" uid="uid://dagm3s60v6weq" path="res://assets/Sounds/Retro FootStep Mud 01.wav" id="18_hqpwt"]
+[ext_resource type="AudioStream" uid="uid://dtnhe0vq4kw8p" path="res://assets/Sounds/zapsplat_foley_footstep_single_paving_stone_001_18694.mp3" id="18_soc7h"]
+[ext_resource type="AudioStream" uid="uid://bwvoqci7xh0jd" path="res://assets/Sounds/menu select.wav" id="19_42ea4"]
+[ext_resource type="AudioStream" uid="uid://co48nirluqjtc" path="res://assets/Sounds/select sound.wav" id="20_unu3i"]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_ewtkp")
@@ -79,5 +81,14 @@ stream = ExtResource("17_46h3k")
 pitch_scale = 1.57
 
 [node name="footsteps" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_hqpwt")
-bus = &"Background"
+stream = ExtResource("18_soc7h")
+pitch_scale = 0.89
+bus = &"footsteps"
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_42ea4")
+pitch_scale = 0.76
+
+[node name="chooseOption" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_unu3i")
+volume_db = 6.559

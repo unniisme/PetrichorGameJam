@@ -12,12 +12,15 @@ func _ready():
 	
 func _process(delta):
 	if Input.is_action_just_pressed("down") and current_selection < 2:
+		AudioManager.PlayStream("chooseOption")		
 		current_selection += 1
 		set_current_selection(current_selection)
 	elif Input.is_action_just_pressed("up") and current_selection > 0:
+		AudioManager.PlayStream("chooseOption")		
 		current_selection -= 1
 		set_current_selection(current_selection)
 	elif Input.is_action_just_pressed("ui_accept"):
+		AudioManager.PlayStream("select")
 		handle_selection(current_selection)
 		
 func handle_selection(_current_selection):
