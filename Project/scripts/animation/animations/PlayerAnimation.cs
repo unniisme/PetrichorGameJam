@@ -36,9 +36,13 @@ namespace AnimationHandling
             }
 
             if (player.Velocity.LengthSquared() < movementSpeedCutoff)
+            {
                 Transition(idle);
+            }
             else
+            {
                 Transition(moving);
+            }
         }
     }
 }

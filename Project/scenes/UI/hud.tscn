@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b88lpdst2lvca"]
 
 [ext_resource type="Script" path="res://scenes/UI/hud.gd" id="1_ma2yg"]
-[ext_resource type="PackedScene" path="res://scenes/UI/heartContainer.tscn" id="2_ddrg4"]
-[ext_resource type="PackedScene" path="res://scenes/UI/crystalContainer.tscn" id="3_hl2ft"]
+[ext_resource type="PackedScene" uid="uid://mgl8udoq24f0" path="res://scenes/UI/heartContainer.tscn" id="2_ddrg4"]
+[ext_resource type="PackedScene" uid="uid://c10371cy2tkl2" path="res://scenes/UI/crystalContainer.tscn" id="3_hl2ft"]
 [ext_resource type="PackedScene" uid="uid://xycissx14dxd" path="res://scenes/UI/PauseMenu.tscn" id="4_eg7b3"]
 
 [node name="HUD" type="CanvasLayer"]

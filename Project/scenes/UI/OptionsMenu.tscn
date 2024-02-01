@@ -1,0 +1,254 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0v0e6rn5v3tn"]
+
+[ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="1_4kd7f"]
+[ext_resource type="Texture2D" uid="uid://okfcmarpwabm" path="res://assets/cave.jpg" id="1_8mwk3"]
+[ext_resource type="PackedScene" uid="uid://bj4h0jn2ptswl" path="res://scenes/UI/volume_slider.tscn" id="1_sn7r7"]
+[ext_resource type="Script" path="res://scenes/UI/OptionsMenu.gd" id="2_rac84"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n1ts"]
+atlas = ExtResource("1_8mwk3")
+region = Rect2(61, 102, 884, 794)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3bri"]
+shader = ExtResource("1_4kd7f")
+shader_parameter/blur = null
+shader_parameter/brightness = 1.0
+
+[sub_resource type="Animation" id="Animation_fp0oe"]
+resource_name = "Back"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.5, null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ptp47"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_stslx"]
+resource_name = "Option"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2f4u"]
+_data = {
+"Back": SubResource("Animation_fp0oe"),
+"Option": SubResource("Animation_stslx"),
+"RESET": SubResource("Animation_ptp47")
+}
+
+[node name="OptionsMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6n1ts")
+expand_mode = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_v3bri")
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_rac84")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_n2f4u")
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ColorRect/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Options"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Master Volume"
+
+[node name="volume_slider" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("1_sn7r7")]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+bus_name = "Master"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+
+[node name="volume_slider" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer3" instance=ExtResource("1_sn7r7")]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+bus_name = "Background"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+
+[node name="volume_slider" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer2" instance=ExtResource("1_sn7r7")]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Back to Main Menu"

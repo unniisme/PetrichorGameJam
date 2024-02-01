@@ -1,4 +1,5 @@
 using System;
+using Gamelogic.Audio;
 using Gamelogic.Grid;
 using Godot;
 
@@ -58,8 +59,15 @@ namespace Gamelogic.Objects
 
 			OnActivityChangedEvent += (bool val) =>
 			{
-				if (val) EmitSignal(SignalName.Activated);
-				else EmitSignal(SignalName.Deactivated);
+				if (val)
+				{
+					AudioManager.PlayStream("pressurePlate");
+					EmitSignal(SignalName.Activated);
+				}
+				else 
+				{
+					EmitSignal(SignalName.Deactivated);
+				}
 			};
 		}
 

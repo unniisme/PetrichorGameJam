@@ -17,6 +17,7 @@ namespace Gamelogic.Audio
                     audioStreams[stream.Name] = stream;
                 }
             }
+            PlayStream("happyBackground");
         }
 
         /// <summary>
@@ -37,6 +38,10 @@ namespace Gamelogic.Audio
         public static void PlayStream(StringName name)
         {
             audioStreams[name].Play();
+        }
+        public static void StopStream(StringName name)
+        {
+            audioStreams[name].Stop();
         }
     }
 }
