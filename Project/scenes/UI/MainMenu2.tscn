@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tumcc"]
 atlas = ExtResource("2_hg8fq")
-region = Rect2(123, 95, 791, 813)
+region = Rect2(61, 102, 884, 794)
 
 [node name="MainMenu2" type="MarginContainer"]
 anchors_preset = 15

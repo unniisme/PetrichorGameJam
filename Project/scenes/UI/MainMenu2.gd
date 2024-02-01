@@ -27,7 +27,7 @@ func handle_selection(_current_selection):
 	if _current_selection == 0:
 		GameManager.LoadNextLevel()
 	elif _current_selection == 1:
-		print("Add Options!")
+		GameManager.LoadOptionsMenu()
 	elif _current_selection == 2:
 		get_tree().quit()
 		

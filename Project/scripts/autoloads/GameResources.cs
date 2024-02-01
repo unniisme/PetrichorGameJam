@@ -23,7 +23,7 @@ namespace Gamelogic
 
         public const string mainMenuScene = "res://scenes/UI/MainMenu2.tscn";
 
-
+         public const string optionsMenuScene = "res://scenes/UI/OptionsMenu.tscn";
         /// <summary>
         /// The z index layer in which an object at grid Y 0 will be placed
         /// </summary>
