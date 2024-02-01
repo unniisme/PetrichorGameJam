@@ -106,3 +106,7 @@ pitch_scale = 0.76
 [node name="chooseOption" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_unu3i")
 volume_db = 6.559
+
+[node name="happyBackgroundUI" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3ojys")
+bus = &"Background"

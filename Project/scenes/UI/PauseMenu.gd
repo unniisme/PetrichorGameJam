@@ -18,7 +18,7 @@ func _ready():
 
 func back():
 	AudioManager.PlayStream("select")
-	AudioManager.StopStream("happyBackground")
+	AudioManager.StopStream("happyBackgroundUI")
 	animator.play("OptionsClosed")
 	options_menu.hide()
 	animator.play("PauseComing")
@@ -30,12 +30,13 @@ func options():
 	pause_menu.hide()
 	animator.play("OptionsOpened")
 	options_menu.show()
-	AudioManager.PlayStream("happyBackground")
+	AudioManager.PlayStream("happyBackgroundUI")
 	
 func unpause():
 	AudioManager.PlayStream("select")
 	animator.play("Unpause")
 	hide_settings()
+	AudioManager.StopStream("happyBackgroundUI")
 	get_tree().paused = false
 	
 func pause():
