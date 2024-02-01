@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cul1isskhdmpg"
+path="res://.godot/imported/Pickup Crystal.wav-18e944d7866c799f2bd85f0a47748a8c.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Pickup Crystal.wav"
+dest_files=["res://.godot/imported/Pickup Crystal.wav-18e944d7866c799f2bd85f0a47748a8c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

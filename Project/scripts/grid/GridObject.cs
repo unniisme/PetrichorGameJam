@@ -1,3 +1,5 @@
+using Gamelogic.Audio;
+using Gamelogic.Objects;
 using Godot;
 
 namespace Gamelogic.Grid

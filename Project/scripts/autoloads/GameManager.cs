@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Gamelogic.Audio;
 using Gamelogic.Grid;
 using Gamelogic.Objects;
 using Godot;
@@ -102,6 +103,8 @@ namespace Gamelogic
 		public static void Restart()
 		{
 			Reset();
+			AudioManager.StopStream("scaryBackground");
+			AudioManager.PlayStream("happyBackground");
 			runningManager.GetTree().ReloadCurrentScene();
 			runningManager.GetTree().Paused = false;
 		}

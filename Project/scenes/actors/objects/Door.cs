@@ -1,4 +1,5 @@
 using System;
+using Gamelogic.Audio;
 using Gamelogic.Grid;
 using Godot;
 
@@ -27,11 +28,13 @@ namespace Gamelogic.Objects
                         obj?.Kill(this);
 
                         grid.PlaceObject(this);
+                        AudioManager.PlayStream("doorOpens");
                         ZIndex = GameResources.baseLayerOffset + 50;
                     }
                     else 
                     {
                         grid.RemoveObject(this);
+                        AudioManager.PlayStream("doorCloses");
                         ZIndex = GameResources.baseLayerOffset - 50;
                     }
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bqwjr4woxcw3c" path="res://splash_screen/maker.tscn" id="1_o101n"]
 [ext_resource type="Script" path="res://splash_screen/splash_screen_manager.gd" id="1_sv4v8"]
-[ext_resource type="PackedScene" uid="uid://dt33t3x0demnk" path="res://scenes/UI/MainMenu.tscn" id="2_kou83"]
+[ext_resource type="PackedScene" uid="uid://iqv6v0etclsw" path="res://scenes/UI/MainMenu2.tscn" id="2_dmw10"]
 
 [node name="SplashScreenManager" type="Control"]
 layout_mode = 3
@@ -12,7 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sv4v8")
-_move_to = ExtResource("2_kou83")
+_move_to = ExtResource("2_dmw10")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
