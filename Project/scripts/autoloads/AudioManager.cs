@@ -17,7 +17,6 @@ namespace Gamelogic.Audio
                     audioStreams[stream.Name] = stream;
                 }
             }
-            PlayStream("happyBackground");
         }
 
         /// <summary>
@@ -42,6 +41,17 @@ namespace Gamelogic.Audio
         public static void StopStream(StringName name)
         {
             audioStreams[name].Stop();
+        }
+        public static bool IsPlaying(StringName name)
+        {
+            if(audioStreams[name].Playing)
+            {
+                return true;
+            }
+            else
+            {
+                return false;   
+            }
         }
     }
 }

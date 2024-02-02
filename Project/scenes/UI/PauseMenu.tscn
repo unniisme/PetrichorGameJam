@@ -1,12 +1,45 @@
-[gd_scene load_steps=8 format=3 uid="uid://xycissx14dxd"]
+[gd_scene load_steps=13 format=3 uid="uid://xycissx14dxd"]
 
 [ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="1_36dx5"]
 [ext_resource type="Script" path="res://scenes/UI/PauseMenu.gd" id="2_md0j8"]
+[ext_resource type="PackedScene" uid="uid://bj4h0jn2ptswl" path="res://scenes/UI/volume_slider.tscn" id="3_7v74r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dl0hp"]
 shader = ExtResource("1_36dx5")
 shader_parameter/blur = 0.0
 shader_parameter/brightness = 1.0
+
+[sub_resource type="Animation" id="Animation_62utp"]
+resource_name = "OptionsClosed"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/OptionsContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ihq4b"]
+resource_name = "OptionsOpened"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/OptionsContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_405ed"]
 resource_name = "Pause"
@@ -38,7 +71,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer:modulate")
+tracks/2/path = NodePath("VBoxContainer/PauseContainer:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,6 +79,38 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ctllp"]
+resource_name = "PauseComing"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/PauseContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0hkoy"]
+resource_name = "PauseGoing"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/PauseContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_38nhi"]
@@ -77,10 +142,22 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer:modulate")
+tracks/2/path = NodePath("VBoxContainer/PauseContainer:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/OptionsContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -117,7 +194,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer:modulate")
+tracks/2/path = NodePath("VBoxContainer/PauseContainer:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -129,7 +206,11 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x8c3m"]
 _data = {
+"OptionsClosed": SubResource("Animation_62utp"),
+"OptionsOpened": SubResource("Animation_ihq4b"),
 "Pause": SubResource("Animation_405ed"),
+"PauseComing": SubResource("Animation_ctllp"),
+"PauseGoing": SubResource("Animation_0hkoy"),
 "RESET": SubResource("Animation_38nhi"),
 "Unpause": SubResource("Animation_0oi0n")
 }
@@ -144,8 +225,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_md0j8")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x8c3m")
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,48 +238,145 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PauseContainer" type="CenterContainer" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PauseContainer"]
 custom_minimum_size = Vector2(512, 256)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PauseContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PauseContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ResumeButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 43)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Resume"
 
-[node name="RestartButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 43)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 43)
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 43)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Back to Main Menu"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_x8c3m")
-}
+[node name="OptionsContainer" type="CenterContainer" parent="VBoxContainer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 2
 
-[connection signal="focus_entered" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_focus_entered"]
-[connection signal="focus_entered" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_focus_entered"]
-[connection signal="focus_entered" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_focus_entered"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/OptionsContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/OptionsContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Options"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Label" type="Label" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Master Volume"
+
+[node name="volume_slider" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("3_7v74r")]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+bus_name = "Master"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Label" type="Label" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+
+[node name="volume_slider" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer3" instance=ExtResource("3_7v74r")]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+bus_name = "Background"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Label" type="Label" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+
+[node name="volume_slider" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer2" instance=ExtResource("3_7v74r")]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="BackButton" type="Button" parent="VBoxContainer/OptionsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Back "
+
+[connection signal="focus_entered" from="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_focus_entered"]
+[connection signal="focus_entered" from="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_focus_entered"]
+[connection signal="focus_entered" from="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_focus_entered"]
+[connection signal="focus_entered" from="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_focus_entered"]
