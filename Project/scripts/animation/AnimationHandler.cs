@@ -72,7 +72,6 @@ namespace AnimationHandling
 			{
 				return;
 			}
-
 			Play(currState.animationName);
 		}
 

@@ -42,5 +42,16 @@ namespace Gamelogic.Audio
         {
             audioStreams[name].Stop();
         }
+        public static bool IsPlaying(StringName name)
+        {
+            if(audioStreams[name].Playing)
+            {
+                return true;
+            }
+            else
+            {
+                return false;   
+            }
+        }
     }
 }

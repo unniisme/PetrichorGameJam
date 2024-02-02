@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://dlm3ryaxdfpic" path="res://assets/Sounds/male_dying2.mp3" id="14_4ckrh"]
 [ext_resource type="AudioStream" uid="uid://rvf60f4rrje0" path="res://assets/Sounds/male_dying3.mp3" id="15_ws5lb"]
 [ext_resource type="AudioStream" uid="uid://ndicfvrxk7lp" path="res://assets/Sounds/box dragged.mp3" id="17_46h3k"]
-[ext_resource type="AudioStream" uid="uid://dtnhe0vq4kw8p" path="res://assets/Sounds/zapsplat_foley_footstep_single_paving_stone_001_18694.mp3" id="18_soc7h"]
+[ext_resource type="AudioStream" uid="uid://orueyul3h6j7" path="res://assets/Sounds/concrete-footsteps-6752.mp3" id="18_ht5y0"]
 [ext_resource type="AudioStream" uid="uid://bwvoqci7xh0jd" path="res://assets/Sounds/menu select.wav" id="19_42ea4"]
 [ext_resource type="AudioStream" uid="uid://co48nirluqjtc" path="res://assets/Sounds/select sound.wav" id="20_unu3i"]
 
@@ -48,12 +48,12 @@ bus = &"SFX"
 
 [node name="doorOpens" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_u0aey")
-volume_db = 5.0
+volume_db = 1.0
 bus = &"SFX"
 
 [node name="doorCloses" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_cshxj")
-volume_db = 5.0
+volume_db = 1.0
 pitch_scale = 1.3
 bus = &"SFX"
 
@@ -95,9 +95,10 @@ pitch_scale = 1.57
 bus = &"SFX"
 
 [node name="footsteps" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_soc7h")
-pitch_scale = 0.89
-bus = &"Footsteps"
+stream = ExtResource("18_ht5y0")
+volume_db = -5.0
+pitch_scale = 1.22
+bus = &"SFX"
 
 [node name="select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_42ea4")

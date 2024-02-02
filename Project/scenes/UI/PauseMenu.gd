@@ -10,6 +10,7 @@ extends ColorRect
 @onready var options_menu: CenterContainer = $VBoxContainer/OptionsContainer
 
 func _ready():
+	hide_settings()
 	play_button.pressed.connect(unpause)
 	quit_button.pressed.connect(quit)
 	options_button.pressed.connect(options)
