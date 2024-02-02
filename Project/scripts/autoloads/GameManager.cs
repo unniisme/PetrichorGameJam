@@ -91,10 +91,13 @@ namespace Gamelogic
 		/// <summary>
 		/// Call on player death
 		/// </summary>
-		public static async void DelayedRestart()
+		public static void DelayedRestart()
 		{
-			await Task.Delay(1000);
-			Restart();
+			// await Task.Delay(1000);
+			Godot.Timer deathTimer = new();
+			level.AddChild(deathTimer);
+			deathTimer.Start(1);
+			deathTimer.Timeout += Restart;
 		}
 		
 		/// <summary>
