@@ -155,7 +155,7 @@ namespace Gamelogic
         {
 			if (Input.IsActionJustPressed("menu"))
             {
-                GetLevel().EmitSignal(LevelManager.SignalName.Menu);
+                GetLevel()?.EmitSignal(LevelManager.SignalName.Menu);
             }
         }
     }
