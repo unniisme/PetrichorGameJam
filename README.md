@@ -28,6 +28,6 @@ One second, the player might be thinking about how to open a certain door, the n
 It is to be noted that morphing is used both to include high action, high tension sections, as well as to aid in puzzle sections that can't be solved while following the constrains of the unmorphed entities.
 
 ## Credits
-@Krishannair
-@lechurnair
-@unniisme
+[Krishan](https://github.com/Krishannair)  
+[Lekshmi](https://github.com/lechurnair)  
+[Jyothiradithya](https://github.com/unniisme)  
