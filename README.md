@@ -12,7 +12,7 @@ Waiting for him however, is a morphed world of danger and death.
 Use **WASD** or **arrow keys** to move around  
 Use **E** to morph (provided you have the crystals for it)
 
-If stuck at any point, you pause using **Esc** and restart from there. ⁿᵒᵒᵇ
+If stuck at any point, you can pause using **Esc** and restart from there. ⁿᵒᵒᵇ
 
 ## Design
 Centering around the theme of *Metamorphosis*, the primary mechanic in the game is to *morph*, consuming a crystal. Once morphed, all objects in the game world exhbit slightly different (and considerably more morbid) behaviour.
@@ -27,7 +27,7 @@ One second, the player might be thinking about how to open a certain door, the n
 
 It is to be noted that morphing is used both to include high action, high tension sections, as well as to aid in puzzle sections that can't be solved while following the constrains of the unmorphed entities.
 
-# Audio design
+## Audio design
 Audio is also a key element in making the world feel different when morphed and when not. The music is high paced and tense then morphed, happy and carefree when not. SFX are more worrying when morphed, more mundane when not.
 
 ## Development
