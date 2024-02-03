@@ -30,7 +30,7 @@ gradient = SubResource("Gradient_c1y3p")
 [node name="Level1" type="Node2D"]
 texture_filter = 3
 script = ExtResource("1_uowf0")
-levelId = 2
+levelId = 3
 morphCharges = 0
 
 [node name="GridTileMap" parent="." instance=ExtResource("2_2m6s3")]

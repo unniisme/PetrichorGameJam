@@ -68,7 +68,16 @@ namespace Gamelogic
 			hud ??= GetNode<CanvasLayer>("HUD");
 			cam ??= GetNode<Camera2D>("Camera");
 
-			MorphCharges += GameManager.leftoverCrystals;
+			if(GameManager.leftoverCrystals % 2 == 0)
+			{
+				MorphCharges += GameManager.leftoverCrystals;
+			}
+			else
+			{
+				MorphCharges += GameManager.leftoverCrystals - 1;
+				AudioManager.StopStream("scaryBackground");
+				AudioManager.PlayStream("happyBackground");
+			}
 			hud.Call("initialize");
 		}
 

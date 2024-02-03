@@ -24,7 +24,7 @@
 [node name="Shootorial" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_vukhq")
-levelId = 3
+levelId = 4
 morphCharges = 0
 
 [node name="GridTileMap" parent="." instance=ExtResource("3_2sg0s")]
@@ -412,8 +412,8 @@ shape = SubResource("RectangleShape2D_tsh2k")
 [connection signal="Fire1" from="Objects_over/Shooters/Shooter3" to="Objects_under/Doors/Door3" method="SetOpen"]
 [connection signal="Fire0" from="Objects_over/Shooters/Shooter5" to="Objects_under/Doors/Door5" method="SetOpen"]
 [connection signal="Fire2" from="Objects_over/Shooters/Shooter6" to="Objects_under/Doors/Door4" method="SetOpen"]
-[connection signal="Fire1" from="Objects_over/Shooters/Shooter7" to="Objects_under/Doors/Door6" method="SetOpen"]
 [connection signal="Fire1" from="Objects_over/Shooters/Shooter7" to="Glyphs/Glyph13" method="change_light"]
+[connection signal="Fire1" from="Objects_over/Shooters/Shooter7" to="Objects_under/Doors/Door6" method="SetOpen"]
 [connection signal="Fire0" from="Objects_over/Shooters/Shooter8" to="Objects_under/Doors/Door7" method="SetOpen"]
 [connection signal="Fire1" from="Objects_over/Shooters/Shooter8" to="Objects_under/Doors/Door8" method="SetOpen"]
 [connection signal="Fire0" from="Objects_over/Shooters/Shooter10" to="Objects_under/Doors/Door9" method="SetOpen"]
