@@ -103,6 +103,13 @@ position = Vector2(939, 177)
 tile_set = SubResource("TileSet_xiq77")
 format = 2
 
+[node name="Subgrid" type="TileMap" parent="."]
+visibility_layer = 2
+scale = Vector2(0.5, 0.5)
+tile_set = ExtResource("6_oskgp")
+format = 2
+layer_0/tile_data = PackedInt32Array(589851, 327680, 6, 655387, 327680, 7, 1376283, 458752, 15, 786455, 327680, 15, 1441865, 327680, 15, 1179718, 65536, 15, 917565, 131072, 15, 655448, 196608, 5, 1048689, 196608, 5, 524348, 196608, 7, 589794, 196608, 5, 983035, 196608, 5)
+
 [node name="Glyphs" type="Node2D" parent="."]
 visibility_layer = 2
 
@@ -164,9 +171,6 @@ position = Vector2(-303, 304)
 [node name="Box10" parent="Objects_over" instance=ExtResource("5_gbi2o")]
 position = Vector2(-112, 176)
 
-[node name="Box2" parent="Objects_over" instance=ExtResource("5_gbi2o")]
-position = Vector2(560, 144)
-
 [node name="Box3" parent="Objects_over" instance=ExtResource("5_gbi2o")]
 position = Vector2(593, 79)
 
@@ -204,6 +208,7 @@ position_smoothing_enabled = true
 script = ExtResource("13_xlxp6")
 
 [node name="Overlay" type="TileMap" parent="."]
+visibility_layer = 2
 z_index = 100
 tile_set = ExtResource("6_oskgp")
 format = 2

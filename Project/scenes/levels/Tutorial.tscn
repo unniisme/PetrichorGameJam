@@ -52,6 +52,13 @@ visibility_layer = 4
 position = Vector2(1616, 272)
 texture = SubResource("AtlasTexture_lo44b")
 
+[node name="Subgrid" type="TileMap" parent="."]
+visibility_layer = 2
+scale = Vector2(0.5, 0.5)
+tile_set = ExtResource("11_mfjva")
+format = 2
+layer_0/tile_data = PackedInt32Array(589851, 327680, 6, 655387, 327680, 7, 1376283, 458752, 15, 786455, 327680, 15, 1441865, 327680, 15, 1179718, 65536, 15, 917565, 131072, 15, 655448, 196608, 5, 1048689, 196608, 5)
+
 [node name="Glyphs" type="Node2D" parent="."]
 
 [node name="Glyph" parent="Glyphs" node_paths=PackedStringArray("pressure_pad") instance=ExtResource("3_sqw8s")]
