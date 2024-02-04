@@ -36,6 +36,7 @@ func next():
 func open_data():
 	animator.play("DataSheetOpened")
 	data_sheet.show()
+	continue_button.grab_focus()
 	
 	
 func options():
@@ -59,6 +60,7 @@ func unpause():
 func pause():
 	animator.play("Pause")
 	pause_menu.show()
+	play_button.grab_focus()
 	get_tree().paused = true
 	play_button.mouse_filter = Control.MOUSE_FILTER_STOP
 	quit_button.mouse_filter = Control.MOUSE_FILTER_STOP
