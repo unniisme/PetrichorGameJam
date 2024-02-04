@@ -18,7 +18,7 @@ func _ready():
 	options_button.pressed.connect(options)
 	back_button.pressed.connect(back)
 	restart_button.pressed.connect(restart)
-	continue_button.pressed.connect(next)
+	continue_button.pressed.connect(continu)
 
 func back():
 	AudioManager.PlayStream("select")
@@ -28,8 +28,12 @@ func back():
 	animator.play("PauseComing")
 	pause_menu.show()
 
-func next():
+func continu():
 	AudioManager.PlayStream("select")
+	animator.play("DataSheetClosed")
+	data_sheet.hide()
+
+func next():
 	animator.play("DataSheetClosed")
 	data_sheet.hide()
 
