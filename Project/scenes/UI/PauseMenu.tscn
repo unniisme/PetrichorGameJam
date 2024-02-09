@@ -1,8 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://xycissx14dxd"]
+[gd_scene load_steps=30 format=3 uid="uid://xycissx14dxd"]
 
 [ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="1_36dx5"]
 [ext_resource type="Script" path="res://scenes/UI/PauseMenu.gd" id="2_md0j8"]
 [ext_resource type="PackedScene" uid="uid://bj4h0jn2ptswl" path="res://scenes/UI/volume_slider.tscn" id="3_7v74r"]
+[ext_resource type="FontFile" uid="uid://dxxuxxno0vhm1" path="res://assets/Adventurer.ttf" id="4_vig0h"]
+[ext_resource type="Texture2D" uid="uid://bppci0rqwnyyu" path="res://assets/Pixel Art Top Down - Basic/Texture/TX Props.png" id="5_6ghvm"]
+[ext_resource type="Texture2D" uid="uid://baeasuhy0bbrt" path="res://assets/Characters/Droid Zapper/wake.png" id="6_em8f1"]
+[ext_resource type="Texture2D" uid="uid://cxast5n6j33lh" path="res://assets/Characters/shield droid/hit and death.png" id="7_jbox4"]
+[ext_resource type="Texture2D" uid="uid://c6dnfltros3s4" path="res://assets/Pixel Art Top Down - Basic/Shooter.png" id="8_08jxh"]
+[ext_resource type="Texture2D" uid="uid://dca8xwv1v2h4b" path="res://assets/Pixel Art Top Down - Basic/Shooter Dark.png" id="9_kv1qg"]
+[ext_resource type="Texture2D" uid="uid://bkam8bnqgpqh7" path="res://assets/Arrow-Free-Download-PNG.webp" id="10_kwote"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dl0hp"]
 shader = ExtResource("1_36dx5")
@@ -163,6 +170,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer/DataContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_0oi0n"]
 resource_name = "Unpause"
@@ -204,8 +223,90 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_5sod2"]
+resource_name = "DataSheetOpened"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.0, 2.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [1.0, 0.9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/DataContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xirew"]
+resource_name = "DataSheetClosed"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/DataContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x8c3m"]
 _data = {
+"DataSheetClosed": SubResource("Animation_xirew"),
+"DataSheetOpened": SubResource("Animation_5sod2"),
 "OptionsClosed": SubResource("Animation_62utp"),
 "OptionsOpened": SubResource("Animation_ihq4b"),
 "Pause": SubResource("Animation_405ed"),
@@ -214,6 +315,38 @@ _data = {
 "RESET": SubResource("Animation_38nhi"),
 "Unpause": SubResource("Animation_0oi0n")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myubw"]
+atlas = ExtResource("5_6ghvm")
+region = Rect2(160, 18, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw5k4"]
+atlas = ExtResource("6_em8f1")
+region = Rect2(4, 53, 22, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl31v"]
+atlas = ExtResource("5_6ghvm")
+region = Rect2(226, 90, 27, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kns0x"]
+atlas = ExtResource("7_jbox4")
+region = Rect2(27, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shup1"]
+atlas = ExtResource("5_6ghvm")
+region = Rect2(287, 305, 33, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu0ax"]
+atlas = ExtResource("8_08jxh")
+region = Rect2(0, 0, 129, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibe1h"]
+atlas = ExtResource("9_kv1qg")
+region = Rect2(0, 0, 129, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gqmj"]
+atlas = ExtResource("10_kwote")
+region = Rect2(0, -1, 338, 257)
 
 [node name="PauseMenu" type="ColorRect"]
 process_mode = 3
@@ -375,6 +508,164 @@ custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Back "
+
+[node name="DataContainer" type="CenterContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DataContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/DataContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_vig0h")
+theme_override_font_sizes/font_size = 32
+text = "What we know about the Morphed World so far..."
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/DataContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 400
+theme_override_constants/v_separation = 30
+columns = 2
+
+[node name="HBoxContainer" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer/HBoxContainer"]
+position = Vector2(121, 26)
+scale = Vector2(1.40625, 1.32609)
+texture = SubResource("AtlasTexture_myubw")
+
+[node name="HBoxContainer2" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+position = Vector2(130, 21)
+scale = Vector2(2.29545, 1.93182)
+texture = SubResource("AtlasTexture_hw5k4")
+
+[node name="Label" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vig0h")
+text = "Wooden Box:
+Just a box you can push around."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vig0h")
+text = "Chasing Monster:
+Chases you when it sees you and 
+can pass by the Shocking Monster."
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer/Label9"]
+position = Vector2(115.75, 10.75)
+scale = Vector2(1.35185, 1.12687)
+texture = SubResource("AtlasTexture_fl31v")
+
+[node name="Label10" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer/Label10"]
+position = Vector2(130, 16.5)
+scale = Vector2(2.17647, 2.08824)
+texture = SubResource("AtlasTexture_kns0x")
+
+[node name="Label3" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vig0h")
+text = "Stone Door:
+Opened by powering it."
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vig0h")
+text = "Shocking Monster: 
+Shocks you if you come next to it."
+horizontal_alignment = 1
+
+[node name="Label11" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer/Label11"]
+position = Vector2(114.75, 24)
+scale = Vector2(1.28788, 1.08333)
+texture = SubResource("AtlasTexture_shup1")
+
+[node name="Label12" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vig0h")
+text = "Stone Box:
+An immovable stone box."
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vig0h")
+text = "The stone box just disappears when 
+morphed...we don't know why yet."
+horizontal_alignment = 1
+
+[node name="Label13" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer/Label13"]
+position = Vector2(119.391, 19)
+scale = Vector2(1.32728, 0.968749)
+texture = SubResource("AtlasTexture_pu0ax")
+
+[node name="Label14" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer/Label14"]
+position = Vector2(131.5, 17.5)
+scale = Vector2(1.20155, 1.10937)
+texture = SubResource("AtlasTexture_ibe1h")
+
+[node name="Label7" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vig0h")
+text = "Pillar: 
+Connects the path in 
+the direction it is facing."
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="VBoxContainer/DataContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vig0h")
+text = "Shooting Monster: 
+Shoots some sort of a 
+laser in the direction it is facing."
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer/DataContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "CONTINUE"
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/DataContainer"]
+position = Vector2(561, 330)
+scale = Vector2(-0.676557, -0.578312)
+texture = SubResource("AtlasTexture_4gqmj")
+flip_h = true
 
 [connection signal="focus_entered" from="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_focus_entered"]
 [connection signal="focus_entered" from="VBoxContainer/PauseContainer/PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_focus_entered"]

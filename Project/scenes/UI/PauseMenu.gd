@@ -8,6 +8,8 @@ extends ColorRect
 @onready var back_button: Button = find_child("BackButton")
 @onready var pause_menu: CenterContainer = $VBoxContainer/PauseContainer
 @onready var options_menu: CenterContainer = $VBoxContainer/OptionsContainer
+@onready var data_sheet: CenterContainer = $VBoxContainer/DataContainer
+@onready var continue_button: Button = find_child("ContinueButton")
 
 func _ready():
 	hide_settings()
@@ -16,6 +18,7 @@ func _ready():
 	options_button.pressed.connect(options)
 	back_button.pressed.connect(back)
 	restart_button.pressed.connect(restart)
+	continue_button.pressed.connect(next)
 
 func back():
 	AudioManager.PlayStream("select")
@@ -25,6 +28,16 @@ func back():
 	animator.play("PauseComing")
 	pause_menu.show()
 
+func next():
+	AudioManager.PlayStream("select")
+	animator.play("DataSheetClosed")
+	data_sheet.hide()
+
+func open_data():
+	animator.play("DataSheetOpened")
+	data_sheet.show()
+	
+	
 func options():
 	AudioManager.PlayStream("select")
 	animator.play("PauseGoing")
@@ -69,7 +82,7 @@ func quit():
 func hide_settings():
 	pause_menu.hide()
 	options_menu.hide()
-	
+	data_sheet.hide()
 
 func _on_resume_button_focus_entered():
 	AudioManager.PlayStream("chooseOption")

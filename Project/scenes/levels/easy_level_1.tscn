@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3rvjxur85wvk"]
+[gd_scene load_steps=23 format=3 uid="uid://d3rvjxur85wvk"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_rg7vo"]
 [ext_resource type="PackedScene" uid="uid://b84aah6krbjid" path="res://scenes/actors/Unmorphed_tilemap.tscn" id="2_kqo1i"]
@@ -16,12 +16,16 @@
 [ext_resource type="Script" path="res://scenes/actors/triggers/PushArea.gd" id="13_wetd6"]
 [ext_resource type="Script" path="res://scenes/actors/triggers/LevelEndArea.gd" id="14_4pfc5"]
 [ext_resource type="Script" path="res://scripts/grid/GodotGrid.cs" id="15_vfowq"]
+[ext_resource type="Script" path="res://scenes/actors/triggers/DataSheetArea.gd" id="17_opbvt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xx2b8"]
 size = Vector2(22.0313, 17.1563)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kx6c1"]
 size = Vector2(88, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2ubm"]
+size = Vector2(91, 48)
 
 [sub_resource type="Gradient" id="Gradient_c1y3p"]
 offsets = PackedFloat32Array(0, 0.481928, 1)
@@ -259,6 +263,14 @@ only_player = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/End"]
 position = Vector2(1, -65.5)
 shape = SubResource("RectangleShape2D_kx6c1")
+
+[node name="DataSheetArea" type="Area2D" parent="Triggers"]
+script = ExtResource("17_opbvt")
+only_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/DataSheetArea"]
+position = Vector2(16.5, -42)
+shape = SubResource("RectangleShape2D_c2ubm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(15, 161)
