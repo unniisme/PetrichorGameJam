@@ -86,6 +86,11 @@ position = Vector2(0, 35)
 layer_0/tile_data = PackedInt32Array(-3407837, 1, 0, -3407838, 1, 5, -3407839, 1, 0, -3407840, 1, 4, -3473376, 1, 7, -3473377, 1, 1, -3473378, 1, 5, -3473379, 1, 2, -3538915, 1, 2, -3538916, 1, 4, -3538917, 1, 4, -3538918, 1, 3, -3604454, 1, 1, -3604455, 1, 5, -3604456, 1, 3, -3604457, 1, 4, -3604458, 1, 6, -3604459, 1, 7, -3669996, 1, 6, -3669997, 1, 7, -3669998, 1, 6, -3669999, 1, 0, -3670000, 1, 6, -3670001, 1, 4, -3735537, 1, 7, -3735538, 1, 0, -3735539, 1, 5, -3735540, 1, 0, -3735541, 1, 3, -3735542, 1, 0, -3801078, 1, 1, -3801079, 1, 0, -3801080, 1, 6, -3801081, 1, 0, -3801082, 1, 0, -3866618, 1, 2, -3866619, 1, 4, -3866620, 1, 6, -4194313, 1, 0, -4194314, 1, 4, -4194315, 1, 7, -4194316, 1, 7, -4194317, 1, 3, -4194318, 1, 5, -4194319, 1, 3, -4194320, 1, 7, -4194321, 1, 2, -4194322, 1, 7, -4194323, 1, 2, -4194324, 1, 1, -4194325, 1, 2, -4194326, 1, 3, -4194327, 1, 7, -4194328, 1, 4, -4194329, 1, 6, -4194330, 1, 5, -4194331, 1, 2, -4194332, 1, 5, -4194333, 1, 4, -4128797, 1, 2, -4128798, 1, 0, -4128799, 1, 5, -4063263, 1, 7, -4063264, 1, 7, -3997728, 1, 1, -3997729, 1, 7, -3997730, 1, 1, -3997731, 1, 5, -4128773, 1, 5, -4128772, 1, 5, -4128771, 1, 6, -4194312, 1, 5, -4128776, 1, 7, -4128775, 1, 7, -4128774, 1, 1, -4128770, 1, 6, -4063234, 1, 0, -4063233, 1, 6, -4128768, 1, 5, -4063232, 1, 5, -4063231, 1, 3, -3997695, 1, 3, -3997694, 1, 2, -3997693, 1, 7, -3932157, 1, 1, -3932156, 1, 4, -3342301, 1, 5, -3342299, 1, 5, -3342300, 1, 4)
 pressure_pad = NodePath("../../Objects_below/Pads/PressurePad4")
 
+[node name="Glyph5" parent="Glyphs" node_paths=PackedStringArray("pressure_pad") instance=ExtResource("4_x4vmk")]
+position = Vector2(0, 35)
+layer_0/tile_data = PackedInt32Array(-4915200, 1, 3, -4849665, 1, 6, -4849666, 1, 7, -4849667, 1, 1, -4849668, 1, 2, -4849669, 1, 6, -4915205, 1, 1, -4915206, 1, 6, -4915207, 1, 0, -4980743, 1, 4, -5046279, 1, 1, -5111815, 1, 7, -5177351, 1, 5, -5242887, 1, 3, -5308423, 1, 0, -5373959, 1, 1, -5439495, 1, 7, -5505031, 1, 3, -5570567, 1, 7, -5636103, 1, 6, -5701639, 1, 3, -5701638, 1, 0, -5701637, 1, 7, -5701636, 1, 1, -4915197, 1, 6, -4915196, 1, 7, -4915195, 1, 1, -4980731, 1, 7, -4980730, 1, 5, -5046266, 1, 7, -5046265, 1, 0, -5111801, 1, 4, -5111800, 1, 4, -5177336, 1, 3, -5242872, 1, 2, -5308408, 1, 7, -5308407, 1, 7, -5373943, 1, 5, -5439479, 1, 4, -5505015, 1, 6, -5570551, 1, 4, -5636087, 1, 3, -5701623, 1, 0, -5767159, 1, 4, -5767160, 1, 6, -5767161, 1, 6, -5832697, 1, 0, -5832698, 1, 2, -4980735, 1, 4, -5046271, 1, 4, -5111807, 1, 1, -5177343, 1, 4, -5242879, 1, 3, -5308415, 1, 5, -5373951, 1, 6, -5439487, 1, 6, -5505023, 1, 4, -5570559, 1, 3, -5636095, 1, 2, -5701631, 1, 4, -5767167, 1, 4)
+pressure_pad = NodePath("../../Objects_below/Pads/PressurePad5")
+
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(16, -177)
 zoom = Vector2(1.835, 1.835)
@@ -110,6 +115,9 @@ position = Vector2(-272, -368)
 
 [node name="PressurePad4" parent="Objects_below/Pads" instance=ExtResource("5_gju0f")]
 position = Vector2(305, -367)
+
+[node name="PressurePad5" parent="Objects_below/Pads" instance=ExtResource("5_gju0f")]
+position = Vector2(15, -561)
 
 [node name="Doors" type="Node2D" parent="Objects_below"]
 
@@ -137,6 +145,18 @@ pressurePad = NodePath("../../Pads/PressurePad4")
 position = Vector2(304, -467)
 pressurePad = NodePath("../../Pads/PressurePad3")
 
+[node name="Door7" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("6_wsb14")]
+position = Vector2(-16, -675)
+pressurePad = NodePath("../../Pads/PressurePad5")
+
+[node name="Door9" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("6_wsb14")]
+position = Vector2(16, -676)
+pressurePad = NodePath("../../Pads/PressurePad5")
+
+[node name="Door8" parent="Objects_below/Doors" node_paths=PackedStringArray("pressurePad") instance=ExtResource("6_wsb14")]
+position = Vector2(48, -675)
+pressurePad = NodePath("../../Pads/PressurePad5")
+
 [node name="Player" parent="." instance=ExtResource("7_8i3on")]
 position = Vector2(14, 19)
 
@@ -145,17 +165,23 @@ position = Vector2(14, 19)
 [node name="Box" parent="Objects_above" instance=ExtResource("8_otqlu")]
 position = Vector2(16, -79)
 
+[node name="Box2" parent="Objects_above" instance=ExtResource("8_otqlu")]
+position = Vector2(16, -591)
+
 [node name="Fence" parent="Objects_above" instance=ExtResource("9_efrlh")]
 position = Vector2(17, -429)
 
 [node name="Fence2" parent="Objects_above" instance=ExtResource("9_efrlh")]
-position = Vector2(-16, -623)
+position = Vector2(-175, -590)
 
 [node name="Fence3" parent="Objects_above" instance=ExtResource("9_efrlh")]
-position = Vector2(48, -622)
+position = Vector2(208, -589)
 
 [node name="Fence4" parent="Objects_above" instance=ExtResource("9_efrlh")]
-position = Vector2(16, -622)
+position = Vector2(-175, -557)
+
+[node name="Fence5" parent="Objects_above" instance=ExtResource("9_efrlh")]
+position = Vector2(208, -557)
 
 [node name="HUD" parent="." instance=ExtResource("10_lwl1a")]
 
