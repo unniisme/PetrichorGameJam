@@ -15,19 +15,22 @@ namespace Gamelogic
         [Export]
         public int morphCharges = 6;
 
-        [Signal]
-        public delegate void MorphChargesChangedEventHandler(int val);
+		[Signal]
+		public delegate void MorphChargesChangedEventHandler(int val);
 
-        public int MorphCharges
-        {
-            get => morphCharges;
-            set
-            {
-                if (morphCharges <= 0) return;
-                morphCharges = value;
-                EmitSignal(SignalName.MorphChargesChanged, value);
-            }
-        }
+		[Signal]
+		public delegate void MenuEventHandler();
+
+		public int MorphCharges
+		{
+			get => morphCharges;
+			set
+			{
+				if (morphCharges <= 0) return;
+				morphCharges = value;
+				EmitSignal(SignalName.MorphChargesChanged, value);
+			}
+		}
 
         public Player Player => player;
         public Player GetPlayer() => player;
@@ -37,24 +40,24 @@ namespace Gamelogic
         public Camera2D GetCamera() => cam;
 
 
-        public override void _Ready()
-        {
-            GameManager.RegisterLevel(this);
+		public override void _Ready()
+		{
+			GameManager.RegisterLevel(this);
 
             player ??= GetNode<Player>("Player");
             hud ??= GetNode<CanvasLayer>("HUD");
             cam ??= GetNode<Camera2D>("Camera");
 
-            hud.Call("connect_signals");
-        }
+			hud.Call("connect_signals");
+		}
 
-        public override void _Process(double delta)
-        {
-            if (MorphCharges > 0 && Input.IsActionJustPressed("action"))
+		public override void _Process(double delta)
+		{
+			if (MorphCharges > 0 && Input.IsActionJustPressed("action"))
 			{
-                MorphCharges -= 1;
+				MorphCharges -= 1;
 				GameManager.ToggleMorph();
 			}
-        }
-    }
+		}
+	}
 }

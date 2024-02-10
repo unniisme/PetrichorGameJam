@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/grid/GridTileMap.cs" id="2_o4go5"]
 
 [node name="GridTileMap" type="TileMap"]
+visibility_layer = 2
 texture_filter = 1
 tile_set = ExtResource("1_4wlk2")
 format = 2

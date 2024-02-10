@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://xycissx14dxd"]
 
-[ext_resource type="Shader" path="res://blur.gdshader" id="1_qrwy0"]
+[ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="1_36dx5"]
 [ext_resource type="Script" path="res://scenes/UI/PauseMenu.gd" id="2_md0j8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dl0hp"]
-shader = ExtResource("1_qrwy0")
+shader = ExtResource("1_36dx5")
 shader_parameter/blur = 0.0
 shader_parameter/brightness = 1.0
 

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Gamelogic.Grid;
 using Godot;
 
@@ -7,6 +8,9 @@ namespace Gamelogic.Objects
     {
         private bool movable = true;
         private bool morphed = false;
+        private bool attackInCooldown = false;
+        [Export]
+        public float cooldownTime = 1f;
 
         [Export]
         private GodotGridNavigationAgent agent;
@@ -43,10 +47,18 @@ namespace Gamelogic.Objects
             {
                 Vector2I nextPos = agent.GetNextPosition(GameManager.Grid.GetObjectPosition(GameManager.Player));
                 Node2D nextObj = GameManager.Grid.GetObject(nextPos);
-                if (nextObj is Player player)
-                    player.Hurt(this);
+                if (nextObj is Player player && !attackInCooldown)
+                    Attack(player);
                 Move(nextPos - GridPosition);
             }
+        }
+
+        private async void Attack(Player player)
+        {
+            player.Hurt(this);
+            attackInCooldown = true;
+            await Task.Delay((int)cooldownTime*1000);
+            attackInCooldown = false;
         }
     }
 }

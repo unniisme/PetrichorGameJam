@@ -283,7 +283,7 @@ script = ExtResource("6_hvae6")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_2r511")
 
-[node name="GodotGridNavigationAgent" type="Node" parent="."]
+[node name="GodotGridNavigationAgent" type="Node2D" parent="."]
 script = ExtResource("7_hliv4")
 Agent = "AStar"
 Depth = 40
