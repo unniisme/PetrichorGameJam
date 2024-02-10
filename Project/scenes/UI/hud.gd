@@ -10,6 +10,7 @@ var pause_menu
 func _ready():
 	heart_container = $HBoxContainer
 	crystal_container = $crystalContainer
+	pause_menu = $PauseMenu
 	
 func initialize():
 	GameManager.GetPlayer().connect("HealthChanged", _on_player_health_changed)

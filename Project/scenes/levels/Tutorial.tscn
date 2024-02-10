@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qhhr5jn18fbb" path="res://scenes/actors/objects/door.tscn" id="3_713mv"]
 [ext_resource type="PackedScene" uid="uid://dy2r7gahd11k2" path="res://scenes/actors/objects/player.tscn" id="3_qi1hw"]
 [ext_resource type="PackedScene" uid="uid://nkcgchcv2d01" path="res://scenes/actors/glyph.tscn" id="3_sqw8s"]
+[ext_resource type="Texture2D" uid="uid://cj3avhs0ot2q3" path="res://assets/Pixel Art Top Down - Basic/Texture/TX Plant.png" id="4_3olh8"]
 [ext_resource type="PackedScene" uid="uid://bpgm22esps6nl" path="res://scenes/actors/objects/pressure_pad.tscn" id="4_xgh3n"]
 [ext_resource type="PackedScene" uid="uid://cfd2rjbv73xea" path="res://scenes/actors/objects/box.tscn" id="6_hckxg"]
 [ext_resource type="PackedScene" uid="uid://dyb4lffva0t3k" path="res://scenes/actors/triggers/camswitch.tscn" id="8_ohty7"]

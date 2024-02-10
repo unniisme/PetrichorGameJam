@@ -130,8 +130,8 @@ namespace Gamelogic
 		/// </summary>
 		public static void LoadMainMenu()
 		{
+			AudioManager.StopStream("scaryBackground");
 			Reset();
-
 			runningManager.GetTree().ChangeSceneToFile(GameResources.mainMenuScene);
 			runningManager.GetTree().Paused = false;
 			level = null;

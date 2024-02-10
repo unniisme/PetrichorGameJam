@@ -73,6 +73,7 @@ namespace Gamelogic.Objects
         {
             grid = GameManager.Grid;
 			grid.PlaceObject(this);
+			inputEnabled = true;
 
 			GameManager.RegisterMorphable(this);
         }

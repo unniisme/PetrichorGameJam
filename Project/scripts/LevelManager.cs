@@ -23,8 +23,6 @@ namespace Gamelogic
 
 		[Signal]
 		public delegate void MorphChargesChangedEventHandler(int val);
-		[Signal]
-		public delegate void MorphChargesChangedEventHandler(int val);
 
 		[Signal]
 		public delegate void MenuEventHandler();
@@ -65,9 +63,6 @@ namespace Gamelogic
 		public override void _Ready()
 		{
 			GameManager.RegisterLevel(this);
-		public override void _Ready()
-		{
-			GameManager.RegisterLevel(this);
 
 			player ??= GetNode<Player>("Player");
 			hud ??= GetNode<CanvasLayer>("HUD");
@@ -87,9 +82,6 @@ namespace Gamelogic
 			hud.Call("initialize");
 		}
 
-		public override void _Process(double delta)
-		{
-			if (MorphCharges > 0 && Input.IsActionJustPressed("action"))
 		public override void _Process(double delta)
 		{
 			if (MorphCharges > 0 && Input.IsActionJustPressed("action"))
@@ -113,7 +105,4 @@ namespace Gamelogic
 			}
 		}
 	}
-		}
-	}
 }
-

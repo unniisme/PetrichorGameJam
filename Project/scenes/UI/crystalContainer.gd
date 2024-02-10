@@ -1,16 +1,10 @@
-extends HBoxContainer
+class_name CrystalContainer extends HBoxContainer
 
-var max_crystal : int = 5
-var curr_crystal : int = 4
+var max_crystal : int = 3
+var curr_crystal : int = 3
 var used_crystal : bool = false
 
 @onready var CrystalGuiClass = preload("res://scenes/UI/crystalGui.tscn")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func setMaxCrystals(max: int):
 	for i in range(max):

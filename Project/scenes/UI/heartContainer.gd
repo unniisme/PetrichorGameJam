@@ -1,14 +1,8 @@
-extends HBoxContainer
+class_name HeartContainer extends HBoxContainer
 var player_health : int = 3
 var curr_health : int = 3
 
 @onready var HeartGuiClass = preload("res://scenes/UI/heartGui.tscn")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func setMaxHearts(max: int):
 	for i in range(max):

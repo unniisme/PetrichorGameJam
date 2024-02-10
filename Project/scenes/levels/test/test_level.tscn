@@ -62,10 +62,6 @@ zoom = Vector2(1.545, 1.545)
 
 [node name="Box" parent="." instance=ExtResource("10_2o73u")]
 position = Vector2(367, 339)
-agent = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":Resource("res://scripts/grid/navigation/GodotGridNavigationAgent.cs"),"Agent":"AStar","Depth":40)
-
-[node name="Box" parent="." node_paths=PackedStringArray("agent") instance=ExtResource("11_qjsj2")]
-position = Vector2(368, 339)
 
 [node name="HUD" parent="." instance=ExtResource("11_86kq1")]
 layer = 2
