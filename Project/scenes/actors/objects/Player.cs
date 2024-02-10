@@ -40,7 +40,7 @@ namespace Gamelogic.Objects
 		/// <summary>
 		/// Movement speed, 1/gridcells per second
 		/// </summary>
-		public float speed = 7;
+		public float speed = 4.8f;
 		public float smoothness = 1f;
 
         public override void _Ready()

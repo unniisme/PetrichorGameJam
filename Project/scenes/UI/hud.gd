@@ -11,12 +11,12 @@ func _ready():
 	heart_container = $HBoxContainer
 	crystal_container = $crystalContainer
 	
-func connect_signals():
+func initialize():
 	GameManager.GetPlayer().connect("HealthChanged", _on_player_health_changed)
 	GameManager.GetLevel().connect("MorphChargesChanged", _on_morph)
 	GameManager.GetLevel().connect("Menu", _open_menu)
 	
-	crystal_container.setMaxCrystals(GameManager.GetLevel().morphCharges/2)
+	crystal_container.setMaxCrystals(GameManager.GetLevel().MaxMorphCharges/2)
 	_on_morph(GameManager.GetLevel().morphCharges)
 	
 	heart_container.setMaxHearts(GameManager.GetPlayer().Health)

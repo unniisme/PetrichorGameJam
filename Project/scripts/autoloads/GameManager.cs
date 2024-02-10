@@ -62,7 +62,9 @@ namespace Gamelogic
 		/// Should be replaced later in favour of controlling level loading
 		/// </summary>
 		/// <param name="pl"></param>
-		public static void RegisterLevel(LevelManager levelManager) => level = levelManager;
+		public static void RegisterLevel(LevelManager levelManager){
+			level = levelManager;
+		} 
 		
 		private static bool isMorphed = false;
 		public static bool IsMorphed
@@ -99,15 +101,34 @@ namespace Gamelogic
 		/// </summary>
 		public static void Restart()
 		{
+			Reset();
+
 			runningManager.GetTree().ReloadCurrentScene();
-			ResetGrid();
-			ResetMorphables();
-			Player.inputEnabled = true;
+			runningManager.GetTree().Paused = false;
 		}
 
+		/// <summary>
+		/// Replace current scene with the next level in list of levels found in GameResources
+		/// </summary>
 		public static void LoadNextLevel()
 		{
-			
+			Reset();
+
+			int index = (level==null)?0:level.levelId+1;
+			runningManager.GetTree().ChangeSceneToFile(GameResources.Levels[index]);
+			runningManager.GetTree().Paused = false;
+		}
+
+		/// <summary>
+		/// Replace current scene with the main menu of the game
+		/// </summary>
+		public static void LoadMainMenu()
+		{
+			Reset();
+
+			runningManager.GetTree().ChangeSceneToFile(GameResources.mainMenuScene);
+			runningManager.GetTree().Paused = false;
+			level = null;
 		}
 
 

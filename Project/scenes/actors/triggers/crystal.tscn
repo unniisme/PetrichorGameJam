@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://da0dpejjbn5v3"]
+
+[ext_resource type="Script" path="res://scenes/actors/triggers/crystal.gd" id="1_vxy7u"]
+[ext_resource type="Texture2D" uid="uid://p87owpdrx8lj" path="res://assets/crystals.png" id="2_wp2x1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vk1g"]
+atlas = ExtResource("2_wp2x1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vyeit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vk1g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b286a"]
+
+[node name="Crystal" type="Area2D"]
+script = ExtResource("1_vxy7u")
+only_player = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vyeit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b286a")

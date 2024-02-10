@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Project"
-run/main_scene="res://scenes/levels/Tutorial.tscn"
+run/main_scene="res://scenes/levels/morph_tutorial.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+GameResources="*res://scripts/autoloads/GameResources.cs"
 GameManager="*res://scripts/autoloads/GameManager.cs"
 
 [display]
