@@ -11,6 +11,7 @@ namespace Gamelogic.Objects
         private bool attackInCooldown = false;
         [Export]
         public float cooldownTime = 1f;
+        [Export]
         private int minSeeDistance = 4; // Minimum manhatten distance at which isSee is trivially true
 
         [Export]
@@ -33,8 +34,16 @@ namespace Gamelogic.Objects
         public void ToggleMorph() => IsMorphed = !IsMorphed;
         private bool CanSeePlayer()
         {
-            Vector2I playerPosition = grid.GetObjectPosition(GameManager.Player);
-            Node2D result = grid.GridCast(GridPosition, playerPosition, agent.Depth);
+            Vector2I playerPosition;
+            try
+            {
+                playerPosition = grid.GetObjectPosition(GameManager.Player);
+            }
+            catch (GridException)
+            {
+                return false;
+            }
+            IGridObject result = grid.GridCast(GridPosition, playerPosition, agent.Depth);
 
 
             return result is Player || // Player is gridcastable, or player is within minSeeDistance
@@ -58,7 +67,7 @@ namespace Gamelogic.Objects
                 {
                     Vector2I playerPos = grid.GetObjectPosition(GameManager.Player);
                     Vector2I nextPos = agent.GetNextPosition(playerPos);
-                    Node2D nextObj = GameManager.Grid.GetObject(nextPos);
+                    IGridObject nextObj = GameManager.Grid.GetObject(nextPos);
                     if (nextObj is Player player && !attackInCooldown)
                         Attack(player);
                     if(Move(nextPos - GridPosition))
@@ -70,7 +79,7 @@ namespace Gamelogic.Objects
                 else if (useMemory)
                 {
                     Vector2I nextPos = agent.GetNextPosition(memoryPosition);
-                    Node2D nextObj = GameManager.Grid.GetObject(nextPos);
+                    IGridObject nextObj = GameManager.Grid.GetObject(nextPos);
                     if (nextObj is Player player && !attackInCooldown)
                         Attack(player);
                     Move(nextPos - GridPosition);
@@ -78,6 +87,14 @@ namespace Gamelogic.Objects
                         useMemory = false;
                 }
             }
+        }
+
+        public override bool Kill(Node2D attacker)
+        {
+            grid.RemoveObject(this);
+            QueueFree();
+            alive = false;
+            return true;
         }
 
         private async void Attack(Player player)

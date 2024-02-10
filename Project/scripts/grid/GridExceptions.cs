@@ -6,9 +6,9 @@ namespace Gamelogic.Grid
     public class GridException : Exception
     {
         public Vector2I pos;
-        public Node2D obj;
+        public IGridObject obj;
 
-        public GridException(string message, Vector2I pos, Node2D obj)
+        public GridException(string message, Vector2I pos, IGridObject obj)
             : base($"Grid Excpetion at {pos}, on object {obj.Name} : {message}")
         {
             this.pos = pos;
@@ -22,8 +22,8 @@ namespace Gamelogic.Grid
             obj = null;
         }
 
-        public GridException(string message, Node2D obj)
-            : base($"Grid Excpetion on object {obj} : {message}")
+        public GridException(string message, IGridObject obj)
+            : base($"Grid Excpetion on object {obj.Name} : {message}")
         {
             this.obj = obj;
             pos = Vector2I.Zero;

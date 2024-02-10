@@ -7,14 +7,14 @@ namespace Gamelogic.Grid
     [GlobalClass]
     public partial class GodotGrid : Node2D, IGrid
     {
-        private readonly Dictionary<Node2D, Vector2I> objectToIndex = new();
-        private readonly Dictionary<Vector2I, Node2D> indexToObject = new();
-        private readonly List<Node2D> objects = new();
+        private readonly Dictionary<IGridObject, Vector2I> objectToIndex = new();
+        private readonly Dictionary<Vector2I, IGridObject> indexToObject = new();
+        private readonly List<IGridObject> objects = new();
 
         [Export]
         public Vector2 Offset { get; set; }
         public event Action<Vector2I> GridChangeEvent;
-        public List<Node2D> PlacedObjects => objects;
+        public List<IGridObject> PlacedObjects => objects;
 
         public GodotGrid(Vector2 scale, Vector2 offset)
         {
@@ -43,7 +43,7 @@ namespace Gamelogic.Grid
             return ((Vector2)pos * Scale) + Offset;
         }
 
-        public Node2D GetObject(Vector2I pos)
+        public IGridObject GetObject(Vector2I pos)
         {
             if (indexToObject.ContainsKey(pos))
             {
@@ -52,7 +52,7 @@ namespace Gamelogic.Grid
             return null;
         }
 
-        public Vector2I GetObjectPosition(Node2D obj)
+        public Vector2I GetObjectPosition(IGridObject obj)
         {
             if (objectToIndex.ContainsKey(obj))
             {
@@ -61,12 +61,12 @@ namespace Gamelogic.Grid
             throw new GridException("Object not present in grid", obj);
         }
 
-        public Vector2 GetObjectPositionInGameCoordinates(Node2D obj)
+        public Vector2 GetObjectPositionInGameCoordinates(IGridObject obj)
         {
             return GridCoordinateToGameCoordinate(GetObjectPosition(obj));
         }
 
-        public void PlaceObject(Node2D obj, Vector2I pos)
+        public void PlaceObject(IGridObject obj, Vector2I pos)
         {
             if (objectToIndex.ContainsKey(obj))
                 throw new GridException("Object is already present in grid", pos, obj);
@@ -81,9 +81,11 @@ namespace Gamelogic.Grid
 
         public void PlaceObject(Node2D obj)
         {
-            PlaceObject(obj, GameCoordinateToGridCoordinate(obj.GlobalPosition));
+            // Could throw an error
+            PlaceObject((IGridObject)obj, GameCoordinateToGridCoordinate(obj.GlobalPosition));
         }
-        public bool MoveObject(Node2D obj, Vector2I pos)
+
+        public bool MoveObject(IGridObject obj, Vector2I pos)
         {
             if (indexToObject.ContainsKey(pos))
             {
@@ -103,7 +105,7 @@ namespace Gamelogic.Grid
 
         public bool MoveObject(Vector2I from, Vector2I to)
         {
-            Node2D obj = GetObject(from);
+            IGridObject obj = GetObject(from);
             return MoveObject(obj, to);
         }
 
@@ -114,7 +116,7 @@ namespace Gamelogic.Grid
         }
 
 
-        public bool MoveObjectInDirection(Node2D obj, Vector2 dir)
+        public bool MoveObjectInDirection(IGridObject obj, Vector2 dir)
         {
             return MoveObject(obj, GetPositionInDirection(GetObjectPosition(obj), dir));
         }
@@ -131,11 +133,11 @@ namespace Gamelogic.Grid
             {
                 throw new GridException("Position not occupied", pos);
             }
-            Node2D obj = indexToObject[pos];
+            IGridObject obj = indexToObject[pos];
             RemoveObjectInternal(obj, pos);
         }
 
-        public void RemoveObject(Node2D obj)
+        public void RemoveObject(IGridObject obj)
         {
             if (!objectToIndex.ContainsKey(obj))
             {
@@ -145,7 +147,7 @@ namespace Gamelogic.Grid
             RemoveObjectInternal(obj, pos);
         }
 
-        private void RemoveObjectInternal(Node2D obj, Vector2I pos)
+        private void RemoveObjectInternal(IGridObject obj, Vector2I pos)
         {
             // Do not use carelessly
             objectToIndex.Remove(obj);
@@ -154,7 +156,7 @@ namespace Gamelogic.Grid
             GridChangeEvent?.Invoke(pos);
         }
 
-        public Node2D GridCast(Vector2I from, Vector2I to, int distance)
+        public IGridObject GridCast(Vector2I from, Vector2I to, int distance)
         {
             foreach (Vector2I target in BresenhamLine(from, to))
             {
@@ -163,7 +165,7 @@ namespace Gamelogic.Grid
                 distance--;
                 if (distance == 0) return null;
                 
-                Node2D obj = GetObject(target);
+                IGridObject obj = GetObject(target);
                 if (obj != null) return obj;
             }
             return null;

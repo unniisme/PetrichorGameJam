@@ -6,7 +6,7 @@ namespace Gamelogic.Grid
 	/// <summary>
 	/// A godot object that is suppose to reside in a grid
 	/// </summary>
-	public partial class GridObject : Node2D
+	public partial class GridObject : Node2D, IGridObject
 	{
 
 		// Lerping
@@ -15,6 +15,7 @@ namespace Gamelogic.Grid
 		internal float movementFraction = 0f; 
 		internal Vector2 initialVector;
 		internal Vector2 finalVector;
+		internal bool alive = true;
 		private bool movable = false;
 
 		public IGrid grid;
@@ -32,12 +33,13 @@ namespace Gamelogic.Grid
 		public bool setLayerZ = true;
 
 		public virtual bool Movable => movable;
-		public Vector2I GridPosition
+		public virtual Vector2I GridPosition
 		{
 			get => grid.GetObjectPosition(this);
 			set => grid.MoveObject(this, value);
 		}
 
+		public GridObject() {}
 		
 
 		// Called when the node enters the scene tree for the first time.
@@ -52,6 +54,8 @@ namespace Gamelogic.Grid
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _PhysicsProcess(double delta)
 		{
+			if (!alive) return;
+
 			// Snap to grid
 			if (snap && !isMoving)
 			{
@@ -96,6 +100,11 @@ namespace Gamelogic.Grid
 			movementFraction += delta/moveTime;
 			if (movementFraction >= 1)
 				UnsetMoving();
+		}
+
+		public virtual bool Kill(Node2D attacker)
+		{
+			return false; // Override
 		}
 	}
 }

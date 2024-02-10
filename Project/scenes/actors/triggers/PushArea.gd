@@ -1,6 +1,6 @@
 class_name PushArea extends Trigger
 
-var direction : Vector2 = Vector2.RIGHT
+@export var direction : Vector2 = Vector2.RIGHT
 
 func _on_body_entered(body : Node):
 	if (body is Player):

@@ -25,7 +25,7 @@ namespace Gamelogic.Grid
 
 			foreach (Vector2I pos in GetUsedCells(gridLayer))
 			{
-				grid.PlaceObject(new(), pos);
+				grid.PlaceObject(new GridObject(), pos);
 			} 
 		}
 	}

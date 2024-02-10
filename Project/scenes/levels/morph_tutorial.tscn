@@ -133,7 +133,7 @@ pressurePad = NodePath("../PressurePad3")
 position = Vector2(305, 143)
 
 [node name="Player" parent="." instance=ExtResource("3_q0e0b")]
-position = Vector2(16, 270)
+position = Vector2(17, 270)
 
 [node name="Objects_over" type="Node2D" parent="."]
 
