@@ -135,6 +135,12 @@ namespace Gamelogic
 			level = null;
 		}
 
+		public static void LoadOptionsMenu()
+		{
+			runningManager.GetTree().ChangeSceneToFile(GameResources.optionsMenuScene);
+			runningManager.GetTree().Paused = false;
+			level = null;
+		}
 
 
         public override void _Ready()

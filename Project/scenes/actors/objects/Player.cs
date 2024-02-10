@@ -125,7 +125,7 @@ namespace Gamelogic.Objects
 
 			if (canMove)
 			{
-				AudioManager.PlayStream("footsteps");
+				//AudioManager.PlayStream("footsteps");
 				return grid.MoveObjectInDirection(this, dir);
 			}
 			else
