@@ -34,5 +34,10 @@ namespace Gamelogic.Objects
 
         public void Open() => IsActive = false;
         public void Close() => IsActive = true;
+        public void SetOpen(bool open)
+        {
+            if(open) Open(); 
+            else Close();
+        }
     }
 }

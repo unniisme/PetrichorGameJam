@@ -1,8 +1,8 @@
 extends HBoxContainer
 
 var max_crystal : int = 5
-var curr_crystal : int = 2
-var used_crystal : bool = true
+var curr_crystal : int = 4
+var used_crystal : bool = false
 
 @onready var CrystalGuiClass = preload("res://scenes/UI/crystalGui.tscn")
 # Called when the node enters the scene tree for the first time.
@@ -23,12 +23,13 @@ func setMaxCrystals(max: int):
 	
 func updateCrystals(currCryst: int, usedCryst: bool):
 	var crystals = get_children()
-	for i in range(currCryst-1):
+	for i in range(currCryst):
 		crystals[i].update(0)
-	if(usedCryst):
-		crystals[currCryst-1].update(1)
-	else:
-		crystals[currCryst-1].update(0)
-	for i in range(currCryst, crystals.size()):
-		crystals[i].update(2)
+	if(currCryst<crystals.size()):
+		if(usedCryst):
+			crystals[currCryst].update(1)
+		else:
+			crystals[currCryst].update(2)
+		for i in range(currCryst+1, crystals.size()):
+			crystals[i].update(2)
 

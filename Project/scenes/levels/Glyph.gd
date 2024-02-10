@@ -12,3 +12,6 @@ func light_up():
 func light_down():
 	modulate = downcolor
 	
+func change_light(val):
+	if val: light_up()
+	else: light_down()
