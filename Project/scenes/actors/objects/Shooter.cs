@@ -1,9 +1,12 @@
 using Gamelogic.Grid;
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 namespace Gamelogic.Objects
 {
+    
+
     public enum FacingDirection
     {
         left,
@@ -12,7 +15,7 @@ namespace Gamelogic.Objects
         down
     }
 
-    public partial class Shooter : GridObject
+    public partial class Shooter : GridObject, IMorphable
     {
         private uint charge = 0;
         private int curr = 0;
@@ -57,6 +60,8 @@ namespace Gamelogic.Objects
             get => Enum.GetName(dir2);
             set => _ = Enum.TryParse(value, out dir2);
         }
+        public bool IsMorphed { get; set; }
+        public void ToggleMorph() => IsMorphed = !IsMorphed;
 
         [Export]
         public Shooter dir0Shooter = null;
@@ -79,10 +84,31 @@ namespace Gamelogic.Objects
         public delegate void Fire2EventHandler(bool chargeUp);
 
         public event Action<FacingDirection> DirectionChanged;
+        
+        // Gun properties
+        private bool isCooledDown = false;
+        /// <summary>
+        /// Time in seconds between fires
+        /// </summary>
+        [Export]
+        public float timeOutTime = 0.5f;
+
+        [Export]
+        public Node2D firePoint;
+
+        public Vector2 DirVector => Facing switch
+        {
+            FacingDirection.down => Vector2.Down,
+            FacingDirection.left => Vector2.Left,
+            FacingDirection.right => Vector2.Right,
+            FacingDirection.up => Vector2.Up,
+            _ => Vector2.Zero
+        };
 
         public override void _Ready()
         {
             base._Ready();
+            GameManager.RegisterMorphable(this);
 
             if (dir0Shooter != null)
             {
@@ -109,6 +135,27 @@ namespace Gamelogic.Objects
             {
                 Connect(SignalName.Fire2, (Callable)dir2Glyph.Get("change_light"));
             }
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            base._PhysicsProcess(delta);
+
+            if (IsMorphed && !isCooledDown)
+            {
+                Fire();
+            }
+        }
+
+        public async void Fire()
+        {
+            isCooledDown = true;
+            Node2D bullet = (Node2D)Resources.BulletScene.Instantiate();
+            GameManager.GetLevel().AddChild(bullet);
+            bullet.Set("dir", DirVector);
+            bullet.Position = (firePoint??this).GlobalPosition;
+            await Task.Delay((int)(timeOutTime*1000));
+            isCooledDown = false;
         }
 
         /// <summary>

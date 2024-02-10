@@ -3,8 +3,13 @@ extends TileMap
 var downcolor = 0xb4afaea0
 var upcolor = 0xffffffff
 
+@export var pressure_pad : Node2D
+
 func _ready():
 	light_down()
+	
+	pressure_pad.connect("Activated", light_up)
+	pressure_pad.connect("Deactivated", light_down)
 
 func light_up():
 	modulate = upcolor

@@ -4,7 +4,8 @@ using Godot;
 
 namespace Gamelogic.Objects
 {
-	public partial class PressurePad : Area2D, IActivatable
+	[GlobalClass]
+	public partial class PressurePad : Area2D, IActivatable, IMorphable
 	{
 		private bool isActive;
 		private Vector2I gridPosition;
@@ -28,6 +29,9 @@ namespace Gamelogic.Objects
 			}
 		}
 
+		public bool IsMorphed {get;set;}
+		public void ToggleMorph() => IsMorphed = !IsMorphed;
+
 		public event Action<bool> OnActivityChangedEvent;
 
 		// Called when the node enters the scene tree for the first time.
@@ -36,6 +40,7 @@ namespace Gamelogic.Objects
 			grid = GameManager.Grid;
 			grid.GridChangeEvent += GridChangeEventHandler;
 			gridPosition = grid.GameCoordinateToGridCoordinate(GlobalPosition);
+			GameManager.RegisterMorphable(this);
 
 			OnActivityChangedEvent += (bool val) =>
 			{
@@ -46,7 +51,7 @@ namespace Gamelogic.Objects
 
 		private void GridChangeEventHandler(Vector2I pos)
 		{
-			if (pos == gridPosition)
+			if (pos == gridPosition && !IsMorphed)
 			{
 				IsActive = grid.GetObject(pos) != null;
 			}

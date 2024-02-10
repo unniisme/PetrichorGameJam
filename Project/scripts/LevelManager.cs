@@ -3,11 +3,17 @@ using Godot;
 
 namespace Gamelogic
 {
+    [GlobalClass]
     public partial class LevelManager : Node2D
     {
+        [Export]
         private Player player;
+        [Export]
         private CanvasLayer hud;
-        private int morphCharges = 6;
+        [Export]
+        private Camera2D cam;
+        [Export]
+        public int morphCharges = 6;
 
         [Signal]
         public delegate void MorphChargesChangedEventHandler(int val);
@@ -24,14 +30,20 @@ namespace Gamelogic
         }
 
         public Player Player => player;
+        public Player GetPlayer() => player;
         public CanvasLayer HUD => hud;
+        public CanvasLayer GetHUD() => hud;
+        public Camera2D Camera => cam;
+        public Camera2D GetCamera() => cam;
+
 
         public override void _Ready()
         {
             GameManager.RegisterLevel(this);
 
-            player = GetNode<Player>("Player");
-            hud = GetNode<CanvasLayer>("HUD");
+            player ??= GetNode<Player>("Player");
+            hud ??= GetNode<CanvasLayer>("HUD");
+            cam ??= GetNode<Camera2D>("Camera");
 
             hud.Call("connect_signals");
         }

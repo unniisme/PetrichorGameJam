@@ -151,5 +151,53 @@ namespace Gamelogic.Grid
             objects.Remove(obj);
             GridChangeEvent?.Invoke(pos);
         }
+
+        public Node2D GridCast(Vector2I from, Vector2I to, int distance)
+        {
+            foreach (Vector2I target in BresenhamLine(from, to))
+            {
+                if (target == from) continue;
+                
+                distance--;
+                if (distance == 0) return null;
+                
+                Node2D obj = GetObject(target);
+                if (obj != null) return obj;
+            }
+            return null;
+        }
+
+
+        public static IEnumerable<Vector2I> BresenhamLine(Vector2I from, Vector2I to)
+        {
+            int dx = Math.Abs(to.X - from.X);
+            int dy = Math.Abs(to.Y - from.Y);
+            int sx = (from.X < to.X) ? 1 : -1;
+            int sy = (from.Y < to.Y) ? 1 : -1;
+
+            int err = dx - dy;
+
+            while (true)
+            {
+                yield return new Vector2I(from.X, from.Y);
+
+                if (from.X == to.X && from.Y == to.Y)
+                    break;
+
+                int err2 = 2 * err;
+
+                if (err2 > -dy)
+                {
+                    err -= dy;
+                    from.X += sx;
+                }
+
+                if (err2 < dx)
+                {
+                    err += dx;
+                    from.Y += sy;
+                }
+            }
+        }
     }
 }

@@ -148,5 +148,13 @@ namespace Gamelogic.Grid
         /// <param name="dir"></param>
         /// <returns></returns>
         public Vector2I GetPositionInDirection(Vector2I pos, Vector2 dir);
+
+        /// <summary>
+        /// Cast a ray through the grid and see if it hits something
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns>The hit object. Null if none</returns>
+        public Node2D GridCast(Vector2I from, Vector2I to, int distance);
     }
 }

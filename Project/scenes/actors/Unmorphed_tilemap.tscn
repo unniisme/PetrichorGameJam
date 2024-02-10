@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b84aah6krbjid"]
+
+[ext_resource type="TileSet" uid="uid://42x0c6htvo8e" path="res://resources/Tilemaps/UnMorphed.tres" id="1_4wlk2"]
+[ext_resource type="Script" path="res://scripts/grid/GridTileMap.cs" id="2_o4go5"]
+
+[node name="GridTileMap" type="TileMap"]
+texture_filter = 1
+tile_set = ExtResource("1_4wlk2")
+format = 2
+layer_0/name = "Ground"
+layer_1/name = "Shadow"
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Decor"
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Grid"
+layer_3/tile_data = PackedInt32Array()
+script = ExtResource("2_o4go5")
+gridLayer = 3

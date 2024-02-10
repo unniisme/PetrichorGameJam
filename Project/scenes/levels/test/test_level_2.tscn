@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6y6djitps45c"]
+[gd_scene load_steps=11 format=3 uid="uid://c6y6djitps45c"]
 
+[ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_2i2se"]
 [ext_resource type="TileSet" uid="uid://42x0c6htvo8e" path="res://resources/Tilemaps/UnMorphed.tres" id="1_5n4o1"]
 [ext_resource type="Script" path="res://scripts/grid/GridTileMap.cs" id="2_8dm33"]
 [ext_resource type="PackedScene" uid="uid://8tflnhph83h0" path="res://scenes/actors/objects/shooter.tscn" id="3_trkot"]
@@ -8,9 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://dy2r7gahd11k2" path="res://scenes/actors/objects/player.tscn" id="6_htmsp"]
 [ext_resource type="PackedScene" uid="uid://qhhr5jn18fbb" path="res://scenes/actors/objects/door.tscn" id="7_klr2c"]
 [ext_resource type="PackedScene" uid="uid://cfd2rjbv73xea" path="res://scenes/actors/objects/box.tscn" id="7_o6dhl"]
+[ext_resource type="PackedScene" uid="uid://b88lpdst2lvca" path="res://scenes/UI/hud.tscn" id="10_3g6vo"]
 
 [node name="test_level_2" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_2i2se")
 
 [node name="GridTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_5n4o1")
@@ -101,6 +104,8 @@ snap = true
 
 [node name="Player" parent="." instance=ExtResource("6_htmsp")]
 position = Vector2(47, 335)
+
+[node name="HUD" parent="." instance=ExtResource("10_3g6vo")]
 
 [connection signal="Fire1" from="shooters/Shooter4" to="objects/Door" method="SetOpen"]
 [connection signal="Activated" from="objects/PressurePad" to="shooters/Shooter" method="ChargeUp"]
