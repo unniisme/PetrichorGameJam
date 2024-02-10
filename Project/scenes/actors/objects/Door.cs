@@ -5,9 +5,11 @@ using Godot;
 
 namespace Gamelogic.Objects
 {
-    public partial class Door : GridObject, IActivatable
+    public partial class Door : GridObject, IActivatable, IMorphable
     {
         private bool isActive = true;
+        private bool isMorphed = false;
+        private bool isClosed = true;
         private CollisionShape2D collisionShape;
 
         [Export]
@@ -46,10 +48,38 @@ namespace Gamelogic.Objects
         }
         public event Action<bool> OnActivityChangedEvent;
         public override Vector2I GridPosition { get; set; }
+        public void ToggleMorph() => IsMorphed = !IsMorphed;
+        public bool IsMorphed 
+        { 
+            get => isMorphed; 
+            set
+            {
+                if (isMorphed != value)
+                {
+                    IsActive = IsClosed && (!value);
+                    isMorphed = value;
+                }
+            }
+        }
+
+        private bool IsClosed 
+        {
+            get => isClosed; 
+            set
+            {
+                if (isClosed != value)
+                {
+                    IsActive = value && (!IsMorphed);
+                    isClosed = value;
+                }
+            }
+        }
 
         public override void _Ready()
         {
             base._Ready();
+
+            GameManager.RegisterMorphable(this);
 
             GridPosition = grid.GetObjectPosition(this);
             OnActivityChangedEvent?.Invoke(true);
@@ -68,12 +98,13 @@ namespace Gamelogic.Objects
             // override
         }
 
-        public void Open() => IsActive = false;
-        public void Close() => IsActive = true;
+        public void Open() => IsClosed = false;
+        public void Close() => IsClosed = true;
         public void SetOpen(bool open)
         {
             if(open) Open(); 
             else Close();
         }
+
     }
 }
