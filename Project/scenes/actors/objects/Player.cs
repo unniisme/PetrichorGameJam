@@ -116,11 +116,16 @@ namespace Gamelogic.Objects
 				if (obj is GridObject gridObj && gridObj.Movable)
 				{
 					canMove = gridObj.Move(dir);
+					if(canMove)
+					{
+						AudioManager.PlayStream("boxMoving");
+					}
 				}
 			}
 
 			if (canMove)
 			{
+				AudioManager.PlayStream("footsteps");
 				return grid.MoveObjectInDirection(this, dir);
 			}
 			else
