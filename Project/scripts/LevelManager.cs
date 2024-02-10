@@ -81,6 +81,7 @@ namespace Gamelogic
 			{
 				MorphCharges += GameManager.leftoverCrystals - 1;
 				AudioManager.StopStream("scaryBackground");
+				AudioManager.PlayStream("reusedCrystal");
 				AudioManager.PlayStream("happyBackground");
 			}
 			hud.Call("initialize");

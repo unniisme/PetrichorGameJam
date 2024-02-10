@@ -148,6 +148,15 @@ namespace Gamelogic
         public override void _Ready()
         {
             GetViewport().CanvasCullMask = UnMorphedBitmask+1;
+			ProcessMode = ProcessModeEnum.Always;
+        }
+
+        public override void _Process(double delta)
+        {
+			if (Input.IsActionJustPressed("menu"))
+            {
+                GetLevel()?.EmitSignal(LevelManager.SignalName.Menu);
+            }
         }
     }
 }

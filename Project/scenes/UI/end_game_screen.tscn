@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://0t08wfqk2kov"]
+[gd_scene load_steps=4 format=3 uid="uid://0t08wfqk2kov"]
 
 [ext_resource type="Script" path="res://scenes/UI/end_game_screen.gd" id="1_jiwa2"]
 [ext_resource type="FontFile" uid="uid://bq5eeuk6vdult" path="res://assets/ChiKareGo2.ttf" id="1_ketg6"]
+[ext_resource type="FontFile" uid="uid://dxxuxxno0vhm1" path="res://assets/Adventurer.ttf" id="3_vwhcw"]
 
 [node name="EndGameScreen" type="Control"]
 layout_mode = 3
@@ -28,6 +29,23 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_ketg6")
 text = "That's it for now
 "
+
+[node name="MorphLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = 16.0
+offset_right = 57.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vwhcw")
+text = "OR IS IT???"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
