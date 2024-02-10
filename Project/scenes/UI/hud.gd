@@ -27,3 +27,16 @@ func _on_player_health_changed(health):
 	
 func _on_morph(charges):
 	crystal_container.updateCrystals(int(charges/2), (charges%2))
+
+func _open_data_sheet():
+	pause_menu.open_data()
+
+func _close_data_sheet():
+	pause_menu.next()
+
+func _open_menu():
+	_close_data_sheet()
+	if (get_tree().paused):
+		pause_menu.unpause()
+	else:
+		pause_menu.pause()
