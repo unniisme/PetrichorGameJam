@@ -1,3 +1,5 @@
+using System;
+using Gamelogic.Audio;
 using Gamelogic.Grid;
 using Godot;
 
@@ -26,6 +28,24 @@ namespace Gamelogic.Objects
 				if (health == 0)
 				{
 					grid.RemoveObject(this);
+					Random rnd = new Random();
+					int rando = rnd.Next(4);
+					if(rando == 0)
+					{
+						AudioManager.PlayStream("death1");
+					}
+					else if(rando == 1)
+					{
+						AudioManager.PlayStream("death2");
+					}
+					else if(rando == 2)
+					{
+						AudioManager.PlayStream("death3");
+					}
+					else
+					{
+						AudioManager.PlayStream("death4");
+					}
 					GameManager.DelayedRestart();
 					inputEnabled = false;
 				}
@@ -66,7 +86,9 @@ namespace Gamelogic.Objects
 			{
 				Vector2 inputVector = Input.GetVector("left", "right", "up", "down");
 				if (!inputVector.IsZeroApprox())
-				Move(inputVector);
+				{
+					Move(inputVector);
+				}
 			}
 
 			Velocity = Velocity.Lerp(
@@ -98,7 +120,9 @@ namespace Gamelogic.Objects
 			}
 
 			if (canMove)
+			{
 				return grid.MoveObjectInDirection(this, dir);
+			}
 			else
 				return false;
 			
@@ -107,6 +131,20 @@ namespace Gamelogic.Objects
 		public bool Hurt(Node2D attacker)
 		{
 			Health -= 1;
+			Random rnd = new Random();
+			int rando = rnd.Next(3);
+			if(rando == 0)
+			{
+				AudioManager.PlayStream("hit1");
+			}
+			else if(rando == 1)
+			{
+				AudioManager.PlayStream("hit2");
+			}
+			else
+			{
+				AudioManager.PlayStream("hit3");
+			}
 			Position += (GlobalPosition - attacker.GlobalPosition).Normalized()*knockbackspeed;
 			return Move(GlobalPosition - attacker.GlobalPosition);
 		}

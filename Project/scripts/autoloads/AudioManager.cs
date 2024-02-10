@@ -38,5 +38,9 @@ namespace Gamelogic.Audio
         {
             audioStreams[name].Play();
         }
+        public static void StopStream(StringName name)
+        {
+            audioStreams[name].Stop();
+        }
     }
 }

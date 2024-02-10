@@ -1,19 +1,83 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqh3ecgvo60sp"]
+[gd_scene load_steps=19 format=3 uid="uid://cqh3ecgvo60sp"]
 
 [ext_resource type="Script" path="res://scripts/autoloads/AudioManager.cs" id="1_ewtkp"]
-[ext_resource type="AudioStream" uid="uid://ckqkii8vulg5g" path="res://assets/Sounds/fast-whoosh-118248.mp3" id="1_k2t74"]
-[ext_resource type="AudioStream" uid="uid://bbi3uuro3do5c" path="res://assets/Sounds/impact-6291.mp3" id="2_kyyyb"]
-[ext_resource type="AudioStream" uid="uid://irfk4vi1min8" path="res://assets/Sounds/Dr. Mario 64 - Story Mode 3.mp3" id="3_cqckx"]
+[ext_resource type="AudioStream" uid="uid://cn3hfac5vfhi3" path="res://assets/Sounds/whoosh-trimmed.mp3" id="2_iioe8"]
+[ext_resource type="AudioStream" uid="uid://sayxpf5g83cx" path="res://assets/Sounds/impact-trimmed.mp3" id="3_4u5wj"]
+[ext_resource type="AudioStream" uid="uid://bb80yof2myris" path="res://assets/Sounds/Happy Background.mp3" id="4_8wyti"]
+[ext_resource type="AudioStream" uid="uid://d0yh78f2aja1i" path="res://assets/Sounds/scary Background.mp3" id="5_65jah"]
+[ext_resource type="AudioStream" uid="uid://cul1isskhdmpg" path="res://assets/Sounds/Pickup Crystal.wav" id="6_r8ojo"]
+[ext_resource type="AudioStream" uid="uid://cfffq48lx3hx2" path="res://assets/Sounds/door opens.mp3" id="7_u0aey"]
+[ext_resource type="AudioStream" uid="uid://ccdtu0g7cy74o" path="res://assets/Sounds/door closes.mp3" id="8_cshxj"]
+[ext_resource type="AudioStream" uid="uid://ecf1bbsn5e5f" path="res://assets/Sounds/hit1.mp3" id="9_cwifu"]
+[ext_resource type="AudioStream" uid="uid://dmtyjjqha1yxq" path="res://assets/Sounds/hit2.mp3" id="10_f04ol"]
+[ext_resource type="AudioStream" uid="uid://didejy0lx7ri3" path="res://assets/Sounds/hit3.mp3" id="11_ytlg8"]
+[ext_resource type="AudioStream" uid="uid://8savs612heoo" path="res://assets/Sounds/pressure_plate.mp3" id="12_x6b6n"]
+[ext_resource type="AudioStream" uid="uid://buvbmrup3j86y" path="res://assets/Sounds/male_dying4.mp3" id="13_6jsdm"]
+[ext_resource type="AudioStream" uid="uid://cy4q136ilf43e" path="res://assets/Sounds/male_dying.mp3" id="13_gwrq6"]
+[ext_resource type="AudioStream" uid="uid://dlm3ryaxdfpic" path="res://assets/Sounds/male_dying2.mp3" id="14_4ckrh"]
+[ext_resource type="AudioStream" uid="uid://rvf60f4rrje0" path="res://assets/Sounds/male_dying3.mp3" id="15_ws5lb"]
+[ext_resource type="AudioStream" uid="uid://ndicfvrxk7lp" path="res://assets/Sounds/box dragged.mp3" id="17_46h3k"]
+[ext_resource type="AudioStream" uid="uid://dagm3s60v6weq" path="res://assets/Sounds/Retro FootStep Mud 01.wav" id="18_hqpwt"]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_ewtkp")
 
 [node name="reusedCrystal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_k2t74")
+stream = ExtResource("2_iioe8")
 
 [node name="usedCrystal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_kyyyb")
+stream = ExtResource("3_4u5wj")
 
 [node name="happyBackground" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_cqckx")
+stream = ExtResource("4_8wyti")
+bus = &"Background"
+
+[node name="scaryBackground" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_65jah")
+volume_db = 2.0
+bus = &"Background"
+
+[node name="crystalCollect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_r8ojo")
+pitch_scale = 2.0
+
+[node name="doorOpens" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_u0aey")
+volume_db = 5.0
+
+[node name="doorCloses" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_cshxj")
+volume_db = 5.0
+pitch_scale = 1.3
+
+[node name="hit1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_cwifu")
+
+[node name="hit2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_f04ol")
+
+[node name="hit3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ytlg8")
+
+[node name="pressurePlate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_x6b6n")
+
+[node name="death1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_gwrq6")
+
+[node name="death2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_4ckrh")
+
+[node name="death3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ws5lb")
+
+[node name="death4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_6jsdm")
+
+[node name="boxMoving" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_46h3k")
+pitch_scale = 1.57
+
+[node name="footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_hqpwt")
 bus = &"Background"

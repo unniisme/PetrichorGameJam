@@ -89,10 +89,14 @@ namespace Gamelogic
 				if (MorphCharges%2 == 0)
 				{
 					AudioManager.PlayStream("reusedCrystal");
+					AudioManager.StopStream("scaryBackground");
+					AudioManager.PlayStream("happyBackground");
 				}
 				else
 				{
 					AudioManager.PlayStream("usedCrystal");
+					AudioManager.StopStream("happyBackground");
+					AudioManager.PlayStream("scaryBackground");
 				}
 
 				GameManager.ToggleMorph();
