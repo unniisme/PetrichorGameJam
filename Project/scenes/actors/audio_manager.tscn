@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/autoloads/AudioManager.cs" id="1_ewtkp"]
 [ext_resource type="AudioStream" uid="uid://cn3hfac5vfhi3" path="res://assets/Sounds/whoosh-trimmed.mp3" id="2_iioe8"]
 [ext_resource type="AudioStream" uid="uid://sayxpf5g83cx" path="res://assets/Sounds/impact-trimmed.mp3" id="3_4u5wj"]
-[ext_resource type="AudioStream" uid="uid://bb80yof2myris" path="res://assets/Sounds/Happy Background.mp3" id="4_8wyti"]
+[ext_resource type="AudioStream" uid="uid://ixlrrs4cpjf5" path="res://assets/Sounds/happyBackgroundFinalNoFade.mp3" id="4_3ojys"]
 [ext_resource type="AudioStream" uid="uid://d0yh78f2aja1i" path="res://assets/Sounds/scary Background.mp3" id="5_65jah"]
 [ext_resource type="AudioStream" uid="uid://cul1isskhdmpg" path="res://assets/Sounds/Pickup Crystal.wav" id="6_r8ojo"]
 [ext_resource type="AudioStream" uid="uid://cfffq48lx3hx2" path="res://assets/Sounds/door opens.mp3" id="7_u0aey"]
@@ -33,7 +33,7 @@ stream = ExtResource("3_4u5wj")
 bus = &"SFX"
 
 [node name="happyBackground" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_8wyti")
+stream = ExtResource("4_3ojys")
 bus = &"Background"
 
 [node name="scaryBackground" type="AudioStreamPlayer" parent="."]
